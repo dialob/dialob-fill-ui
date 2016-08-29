@@ -1,6 +1,5 @@
 {
   "name": "flexiform-fill-ui",
-  "private": true,
   "version": "0.0.1",
   "description": "FlexiForm filling ui",
   "main": "src/index.js",
