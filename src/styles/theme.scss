@@ -1,0 +1,44 @@
+/**
+ *  Copyright 2016 ReSys OÜ
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Base color theme
+
+$c-resys-red: #9a2326;
+$c-resys-grey: #6d7175;
+
+$c-red-bright: #e63439;
+$c-red-dim: #ab5a5c;
+$c-red-light: #e67a76;
+$c-red-dark: #671719;
+
+$c-blue-dark: #0d4567;
+$c-blue-light: #29a0e6;
+
+$c-green-dark: #024d16;
+$c-green-light: #239a43;
+
+$c-brownish: #826d58;
+$c-blueish: #8c8ca8;
+$c-brown: #826d58;
+$c-beige: #a8968c;
+
+// Font
+
+$ff-base-font-size: 12px;
+$ff-base-font-family: 'Myriad Set Pro', 'Helvetica Neue', helvetica, sans-serif;
+$ff-monospace-font-family: Menlo, 'DejaVu Sans Mono', monospace;
+$ff-base-font-color: rgb(57, 57, 57);
+$ff-normal-border-color: rgb(200, 200, 200);
