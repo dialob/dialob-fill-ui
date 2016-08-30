@@ -42,7 +42,7 @@ let config = Object.assign({}, baseConfig, {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("css/[name].css")
 
   ],
   module: defaultSettings.getDefaultModules()
