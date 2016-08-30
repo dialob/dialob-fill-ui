@@ -30,8 +30,8 @@ module.exports = {
   debug: true,
   devtool: 'eval',
   output: {
-    path: path.join(__dirname, '/../dist/assets'),
-    filename: '[name].js',
+    path: path.join(__dirname, '/../dist'),
+    filename: 'javascript/[name].js',
     publicPath: `.${defaultSettings.publicPath}`,
     library: 'FlexiForm',
     libraryTarget: 'umd'
