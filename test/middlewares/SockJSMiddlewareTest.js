@@ -18,7 +18,7 @@
 /*eslint no-console: 0*/
 
 import {connectToWebsocket,websocketMiddleware} from 'middlewares/SockJSMiddleware';
-import Immutable from 'Immutable';
+import Immutable from 'immutable';
 import sinon from 'sinon';
 
 
