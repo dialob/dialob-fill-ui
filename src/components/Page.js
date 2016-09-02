@@ -18,7 +18,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
-import {componentCreatorState} from '../utils/componentCreator';
 
 require('styles/page.scss');
 
@@ -60,7 +59,7 @@ class Page extends React.Component {
 
   render() {
     let groups = null;
-    let title = "Not on page!";
+    let title = 'Not on page!';
     let page = this.props.page && this.props.page[1];
     if (page) {
       groups = page.get('items').toJS()

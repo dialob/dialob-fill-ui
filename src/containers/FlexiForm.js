@@ -21,7 +21,7 @@ import {connect} from 'react-redux';
 import ConnectionStatus from '../components/ConnectionStatus';
 import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
-import {findItemById} from '../utils/formUtils';
+import {findItemById,findValuesetById} from '../utils/formUtils';
 
 require('normalize.css/normalize.css');
 require('styles/app.scss');

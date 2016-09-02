@@ -22,6 +22,7 @@ const UNLOADED = 'UNLOADED';
 const LOADED = 'LOADED';
 const ACTIVE = 'ACTIVE';
 const PASSIVE = 'PASSIVE';
+const COMPLETED = 'COMPLETED';
 
 const QUESTIONNAIRE_NOT_FOUND_STATE = Immutable.fromJS({
   status: NOT_FOUND,
@@ -64,7 +65,6 @@ function removeQuestion(state, questionId) {
 }
 
 export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
-  let currentStatus = state.get('status');
   switch (action.type) {
     case ActionConstants.QUESTIONNAIRE_NOT_FOUND:
       return QUESTIONNAIRE_NOT_FOUND_STATE;
@@ -81,10 +81,10 @@ export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
       var prevFocus = state.get('focusOn');
       state = state.set('focusOn', action.questionId);
       if (action.questionId) {
-        state = state.setIn(['items',action.questionId,focused], true);
+        state = state.setIn(['items',action.questionId,'focused'], true);
       }
       if (prevFocus) {
-        state = state.setIn(['items',prevFocus,focused], false);
+        state = state.setIn(['items',prevFocus,'focused'], false);
       }
       return state;
 
@@ -110,12 +110,12 @@ export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
       }
       return state.deleteIn(['items',action.error.id, 'errors', action.error.description]);
     case ActionConstants.ACTIVATED:
-      return state.setIn(['metadata','sessionStatus'], 'ACTIVE');
+      return state.setIn(['metadata','sessionStatus'], ACTIVE);
     case ActionConstants.WILL_PASSIVATE:
-      return state.setIn(['metadata','sessionStatus'], 'PASSIVE');
+      return state.setIn(['metadata','sessionStatus'], PASSIVE);
     case ActionConstants.COMPLETE_QUESTIONNAIRE:
       if (action.serverEvent === true) {
-        return state.setIn(['metadata', 'status'], 'COMPLETED');
+        return state.setIn(['metadata', 'status'], COMPLETED);
       }
   }
   return state;

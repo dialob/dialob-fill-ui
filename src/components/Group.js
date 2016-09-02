@@ -15,8 +15,6 @@
  */
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {componentCreatorState} from '../utils/componentCreator';
 
 require('styles/group.scss');
 

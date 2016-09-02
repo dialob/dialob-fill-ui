@@ -16,7 +16,6 @@
 
 import React from 'react';
 import {Loading} from 'flexiform-common';
-import {connect} from 'react-redux';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
 
@@ -28,17 +27,15 @@ export default class FormFillView extends React.Component {
     return {
       status: React.PropTypes.string,
       questionnaire: React.PropTypes.object,
-      activePageItem: React.PropTypes.array,
+      activePageItem: React.PropTypes.array
     };
   }
 
   render() {
     let questionnaire = this.props.questionnaire;
-    let activePage = null;
     let page = null;
-    let title = "";
+    let title = '';
     if (questionnaire) {
-      let activeItem = questionnaire.get('activeItem');
       title = questionnaire.get('label');
       if (this.props.activePageItem) {
         let isAllowedAction = action => questionnaire.get('allowedActions').includes(action);
