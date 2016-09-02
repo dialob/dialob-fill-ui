@@ -16,8 +16,6 @@
 
 import React from 'react';
 import {connectToAnswer} from '../utils/formUtils';
-import {answerQuestion} from '../actions/Actions';
-import {findValuesetById} from '../utils/formUtils';
 import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
