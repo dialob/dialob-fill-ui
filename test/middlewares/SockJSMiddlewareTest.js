@@ -18,9 +18,27 @@
 /*eslint no-console: 0*/
 
 import {connectToWebsocket,websocketMiddleware} from 'middlewares/SockJSMiddleware';
+import Immutable from 'Immutable';
+import sinon from 'sinon';
+
 
 describe('connectToWebsocket', () => {
   it('should ...', () => {
+
+    var store = {
+        getState: () =>{
+            return {
+                config: Immutable.fromJS({
+                    url: 'http://localhost:9999'
+                })
+            };
+        },
+        dispatch: sinon.mock()
+
+    };
+    var next = sinon.mock();
+
+    websocketMiddleware(store)(next)({});
     expect(null).to.equal(null);
   });
 });

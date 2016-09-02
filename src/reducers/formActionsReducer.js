@@ -28,7 +28,7 @@ const QUESTIONNAIRE_NOT_FOUND_STATE = Immutable.fromJS({
   status: NOT_FOUND,
   items: {}
 });
-const EMPTY_QUESTIONNAIRE_STATE = Immutable.fromJS({
+const UNLOADED_QUESTIONNAIRE_STATE = Immutable.fromJS({
   status: UNLOADED,
   items: {}
 });
@@ -47,7 +47,7 @@ function isQuestionnaire(question) {
 function newQuestion(state, question) {
   let questionItem = Immutable.fromJS(question);
   if (isQuestionnaire(question)) {
-    state = setLoaded(state).set('questionnaire', questionItem);
+    return setLoaded(state).set('questionnaire', questionItem);
   }
   return state.setIn(['items',question.id], questionItem);
 }
@@ -55,7 +55,7 @@ function newQuestion(state, question) {
 function updateQuestion(state, question) {
   let questionItem = Immutable.fromJS(question);
   if (isQuestionnaire(question)) {
-    state = state.merge('questionnaire', questionItem);
+    return state.merge('questionnaire', questionItem);
   }
   return state.mergeIn(['items',question.id], questionItem);
 }
@@ -64,12 +64,15 @@ function removeQuestion(state, questionId) {
   return state.deleteIn(['items',questionId]);
 }
 
-export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
+export function formActionsReducer(state, action) {
+  if (!state) {
+    state = UNLOADED_QUESTIONNAIRE_STATE;
+  }
   switch (action.type) {
     case ActionConstants.QUESTIONNAIRE_NOT_FOUND:
       return QUESTIONNAIRE_NOT_FOUND_STATE;
     case ActionConstants.REMOVE_ALL:
-      return EMPTY_QUESTIONNAIRE_STATE
+      return UNLOADED_QUESTIONNAIRE_STATE
 
     case ActionConstants.NEW_VALUE_SET:
       return state.setIn(['valueSets',action.valueSet.id], Immutable.fromJS(action.valueSet));
@@ -117,7 +120,8 @@ export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
       if (action.serverEvent === true) {
         return state.setIn(['metadata', 'status'], COMPLETED);
       }
+    default:
+      return state;
   }
-  return state;
 }
 

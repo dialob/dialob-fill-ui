@@ -74,7 +74,7 @@ function componentCreatorState(data,create,itemId) {
   if (typeof itemId === 'string') {
     item = findItemById(data, itemId); //this.props.itemById(itemId);
   } else {
-    item = itemId;
+    item = [itemId.get('id'),itemId];
   }
   if (item) {
     return create(item);
