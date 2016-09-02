@@ -22,15 +22,15 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Immutable from 'immutable';
 
-import {TextQuestion} from 'components/TextQuestion';
+import {TextBoxQuestion} from 'components/TextBoxQuestion';
 
-describe('TextQuestion', () => {
+describe('TextBoxQuestion', () => {
   it('should have its component name as default className', () => {
     let question = {
       id: 'testq',
       type: 'text'
     };
-    let wrapper = shallow(<TextQuestion question={[question.id, Immutable.fromJS(question)]}/>);
+    let wrapper = shallow(<TextBoxQuestion question={[question.id, Immutable.fromJS(question)]}/>);
     expect(wrapper.props().className).to.equal('ff-item ff-itemtype-text ');
   });
 });
