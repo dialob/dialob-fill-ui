@@ -77,10 +77,11 @@ function connectToWebsocket(configuration,dispatch) {
   return sock;
 }
 
-const prevRev = (state) => state.getIn(['token']);
+const prevRev = (state) => state.connection.get('token');
 
-function websocketMiddleware(configuration) {
-  return store => {
+const websocketMiddleware = store => {
+    var state = store.getState();
+    var configuration = state.config.toJS();
     var socket = connectToWebsocket(configuration, action => store.dispatch(action));
     let postponedActions = [];
     return next => action => {
@@ -112,7 +113,7 @@ function websocketMiddleware(configuration) {
         }
       } else if (action.type === WebsocketAction.CLOSE) {
       } else if (action.type === WebsocketAction.OPEN) {
-        if (store.getState().getIn(['connection','state']) === 'CONNECTING') {
+        if (store.getState().connection.get('state') === 'CONNECTING') {
           store.dispatch(onReconnected());
         }
         if (postponedActions.length > 0) {
@@ -150,7 +151,7 @@ function websocketMiddleware(configuration) {
       return next(action);
     };
   };
-}
+
 
 export {
   connectToWebsocket,

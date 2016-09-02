@@ -29,6 +29,7 @@ function componentCreator(question) {
   if (!question) {
     return null;
   }
+
   let id = question[0];
   let type = question[1].get('type');
   let className = question[1].get('className');
@@ -68,10 +69,10 @@ function componentCreator(question) {
   return null;
 }
 
-function componentCreatorState(state,create,itemId) {
+function componentCreatorState(data,create,itemId) {
   var item = null;
   if (typeof itemId === 'string') {
-    item = findItemById(state, itemId); //this.props.itemById(itemId);
+    item = findItemById(data, itemId); //this.props.itemById(itemId);
   } else {
     item = itemId;
   }

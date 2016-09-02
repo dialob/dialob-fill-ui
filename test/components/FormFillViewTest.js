@@ -21,15 +21,31 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Immutable from 'immutable';
 
-import {FormFillView} from 'components/FormFillView';
+import FormFillView from 'components/FormFillView';
 
 describe('FormFillView', () => {
 
   it('should have its component name as default className', () => {
-    var wrapper = shallow(<FormFillView 
-      questionnaire={() => ['questionnaire',Immutable.fromJS({activeItem: 'page1',allowedActions:[]})]}
-      itemById={() => ['page1',Immutable.fromJS({id:'page1'})]}
-      />);
+    let questionnaire = {
+      id: 'questionnaire',
+      type: 'questionnaire',
+      items: [],
+      allowedActions: []
+    };
+    let page = {
+      id: 'page1',
+      type: 'group',
+      items: []
+    };
+    let context = {
+      componentCreator: itemId => null,
+      valueSetById: setId => null
+    };
+    var wrapper = shallow(<FormFillView
+      status="LOADED"
+      questionnaire={Immutable.fromJS(questionnaire)}
+      activePageItem={[page.id,Immutable.fromJS(page)]}
+    />, {context});
     expect(wrapper.props().className).to.equal('ff-questionnaire');
   });
 });

@@ -21,30 +21,22 @@ import {answerQuestion} from '../actions/Actions';
 // Find questionnaire as a root object
 // Assuming there is always a 'questionnaire' present, and there is always one of them per form.
 //
-function findQuestionnaire(state) {
-	if (!state) {
-		return null;
-	}
-
-	let formData = state.get('data');
-  if (!formData) {
+function findQuestionnaire(data) {
+  if (!data) {
     return null;
   }
-	for (let entry of formData.entries()) {
-		let id = entry[0];
-		let item = entry[1];
-		if (item.get('type') === 'questionnaire') {
-			return [id, item];
-		}
-	}
-	return null;
+  var questionnaire = data.get('questionnaire');
+  if (questionnaire) {
+    return [questionnaire.id, questionnaire];
+  }
+  return null;
 }
 
 //
 // Find item by ID from state
 //
-function findItemById(state, id) {
-	let itemData = state.getIn(['data',id]);
+function findItemById(data, id) {
+	let itemData = data.getIn(['items',id]);
 	if (itemData) {
 		return [id,itemData];
 	}
@@ -54,8 +46,8 @@ function findItemById(state, id) {
 //
 // Find valueset by ID from state
 //
-function findValuesetById(state, id) {
-  let valueSet = state.getIn(['data', 'valueSets', id, 'entries']);
+function findValuesetById(data, id) {
+  let valueSet = data.getIn(['valueSets', id, 'entries']);
   return valueSet ? valueSet : null;
 }
 

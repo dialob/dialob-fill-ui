@@ -60,6 +60,7 @@ module.exports = {
       helpers: path.join(__dirname, '/../test/helpers'),
       components: srcPath + 'components/',
       sources: srcPath + 'sources/',
+      reducers: srcPath + 'reducers/',
       stores: srcPath + 'stores/',
       styles: srcPath + 'styles/',
       utils: srcPath + 'utils/',
@@ -69,6 +70,7 @@ module.exports = {
   },
   externals: {
     'cheerio': 'window',
+    'sinon': true,
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true

@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-/*eslint-env node, mocha */
-/*global expect */
-/*eslint no-console: 0*/
-
-import { shallow, mount } from 'enzyme';
-import React from 'react';
 import Immutable from 'immutable';
 
-import Label from 'components/Label';
+const DEFAULT_STATE = Immutable.Map();
 
-describe('Label', () => {
+export function configReducer(state = DEFAULT_STATE, action) { // eslint-disable-line no-unused-vars
+    return state;
+}
 
-  it('should have its component name as default className', () => {
-    var wrapper = shallow(<Label htmlFor="x1" required={true}/>);
-
-    expect(wrapper.props().className).to.equal(undefined);
-  });
-});

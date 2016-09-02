@@ -18,17 +18,21 @@ import * as ActionConstants from '../actions/ActionConstants';
 import Immutable from 'immutable';
 
 export function batchActionsReducer(reducer) {
-  return (origState, action) => {
-    let state = origState;
-    if (!state.get('batchActions')) {
+  return (origState = {}, action) => {
+    let state = Object.assign({}, origState);
+    if (!state.actions) {
       if (action.type === ActionConstants.BATCH_ACTIONS) {
-        return state.set('batchActions', Immutable.List());
+        state.actions = Immutable.List();
+        return state;
       }
       return reducer(state,action);
     } else if (action.type === ActionConstants.BATCH_COMMIT) {
-      return state.get('batchActions').toJS().reduce(reducer, state).delete('batchActions');
+      var actions = state.actions.toJS();
+      delete state.actions;
+      return actions.reduce(reducer, state);
     } else {
-      return state.update('batchActions', batchActions => batchActions.push(Immutable.fromJS(action)));
+      state.actions = state.actions.push(Immutable.fromJS(action));
+      return state;
     }
   };
 }

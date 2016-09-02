@@ -20,7 +20,7 @@ import {componentCreatorState} from '../utils/componentCreator';
 
 require('styles/group.scss');
 
-class Group extends React.Component {
+export default class Group extends React.Component {
 
   static get propTypes() {
     return {
@@ -39,26 +39,16 @@ class Group extends React.Component {
     if (!group) {
       return null;
     }
+    let title = group.get('label');
     let questions = group.get('items').toJS()
-      .map(item => componentCreatorState(this.props.state,this.context.componentCreator,item))
+      .map(this.context.componentCreator)
       .filter(question => question);
     return (
       <div className='ff-group'>
-        <span className='ff-group-title'>{group && group.get('label')}</span>
+        <span className='ff-group-title'>{title}</span>
         {questions}
       </div>
     );
   }
 }
 
-const GroupConnected = connect(
-  state => {
-    return {
-      state
-    };
-  })(Group);
-
- export {
-   GroupConnected as default,
-   Group
- };

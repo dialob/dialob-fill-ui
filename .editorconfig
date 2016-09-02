@@ -12,6 +12,8 @@ ident_size = 2
 
 [*.js]
 trim_trailing_whitespace = true
+indent_style = space
+ident_size = 2
 
 [*.json]
 indent_style = space

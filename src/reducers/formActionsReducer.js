@@ -16,20 +16,61 @@
 
 import * as ActionConstants from '../actions/ActionConstants';
 import Immutable from 'immutable';
-import {mapReducerToNs} from './reducerUtils';
 
-function newQuestion(state, question) {
-  if (!question || !question.id) {
-    throw new Error('question or id is undefined');
-  }
-  return state.setIn([question.id], Immutable.fromJS(question));
+const NOT_FOUND = 'NOT_FOUND';
+const UNLOADED = 'UNLOADED';
+const LOADED = 'LOADED';
+const ACTIVE = 'ACTIVE';
+const PASSIVE = 'PASSIVE';
+
+const QUESTIONNAIRE_NOT_FOUND_STATE = Immutable.fromJS({
+  status: NOT_FOUND,
+  items: {}
+});
+const EMPTY_QUESTIONNAIRE_STATE = Immutable.fromJS({
+  status: UNLOADED,
+  items: {}
+});
+
+function setLoaded(state) {
+    if (state.get('status') !== LOADED) {
+        return state.set('status', LOADED);
+    }
+    return state;
 }
 
-function formItemReducer(state, action) {
-  if (!state) {
-    return Immutable.Map({});
+function isQuestionnaire(question) {
+    return question && question.type === 'questionnaire';
+}
+
+function newQuestion(state, question) {
+  let questionItem = Immutable.fromJS(question);
+  if (isQuestionnaire(question)) {
+    state = setLoaded(state).set('questionnaire', questionItem);
   }
+  return state.setIn(['items',question.id], questionItem);
+}
+
+function updateQuestion(state, question) {
+  let questionItem = Immutable.fromJS(question);
+  if (isQuestionnaire(question)) {
+    state = state.merge('questionnaire', questionItem);
+  }
+  return state.mergeIn(['items',question.id], questionItem);
+}
+
+function removeQuestion(state, questionId) {
+  return state.deleteIn(['items',questionId]);
+}
+
+export function formActionsReducer(state = EMPTY_QUESTIONNAIRE_STATE, action) {
+  let currentStatus = state.get('status');
   switch (action.type) {
+    case ActionConstants.QUESTIONNAIRE_NOT_FOUND:
+      return QUESTIONNAIRE_NOT_FOUND_STATE;
+    case ActionConstants.REMOVE_ALL:
+      return EMPTY_QUESTIONNAIRE_STATE
+
     case ActionConstants.NEW_VALUE_SET:
       return state.setIn(['valueSets',action.valueSet.id], Immutable.fromJS(action.valueSet));
     case ActionConstants.UPDATE_VALUE_SET:
@@ -37,36 +78,37 @@ function formItemReducer(state, action) {
     case ActionConstants.REMOVE_VALUE_SET:
       return state.deleteIn(['valueSets',action.valueSetId]);
     case ActionConstants.FOCUS_QUESTION:
-      return state.set('focusedQuestionId', action.questionId);
+      var prevFocus = state.get('focusOn');
+      state = state.set('focusOn', action.questionId);
+      if (action.questionId) {
+        state = state.setIn(['items',action.questionId,focused], true);
+      }
+      if (prevFocus) {
+        state = state.setIn(['items',prevFocus,focused], false);
+      }
+      return state;
+
     case ActionConstants.NEW_QUESTION:
       return newQuestion(state, action.question);
     case ActionConstants.REMOVE_QUESTION:
-      if (!action.questionId) {
-        throw new Error('question or id is undefined');
-      }
-      return state.deleteIn([action.questionId]);
+      return removeQuestion(state, action.questionId);
     case ActionConstants.UPDATE_QUESTION:
-      if (!action.question || !action.question.id) {
-        throw new Error('question or id is undefined');
-      }
-      return state.mergeIn([action.question.id], action.question);
+      return updateQuestion(state, action.question);
     case ActionConstants.ANSWER_QUESTION:
       if (!action.questionId) {
         throw new Error('questionId is undefined');
       }
-      return state.mergeIn([action.questionId], {value: action.answer});
+      return state.mergeIn(['items',action.questionId], {value: action.answer});
     case ActionConstants.NEW_ERROR:
       if (!action.error || !action.error.id) {
         throw new Error('error or id is undefined');
       }
-      return state.setIn([action.error.id, 'errors', action.error.description], action.error.description);
+      return state.setIn(['items',action.error.id, 'errors', action.error.description], action.error.description);
     case ActionConstants.REMOVE_ERROR:
       if (!action.error || !action.error.id) {
         throw new Error('error or id is undefined');
       }
-      return state.deleteIn([action.error.id, 'errors', action.error.description]);
-    case ActionConstants.REMOVE_ALL:
-      return Immutable.Map({});
+      return state.deleteIn(['items',action.error.id, 'errors', action.error.description]);
     case ActionConstants.ACTIVATED:
       return state.setIn(['metadata','sessionStatus'], 'ACTIVE');
     case ActionConstants.WILL_PASSIVATE:
@@ -79,10 +121,3 @@ function formItemReducer(state, action) {
   return state;
 }
 
-const formItemReducerInData = mapReducerToNs('data',formItemReducer);
-
-// export default store;
-export {
-  formItemReducerInData as default,
-  formItemReducer
-};

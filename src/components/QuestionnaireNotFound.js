@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-import * as ActionConstants from '../actions/ActionConstants';
+import React from 'react';
+import {connect} from 'react-redux';
 
-export default function applicationReducer(origState,action) {
-  let state = origState;
-  switch (action.type) {
-    case ActionConstants.REMOVE_ALL:
-      return state.remove('data')
-    case ActionConstants.SET_REQUEST_TOKEN:
-      return state.set('token', action.token);
-  }
-  return state;
+export default class QuestionnaireNotFound extends React.Component {
+
+    render() {
+        return <div id='ff-not-exists'>Questionnaire not found.</div>;
+    }
 }

@@ -17,56 +17,48 @@
 import React from 'react';
 import {Loading} from 'flexiform-common';
 import {connect} from 'react-redux';
-import {findQuestionnaire, findItemById} from '../utils/formUtils';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
 
 require('styles/questionnaire.scss');
 
-class FormFillView extends React.Component {
+export default class FormFillView extends React.Component {
 
   static get propTypes() {
     return {
-      questionnaire: React.PropTypes.func.isRequired,
-      itemById: React.PropTypes.func.isRequired
+      status: React.PropTypes.string,
+      questionnaire: React.PropTypes.object,
+      activePageItem: React.PropTypes.array,
     };
   }
 
   render() {
-    let questionnaire = this.props.questionnaire();
+    let questionnaire = this.props.questionnaire;
     let activePage = null;
-    let backEnabled = false;
-    let forwardEnabled = false;
-    let completeEnabled = false;
-    if (questionnaire && questionnaire[1]) {
-      activePage = this.props.itemById(questionnaire[1].get('activeItem'));
-      // TODO: Check if contains in questionnaire.availableItems?
-      backEnabled = questionnaire[1].get('allowedActions').contains(ActionConstants.PREVIOUS_PAGE);
-      forwardEnabled = questionnaire[1].get('allowedActions').contains(ActionConstants.NEXT_PAGE);
-      completeEnabled = questionnaire[1].get('allowedActions').contains(ActionConstants.COMPLETE_QUESTIONNAIRE);
+    let page = null;
+    let title = "";
+    if (questionnaire) {
+      let activeItem = questionnaire.get('activeItem');
+      title = questionnaire.get('label');
+      if (this.props.activePageItem) {
+        let isAllowedAction = action => questionnaire.get('allowedActions').includes(action);
+        let pageProps = {
+          backEnabled: isAllowedAction(ActionConstants.PREVIOUS_PAGE),
+          forwardEnabled: isAllowedAction(ActionConstants.NEXT_PAGE),
+          completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE)
+        };
+        page = <Page page={this.props.activePageItem} {...pageProps}/>;
+      }
     }
-    if (!activePage) {
+    if (this.props.status === 'UNLOADED') {
       return (<Loading />);
     } else {
       return (
         <div className='ff-questionnaire'>
-          <span className='ff-questionnaire-title'>{questionnaire[1].get('label')}</span>
-          <Page page={activePage} backEnabled={backEnabled} forwardEnabled={forwardEnabled} completeEnabled={completeEnabled}/>
+          <span className='ff-questionnaire-title'>{title}</span>
+          {page}
         </div>
       );
     }
   }
-}
-const FormFillViewConnected = connect(
-  state => {
-    return {
-      get questionnaire() { return () => findQuestionnaire(state) },
-      get itemById() { return itemId => findItemById(state, itemId)}
-    };
-  }
-)(FormFillView);
-
-export {
-  FormFillViewConnected as default,
-  FormFillView
 }

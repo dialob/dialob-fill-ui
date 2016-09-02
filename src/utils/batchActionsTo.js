@@ -19,7 +19,7 @@ import * as ActionConstants from '../actions/ActionConstants';
 export function batchActionsTo(dispatch) {
   return actions => {
     dispatch({type: ActionConstants.BATCH_ACTIONS});
-    actions.map(action => dispatch(action));
+    actions.map(dispatch);
     dispatch({type: ActionConstants.BATCH_COMMIT});
     return actions;
   };

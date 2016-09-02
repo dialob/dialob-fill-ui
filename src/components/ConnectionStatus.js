@@ -14,21 +14,32 @@
  * limitations under the License.
  */
 
-/*eslint-env node, mocha */
-/*global expect */
-/*eslint no-console: 0*/
-
-import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Immutable from 'immutable';
+import {connect} from 'react-redux';
 
-import Label from 'components/Label';
+class ConnectionStatus extends React.Component {
 
-describe('Label', () => {
+    static get propTypes() {
+        return {
+            state: React.PropTypes.string.isRequired
+        };
+    }
 
-  it('should have its component name as default className', () => {
-    var wrapper = shallow(<Label htmlFor="x1" required={true}/>);
+    render() {
+        return <div>{this.props.state}</div>;
+    }
+}
 
-    expect(wrapper.props().className).to.equal(undefined);
-  });
-});
+const ConnectionStatusConnected = connect(
+    state => {
+        return {
+            state: state.connection.get('state')
+        };
+    }
+)(ConnectionStatus);
+
+
+export {
+    ConnectionStatusConnected as default,
+    ConnectionStatus
+};

@@ -18,21 +18,20 @@
 /*global expect */
 /*eslint no-console: 0*/
 
-// Uncomment the following lines to use the react test utilities
-// import React from 'react/addons';
-// const TestUtils = React.addons.TestUtils;
-import createComponent from 'helpers/shallowRenderHelper';
+import { shallow, mount } from 'enzyme';
+import React from 'react';
+import Immutable from 'immutable';
 
 import Note from 'components/Note';
 
 describe('Note', () => {
-  let NoteComponent;
-
-  beforeEach(() => {
-    NoteComponent = createComponent(Note);
-  });
 
   it('should have its component name as default className', () => {
-    expect(NoteComponent.props.className).to.equal('ff-item ff-itemtype-undefined  ff-readonly');
+    var question = {
+      id: 'noteitem',
+      type: 'note'
+    };
+    var wrapper = shallow(<Note question={[question.id,Immutable.fromJS(question)]}/>);
+    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-note ');
   });
 });

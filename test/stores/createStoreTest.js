@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /*eslint-env node, mocha */
 /*global expect */
 /*eslint no-console: 0*/
 
-import { shallow, mount } from 'enzyme';
-import React from 'react';
-import Immutable from 'immutable';
+import {createStore} from 'stores';
 
-import Label from 'components/Label';
-
-describe('Label', () => {
-
-  it('should have its component name as default className', () => {
-    var wrapper = shallow(<Label htmlFor="x1" required={true}/>);
-
-    expect(wrapper.props().className).to.equal(undefined);
-  });
+describe('createStore', () => {
+    it('make store with default config', () => {
+        var store = createStore();
+        expect(store.getState()).to.have.property('config')
+            .that.have.property('url')
+                .that.equal('http://localhost:8080/sockjs');
+    });
 });

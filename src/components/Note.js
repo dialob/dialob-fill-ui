@@ -17,7 +17,7 @@
 import React from 'react';
 import Item from './Item';
 
-class Note extends Item {
+export default class Note extends Item {
 
   render() {
     return (
@@ -27,6 +27,3 @@ class Note extends Item {
     );
   }
 }
-
-// export const NoteConnected = connect()(Note);
-export default Note;

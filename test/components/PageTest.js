@@ -21,19 +21,24 @@
 // Uncomment the following lines to use the react test utilities
 // import React from 'react/addons';
 // const TestUtils = React.addons.TestUtils;
-import createComponent from 'helpers/shallowRenderHelper';
+import { shallow, mount } from 'enzyme';
+import React from 'react';
+import Immutable from 'immutable';
 
 import {Page} from 'components/Page';
 
 describe('Page', () => {
-  let PageComponent;
-
-  beforeEach(() => {
-    PageComponent = createComponent(Page);
-  });
 
   it('should have its component name as default className', () => {
-    // expect(BooleanQuestionComponent.props.className).to.equal('ff-item ff-itemtype-undefined  ff-readonly');
-    expect(PageComponent).to.equal(null);
+    var page = {
+        id: 'page1',
+        items: []
+    };
+    var context = {
+        componentCreator: itemId => null
+    };
+
+    var wrapper = shallow(<Page page={[page.id,Immutable.fromJS(page)]} backEnabled={false} completeEnabled={false} forwardEnabled={false} />,{context});
+    expect(wrapper.props().className).to.equal('ff-page');
   });
 });

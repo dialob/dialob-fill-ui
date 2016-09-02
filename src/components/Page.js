@@ -53,25 +53,24 @@ class Page extends React.Component {
   }
 
   completeTouch() {
-    if (this.props.completeQuestionnaire) {
+    if (this.props.completeEnabled) {
       this.props.completeQuestionnaire();
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return this.context !== nextContext;
-  }
-
   render() {
-    if (!this.props.page) {
-      return null;
+    let groups = null;
+    let title = "Not on page!";
+    let page = this.props.page && this.props.page[1];
+    if (page) {
+      groups = page.get('items').toJS()
+        .map(this.context.componentCreator)
+        .filter(group => group);
+      title = page.get('label');
     }
-    let groups = this.props.page[1].get('items').toJS()
-      .map(groupId => componentCreatorState(this.props.state,this.context.componentCreator,groupId))
-      .filter(group => group);
     return (
       <div className='ff-page'>
-        <span className='ff-page-title'>{this.props.page[1].get('label')}</span>
+        <span className='ff-page-title'>{title}</span>
         {groups}
         <PageBar
           onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
@@ -84,11 +83,7 @@ class Page extends React.Component {
 }
 
 const PageConnected = connect(
-  state => {
-    return {
-      state
-    };
-  },
+  null,
   {
     nextPage,
     previousPage,

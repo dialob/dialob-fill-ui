@@ -20,7 +20,7 @@ import classnames from 'classnames';
 require('styles/item.scss');
 
 // Base class for form items
-class Item extends React.Component {
+export default class Item extends React.Component {
 
   static get propTypes() {
     return {
@@ -73,5 +73,3 @@ class Item extends React.Component {
     );
   }
 }
-
-export default Item;

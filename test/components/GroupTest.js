@@ -20,18 +20,26 @@
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Immutable from 'immutable';
+import sinon from 'sinon';
 
-import {Group} from 'components/Group';
+import Group from 'components/Group';
 
 describe('Group', () => {
 
   it('should have its component name as default className', () => {
     var group = {
       id: 'g1',
+      type: 'group',
       items: []
     };
+    var context = {
+        componentCreator: sinon.mock()
+    };
+    context.componentCreator.never();
 
-    var wrapper = shallow(<Group group={[group.id,Immutable.fromJS(group)]}/>);
+
+    var wrapper = shallow(<Group group={[group.id,Immutable.fromJS(group)]}/>,{context});
     expect(wrapper.props().className).to.equal('ff-group');
+    context.componentCreator.verify();
   });
 });

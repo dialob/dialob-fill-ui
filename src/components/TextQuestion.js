@@ -24,7 +24,7 @@ import {connectToAnswer} from '../utils/formUtils';
 const SAVE_DELAY = 300;
 
 // Item for single-line text and numeric (integer, decimal) questions
-export class TextQuestion extends Item {
+class TextQuestion extends Item {
 
   static get propTypes() {
     return {

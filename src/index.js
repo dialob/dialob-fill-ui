@@ -28,18 +28,21 @@ require('styles/app.scss');
 
 // TODO add support for callbacks
 // TODO custom componentCreator
-function renderFlexiForm(element,configuration) {
-  if (typeof configuration === 'string') {
-    configuration = {
-      url: configuration
+function renderFlexiForm(element,config) {
+  if (typeof config === 'string') {
+    config = {
+      url: config
     };
   }
-  var store = createStore(configuration);
 
   var delegateComponentCreator = componentCreator;
-  if (configuration.componentCreator) {
-    delegateComponentCreator = item => configuration.componentCreator(item,componentCreator);
+  if (config.componentCreator) {
+    delegateComponentCreator = item => config.componentCreator(item,componentCreator);
+    delete config.componentCreator;
   }
+
+  var store = createStore({config});
+
   ReactDOM.render(<Provider store={store}><FlexiForm componentCreator={delegateComponentCreator}/></Provider>, element);
 }
 

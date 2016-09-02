@@ -18,40 +18,65 @@ import React from 'react';
 import FormFillView from '../components/FormFillView';
 import {connect as connectAction} from '../actions/Actions';
 import {connect} from 'react-redux';
+import ConnectionStatus from '../components/ConnectionStatus';
+import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
+import {componentCreatorState} from '../utils/componentCreator';
+import {findItemById} from '../utils/formUtils';
 
 require('normalize.css/normalize.css');
 require('styles/app.scss');
 
 class FlexiForm extends React.Component {
 
-  componentDidMount() {
-    // this.props.connect();
-	}
   static get propTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: React.PropTypes.func.isRequired,
+      status: React.PropTypes.string
     };
   }
 
   static get childContextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: React.PropTypes.func.isRequired,
+      valueSetById: React.PropTypes.func.isRequired
     };
   }
 
   getChildContext() {
     return {
-      componentCreator: this.props.componentCreator
+      componentCreator: itemId => componentCreatorState(this.props.data,this.props.componentCreator,itemId),
+      valueSetById: setId => findValuesetById(this.props.data, setId)
     };
   }
 
+
   render() {
-    return <FormFillView />;
+    let data = this.props.data;
+    let content = null;
+    let props = {
+        status: data.get('status'),
+        questionnaire: data.get('questionnaire'),
+        activePageItem: findItemById(data, data.getIn(['questionnaire','activeItem']))
+    };
+    if (props.status === 'NOT_FOUND') {
+        content = <QuestionnaireNotFound/>;
+    } else {
+        content = <FormFillView {...props}/>;
+    }
+    return (
+        <div>
+          <ConnectionStatus />
+          {content}
+        </div>);
   }
 }
 
 const FlexiFormConnected = connect(
-  null,{
+  state => {
+      return {
+          data: state.data
+      };
+  },{
     connect: connectAction
   }
 )(FlexiForm);

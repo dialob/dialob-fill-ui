@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import {connect} from 'react-redux';
+import {connectToAnswer} from '../utils/formUtils';
 import {answerQuestion} from '../actions/Actions';
 import {findValuesetById} from '../utils/formUtils';
 import Errors from './Errors';
@@ -24,6 +24,12 @@ import Label from './Label';
 
 // Form item for dropdown selection controls
 class ChoiceQuestion extends Item {
+
+  static get contextTypes() {
+    return {
+      valueSetById: React.PropTypes.func.isRequired
+    };
+  }
 
   onChange(event) {
     this.props.answerQuestion(this.props.question[0], event.target.value);
@@ -35,7 +41,7 @@ class ChoiceQuestion extends Item {
 
   choiceList() {
     let choices = [];
-    let valueSet = this.props.valueSetById(this.props.question[1].get('valueSetId'));
+    let valueSet = this.context.valueSetById(this.props.question[1].get('valueSetId'));
     let value = this.props.question[1].get('value');
     if (valueSet) {
       choices = valueSet.map(e => this.option(e.get('key'), e.get('value')));
@@ -61,15 +67,7 @@ class ChoiceQuestion extends Item {
   }
 }
 
-export const ChoiceQuestionConnected = connect(
-  state => {
-    return {
-        get valueSetById() { return setId => findValuesetById(state, setId)}
-    };
-  },{
-    answerQuestion
-  }
-)(ChoiceQuestion);
+export const ChoiceQuestionConnected = connectToAnswer(ChoiceQuestion);
 
 export {
   ChoiceQuestionConnected as default,

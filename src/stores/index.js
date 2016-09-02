@@ -14,34 +14,20 @@
  * limitations under the License.
  */
 
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import applicationReducer from '../reducers/applicationReducer';
-import {connectionStateReducer} from '../reducers/connectionStateReducer';
-import {batchActionsReducer} from '../reducers/batchActionsReducer';
-import formItemReducer from '../reducers/formItemReducer';
-import {combineReducers} from '../reducers/reducerUtils';
-import {websocketMiddleware} from '../middlewares/SockJSMiddleware';
+import * as redux from 'redux';
+import {reducer} from '../reducers';
+import {middleware} from '../middlewares';
+import Immutable from 'immutable';
 
-function createFormStore(configuration = {
-  url: 'http://localhost:8080/sockjs',
-  csrfHeader: null,
-  csrf: null
-}) {
-  const createStoreWithMiddleware = applyMiddleware(
-    thunk,
-    websocketMiddleware(configuration)
-  )(createStore);
-
-  return createStoreWithMiddleware(
-    combineReducers(
-      applicationReducer,
-      connectionStateReducer,
-      batchActionsReducer(formItemReducer)
-    )
-  );
-}
-
-export {
-  createFormStore as createStore
+const DEFAULT_INITIAL_STATE = {
+    config: Immutable.Map({
+        url: 'http://localhost:8080/sockjs'
+    })
 };
+
+export function createStore(initialState = DEFAULT_INITIAL_STATE) {
+    if (initialState.config) {
+        initialState.config = Immutable.Map(initialState.config);
+    }
+    return redux.createStore(reducer, initialState, middleware);
+}
