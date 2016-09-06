@@ -55,7 +55,7 @@ function newQuestion(state, question) {
 function updateQuestion(state, question) {
   let questionItem = Immutable.fromJS(question);
   if (isQuestionnaire(question)) {
-    return state.merge('questionnaire', questionItem);
+    return state.mergeIn(['questionnaire'], questionItem);
   }
   return state.mergeIn(['items',question.id], questionItem);
 }

@@ -104,5 +104,25 @@ describe('formActionsReducer',() => {
         });
     });
 
+    it('questionnaire can be updated ',() => {
+        let state = formActionsReducer(fromJS({status:'LOADED',items:{},
+            questionnaire: {
+              id:'questionnaire',
+              type: 'questionnaire',
+              items: ["a","b"]
+            }
+        }),{type:'UPDATE_QUESTION',question: {id:'questionnaire', type: 'questionnaire', items: ["c"]}});
+        state = state.toJS();
+        expect(state).to.deep.equal({
+          status: 'LOADED',
+          questionnaire: {
+              id:'questionnaire',
+              type: 'questionnaire',
+              items: ["c"]
+          },
+          items: {}
+        });
+    });
+
 
 })
