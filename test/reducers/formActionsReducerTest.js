@@ -68,7 +68,7 @@ describe('formActionsReducer',() => {
         });
     });
 
-    it('UPDATE_QUESTION updates question attributes',() => {
+    it('UPDATE_QUESTION replaces question attributes',() => {
         let state = formActionsReducer(fromJS({status:'LOADED',
             items: {
               first: {
@@ -84,12 +84,94 @@ describe('formActionsReducer',() => {
           items: {
               first: {
                   id: 'first',
+                  value: '123'
+              }
+          }
+        });
+    });
+
+
+    it('ANSWER_QUESTION replaces only value on question',() => {
+        let state = formActionsReducer(fromJS({status:'LOADED',
+            items: {
+              first: {
+                  id: 'first',
+                  className: ['a'],
+                  value: '321'
+              }
+            }
+        }),{type:'ANSWER_QUESTION', questionId:'first',answer:'123'});
+        state = state.toJS();
+        expect(state).to.deep.equal({
+          status: 'LOADED',
+          items: {
+              first: {
+                  id: 'first',
                   className: ['a'],
                   value: '123'
               }
           }
         });
     });
+
+    it('NEW_ERROR adds error on question',() => {
+        let newErrorAction = {type:'NEW_ERROR',error: {id:'first',description:'Incorrect answer'}};
+        let state = formActionsReducer(fromJS({status:'LOADED',
+            items: {
+              first: {
+                  id: 'first',
+                  className: ['a'],
+                  value: '321'
+              }
+            }
+        }),newErrorAction);
+        let finalState = {
+          status: 'LOADED',
+          items: {
+              first: {
+                  id: 'first',
+                  className: ['a'],
+                  value: '321',
+                  errors: ['Incorrect answer']
+              }
+          }
+        };
+        expect(state.toJS()).to.deep.equal(finalState);
+        // and do not add same error twice
+        state = formActionsReducer(state,newErrorAction);
+        expect(state.toJS()).to.deep.equal(finalState);
+    });
+
+    it('REMOVE_ERROR removes error from question',() => {
+        let newErrorAction = {type:'REMOVE_ERROR',error: {id:'first',description:'Incorrect answer'}};
+        let state = formActionsReducer(Immutable.Map({status:'LOADED',
+            items: Immutable.Map({
+              first: Immutable.Map({
+                  id: 'first',
+                  className: Immutable.List(['a']),
+                  value: '321',
+                  errors: Immutable.Set(['Incorrect answer'])
+              })
+            })
+        }),newErrorAction);
+        let finalState = {
+          status: 'LOADED',
+          items: {
+              first: {
+                  id: 'first',
+                  className: ['a'],
+                  value: '321',
+                  errors: []
+              }
+          }
+        };
+        expect(state.toJS()).to.deep.equal(finalState);
+        // and do not add same error twice
+        state = formActionsReducer(state,newErrorAction);
+        expect(state.toJS()).to.deep.equal(finalState);
+    });
+
+
 
     it('questionnaire is maintained outside items ',() => {
         let state = formActionsReducer(fromJS({status:'LOADED',items:{}}),{type:'NEW_QUESTION',question: {id:'questionnaire', type: 'questionnaire'}});

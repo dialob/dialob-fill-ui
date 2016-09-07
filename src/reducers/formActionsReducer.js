@@ -55,9 +55,9 @@ function newQuestion(state, question) {
 function updateQuestion(state, question) {
   let questionItem = Immutable.fromJS(question);
   if (isQuestionnaire(question)) {
-    return state.mergeIn(['questionnaire'], questionItem);
+    return state.set('questionnaire', questionItem);
   }
-  return state.mergeIn(['items',question.id], questionItem);
+  return state.setIn(['items',question.id], questionItem);
 }
 
 function removeQuestion(state, questionId) {
@@ -106,12 +106,23 @@ export function formActionsReducer(state, action) {
       if (!action.error || !action.error.id) {
         throw new Error('error or id is undefined');
       }
-      return state.setIn(['items',action.error.id, 'errors', action.error.description], action.error.description);
+      return state.updateIn(['items',action.error.id, 'errors'], errors => {
+          if (!errors) {
+              return Immutable.Set([action.error.description]);
+          }
+          return errors.add(action.error.description);
+      });
     case ActionConstants.REMOVE_ERROR:
       if (!action.error || !action.error.id) {
         throw new Error('error or id is undefined');
       }
-      return state.deleteIn(['items',action.error.id, 'errors', action.error.description]);
+      return state.updateIn(['items',action.error.id, 'errors'], errors => {
+          if (errors) {
+              errors = errors.delete(action.error.description);
+          }
+          return errors;
+
+      });
     case ActionConstants.ACTIVATED:
       return state.setIn(['metadata','sessionStatus'], ACTIVE);
     case ActionConstants.WILL_PASSIVATE:

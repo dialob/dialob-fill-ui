@@ -28,23 +28,16 @@ export default class Errors extends React.Component {
   }
 
   render() {
-    if (!this.props.errors || this.props.errors.size === 0) {
-      return null;
-    }
-    let errors = [];
-    this.props.errors.forEach(e => {
-        if (e !== 'You must answer this question') { // Hide requirement error messages
-          errors.push(<span key={e} className='ff-error'><i className='fa fa-exclamation'></i>{this.props.errors.get(e)}</span>);
+    if (this.props.errors) {
+        let errors = this.props.errors
+            .filter(error => error !== 'You must answer this question')
+            .map(error => {
+                return <span key={error} className='ff-error'><i className='fa fa-exclamation'></i>{error}</span>;
+            });
+        if (errors.size > 0) {
+            return <div className='ff-errors'>{errors.toJS()}</div>;
         }
-      }
-    );
-    if (errors.length === 0) {
-      return null;
     }
-    return (
-      <div className='ff-errors'>
-          {errors}
-      </div>
-    );
+    return null;
   }
 }

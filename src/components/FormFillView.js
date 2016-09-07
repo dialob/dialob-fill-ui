@@ -40,11 +40,12 @@ export default class FormFillView extends React.Component {
       if (this.props.activePageItem) {
         let isAllowedAction = action => questionnaire.get('allowedActions').includes(action);
         let pageProps = {
+          page: this.props.activePageItem,
           backEnabled: isAllowedAction(ActionConstants.PREVIOUS_PAGE),
           forwardEnabled: isAllowedAction(ActionConstants.NEXT_PAGE),
           completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE)
         };
-        page = <Page page={this.props.activePageItem} {...pageProps}/>;
+        page = <Page {...pageProps}/>;
       }
     }
     if (this.props.status === 'UNLOADED') {
