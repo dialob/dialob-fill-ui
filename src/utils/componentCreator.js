@@ -21,6 +21,8 @@ import BooleanQuestion from '../components/BooleanQuestion';
 import ChoiceQuestion from '../components/ChoiceQuestion';
 import DateQuestion from '../components/DateQuestion';
 import Group from '../components/Group';
+import SurveyGroup from '../components/SurveyGroup';
+import SurveyQuestion from '../components/SurveyQuestion';
 import Note from '../components/Note';
 import {findItemById} from './formUtils';
 
@@ -41,6 +43,8 @@ function componentCreator(question) {
       } else {
         if (hasClass('textbox')) {
           return <TextBoxQuestion key={id} question={question} />
+        } if (hasClass('survey')) {
+          return <SurveyQuestion key={id} question={question} />
         } else {
           return <TextQuestion key={id} question={question} />;
         }
@@ -60,7 +64,11 @@ function componentCreator(question) {
     case 'note':
       return <Note key={id} question={question} />;
     case 'group':
-      return <Group key={id} group={question}/>;
+      if (hasClass('survey')) {
+        return <SurveyGroup key={id} group={question}/>
+      } else {
+        return <Group key={id} group={question}/>;
+      }
     default:
       if (process.env.NODE_ENV !== 'production') {  //eslint-disable-line no-undef
         console.warn('Unknown question type', type); //eslint-disable-line no-console
