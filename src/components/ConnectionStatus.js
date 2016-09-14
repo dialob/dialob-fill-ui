@@ -16,6 +16,9 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import classnames from 'classnames';
+
+require('styles/status.scss');
 
 class ConnectionStatus extends React.Component {
 
@@ -26,7 +29,32 @@ class ConnectionStatus extends React.Component {
     }
 
     render() {
-        return <div>{this.props.state}</div>;
+        let indicator = null;
+        switch (this.props.state) {
+          case 'OPEN':
+          case 'CONNECTING':
+              indicator = (
+                <span className='fa-stack fa-2x'>
+                  <i className='fa fa-plug fa-1x'></i>
+                </span>
+              );
+            break;
+          case 'CLOSED':
+              indicator = (
+                 <span className='fa-stack fa-2x'>
+                   <i className='fa fa-plug fa-stack-1x'></i>
+                   <i className='fa fa-ban fa-stack-2x'></i>
+                 </span>
+              );
+            break;
+          default:
+              indicator = (<span>{this.props.state}</span>);
+        }
+        return (
+          <div className={classnames('ff-status-indicator', 'ff-status-' + this.props.state.toLowerCase())}>
+             {indicator}
+          </div>
+        );
     }
 }
 
