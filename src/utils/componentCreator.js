@@ -23,6 +23,7 @@ import DateQuestion from '../components/DateQuestion';
 import Group from '../components/Group';
 import SurveyGroup from '../components/SurveyGroup';
 import SurveyQuestion from '../components/SurveyQuestion';
+import RowGroup from '../components/RowGroup';
 import Note from '../components/Note';
 import {findItemById} from './formUtils';
 
@@ -69,6 +70,8 @@ function componentCreator(question) {
       } else {
         return <Group key={id} group={question}/>;
       }
+    case 'rowgroup':
+      return <RowGroup key={id} group={question}/>;
     default:
       if (process.env.NODE_ENV !== 'production') {  //eslint-disable-line no-undef
         console.warn('Unknown question type', type); //eslint-disable-line no-console

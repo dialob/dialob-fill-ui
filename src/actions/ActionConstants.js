@@ -36,6 +36,9 @@ export const REMOVE_VALUE_SET = 'REMOVE_VALUE_SET';
 export const NEW_ERROR = 'NEW_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 
+export const ADD_ROW = 'ADD_ROW';
+export const DELETE_ROW = 'DELETE_ROW';
+
 // Session state update actions
 export const ACTIVATED = 'ACTIVATED';
 export const WILL_PASSIVATE = 'WILL_PASSIVATE';

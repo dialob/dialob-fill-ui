@@ -60,3 +60,17 @@ export function connect() {
     type: ActionConstants.CONNECT
   };
 }
+
+export function addRow(rowGroupId) {
+  return {
+    type: ActionConstants.ADD_ROW,
+    id: rowGroupId
+  };
+}
+
+export function deleteRow(rowId) {
+  return {
+    type: ActionConstants.DELETE_ROW,
+    id: rowId
+  };
+}
