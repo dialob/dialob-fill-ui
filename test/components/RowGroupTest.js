@@ -40,9 +40,13 @@ describe('RowGroup', () => {
     var createRow = sinon.mock();
     createRow.never();
 
-    var wrapper = shallow(<RowGroup group={[group.id,Immutable.fromJS(group)]} createRow={createRow} />,{context});
+    var addNewRow = sinon.mock();
+    addNewRow.never();
+
+    var wrapper = shallow(<RowGroup group={[group.id,Immutable.fromJS(group)]} addNewRow={addNewRow} createRow={createRow} />,{context});
     expect(wrapper.props().className).to.equal('ff-group ff-rowgroup');
     context.componentCreator.verify();
     createRow.verify();
+    addNewRow.verify();
   });
 });

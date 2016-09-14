@@ -18,7 +18,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteRow} from '../actions/Actions';
 
-require('styles/group.scss');
+require('styles/rowgroup.scss');
 
 class RowGroupRow extends React.Component {
 
@@ -34,10 +34,6 @@ class RowGroupRow extends React.Component {
     };
   }
 
-  deleteRow() {
-    this.props.dispatch(deleteRow(this.props.group[0]));
-  }
-
   render() {
     let group = this.props.group && this.props.group[1];
     if (!group) {
@@ -49,13 +45,20 @@ class RowGroupRow extends React.Component {
     return (
       <div className='ff-rowgroup-row'>
        {questions}
-       <i className='fa fa-remove' onClick={this.deleteRow.bind(this)}></i>
+       <i className='fa fa-remove' onClick={this.props.removeRow.bind(this)}></i>
       </div>
     );
   }
 }
 
-const RowGroupRowConnected = connect()(RowGroupRow);
+const RowGroupRowConnected = connect(
+  () => { return {}},
+  (dispatch, props) => {
+    return {
+      removeRow: () => dispatch(deleteRow(props.group[0]))
+    }
+  }
+)(RowGroupRow);
 
 export {
   RowGroupRowConnected as default,

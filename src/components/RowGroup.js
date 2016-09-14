@@ -21,6 +21,7 @@ import RowGroupRow from './RowGroupRow';
 import {findItemById} from '../utils/formUtils';
 
 require('styles/group.scss');
+require('styles/rowgroup.scss');
 
 class RowGroup extends React.Component {
 
@@ -36,10 +37,6 @@ class RowGroup extends React.Component {
     };
   }
 
-  addRow() {
-    this.props.dispatch(addRow(this.props.group[0]));
-  }
-
   render() {
     let group = this.props.group && this.props.group[1];
     if (!group) {
@@ -51,7 +48,7 @@ class RowGroup extends React.Component {
       <div className='ff-group ff-rowgroup'>
         <span className='ff-group-title'>{title}</span>
         {rows}
-        <i className='fa fa-plus' onClick={this.addRow.bind(this)}></i>
+        <i className='fa fa-plus' onClick={this.props.addNewRow.bind(this)}></i>
       </div>
     );
   }
@@ -69,7 +66,13 @@ const RowGroupConnected = connect(
         }
       }
     }
-  })(RowGroup);
+  },
+  (dispatch, props) => {
+    return {
+      addNewRow: () => dispatch(addRow(props.group[0]))
+    }
+  }
+  )(RowGroup);
 
 export {
   RowGroupConnected as default,
