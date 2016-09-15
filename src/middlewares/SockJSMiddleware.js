@@ -28,6 +28,8 @@ const SOCKET_ACTIONS = [
   Actions.PREVIOUS_PAGE,
   Actions.WAKE_UP,
   Actions.CONNECT,
+  Actions.ADD_ROW,
+  Actions.DELETE_ROW,
   WebsocketAction.MESSAGE,
   WebsocketAction.RECONNECT,
   WebsocketAction.OPEN,
