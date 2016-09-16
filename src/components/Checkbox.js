@@ -23,7 +23,7 @@ export default class Checkbox extends React.Component {
   static get propTypes() {
     return {
       value: React.PropTypes.bool,
-      onChange: React.PropTypes.func
+      onChange: React.PropTypes.func.isRequired
     };
   }
 
