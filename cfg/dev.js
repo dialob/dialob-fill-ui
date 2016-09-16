@@ -26,9 +26,11 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let config = Object.assign({}, baseConfig, {
   entry: {
-    "webpack-dev-server": 'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
-    "only-dev-server": 'webpack/hot/only-dev-server',
-    "ff": './src/index'
+    'ff': [
+      'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
+      'webpack/hot/only-dev-server',
+      './src/index'
+    ]
   },
   cache: true,
   devtool: 'eval-source-map',
