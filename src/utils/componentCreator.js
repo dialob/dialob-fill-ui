@@ -19,6 +19,7 @@ import TextQuestion from '../components/TextQuestion';
 import TextBoxQuestion from '../components/TextBoxQuestion';
 import BooleanQuestion from '../components/BooleanQuestion';
 import ChoiceQuestion from '../components/ChoiceQuestion';
+import ChoiceAutocomplete from '../components/ChoiceAutocompleteQuestion';
 import DateQuestion from '../components/DateQuestion';
 import Group from '../components/Group';
 import SurveyGroup from '../components/SurveyGroup';
@@ -41,7 +42,11 @@ function componentCreator(question) {
   switch (type) {
     case 'text':
       if (question[1].get('valueSetId')) { // TODO: Remove this workaround...
-        return <ChoiceQuestion key={id} question={question} />;
+        if (hasClass('autocomplete')) {
+          return <ChoiceAutocomplete key={id} question={question} />;
+        } else {
+          return <ChoiceQuestion key={id} question={question} />;
+        }
       } else {
         if (hasClass('textbox')) {
           return <TextBoxQuestion key={id} question={question} />
@@ -58,7 +63,11 @@ function componentCreator(question) {
     case 'boolean':
       return <BooleanQuestion key={id} question={question} />;
     case 'list':
-      return <ChoiceQuestion key={id} question={question} />;
+      if (hasClass('autocomplete')) {
+        return <ChoiceAutocomplete key={id} question={question} />;
+      } else {
+        return <ChoiceQuestion key={id} question={question} />;
+      }
     case 'date':
       return <DateQuestion key={id} question={question} entryType='date'/>;
     case 'time':
