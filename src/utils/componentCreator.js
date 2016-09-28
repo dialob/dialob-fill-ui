@@ -27,6 +27,7 @@ import SurveyQuestion from '../components/SurveyQuestion';
 import RowGroup from '../components/RowGroup';
 import Note from '../components/Note';
 import MultiChoiceQuestion from '../components/MultiChoiceQuestion';
+import MultiChoiceAutocompleteQuestion from '../components/MultiAutocompleteQuestion';
 import {findItemById} from './formUtils';
 
 // TODO: Make this extendable
@@ -83,7 +84,11 @@ function componentCreator(question) {
     case 'rowgroup':
       return <RowGroup key={id} group={question}/>;
     case 'array':
-      return <MultiChoiceQuestion key={id} question={question} />;
+      if (hasClass('autocomplete')) {
+        return <MultiChoiceAutocompleteQuestion key={id} question={question} />;
+      } else {
+        return <MultiChoiceQuestion key={id} question={question} />;
+      }
     default:
       if (process.env.NODE_ENV !== 'production') {  //eslint-disable-line no-undef
         console.warn('Unknown question type', type); //eslint-disable-line no-console
