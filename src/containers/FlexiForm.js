@@ -22,6 +22,7 @@ import ConnectionStatus from '../components/ConnectionStatus';
 import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
+import Completed from '../components/Completed';
 
 require('normalize.css/normalize.css');
 require('styles/app.scss');
@@ -52,6 +53,7 @@ class FlexiForm extends React.Component {
 
   render() {
     let data = this.props.data;
+    let config = this.props.config;
     let content = null;
     let props = {
         status: data.get('status'),
@@ -60,6 +62,8 @@ class FlexiForm extends React.Component {
     };
     if (props.status === 'NOT_FOUND') {
         content = <QuestionnaireNotFound/>;
+    } else if (props.status === 'COMPLETED') {
+        content = <Completed reviewUrl={config.get('reviewUrl')}/>;
     } else {
         content = <FormFillView {...props}/>;
     }
@@ -74,7 +78,8 @@ class FlexiForm extends React.Component {
 const FlexiFormConnected = connect(
   state => {
       return {
-          data: state.data
+          data: state.data,
+          config: state.config
       };
   },{
     connect: connectAction

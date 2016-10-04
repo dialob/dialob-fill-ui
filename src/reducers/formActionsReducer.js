@@ -32,6 +32,10 @@ const UNLOADED_QUESTIONNAIRE_STATE = Immutable.fromJS({
   status: UNLOADED,
   items: {}
 });
+const COMPLETED_QUESTIONNAIRE_STATE = Immutable.fromJS({
+  status: COMPLETED,
+  items: {}
+});
 
 function setLoaded(state) {
     if (state.get('status') !== LOADED) {
@@ -128,9 +132,7 @@ export function formActionsReducer(state, action) {
     case ActionConstants.WILL_PASSIVATE:
       return state.setIn(['metadata','sessionStatus'], PASSIVE);
     case ActionConstants.COMPLETE_QUESTIONNAIRE:
-      if (action.serverEvent === true) {
-        return state.setIn(['metadata', 'status'], COMPLETED);
-      }
+        return COMPLETED_QUESTIONNAIRE_STATE;
     default:
       return state;
   }
