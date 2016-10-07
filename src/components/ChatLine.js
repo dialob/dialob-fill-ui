@@ -14,17 +14,30 @@
  * limitations under the License.
  */
 
-@import 'theme';
+import React from 'react';
 
-div.ff-questionnaire {
-  width: 100%;
+require('styles/chat.scss');
 
-  .ff-questionnaire-title {
-    font-size: 3em;
-    font-weight: 200;
-    width: 100%;
-    text-align: center;
-    display: block;
-    margin-top: 1em;
+// Base class for form items
+export default class ChatLine extends React.Component {
+
+  static get propTypes() {
+    return {
+      name: React.PropTypes.string.isRequired
+    };
   }
+
+  render() {
+    return (
+      <div className='ff-chat-line'>
+        <div className='ff-chat-name'>
+          {this.props.name}:
+        </div>
+        <div className='ff-chat-item'>
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+
 }

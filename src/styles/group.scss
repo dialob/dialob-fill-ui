@@ -19,16 +19,10 @@
 div.ff-group {
   display: flex;
   flex-direction: column;
-
-  border-radius: 1em;
-  border-left-style: solid;
-  border-left-width: 3px;
-  border-left-color: lighten($c-resys-grey, 50%);
   padding-bottom: 0.5em;
   margin-top: 0.5em;
   margin-left: 1em;
   margin-right: 1em;
-  border-collapse: collapse;
 
   .ff-group-title {
     padding-left: 1em;

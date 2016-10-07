@@ -16,14 +16,15 @@
 
 import React from 'react';
 import Item from './Item';
+import ChatLine from './ChatLine';
 
 export default class Note extends Item {
 
   render() {
     return (
-      <div className={this.getStyles()}>
+      <ChatLine name={this.getBotName()}>
         <span>{this.question && this.question.get('label')}</span>
-      </div>
+      </ChatLine>
     );
   }
 }

@@ -18,6 +18,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
+import {getItemList} from '../utils/formUtils';
 
 require('styles/page.scss');
 
@@ -35,7 +36,8 @@ class Page extends React.Component {
 
   static get contextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: React.PropTypes.func.isRequired,
+      itemList: React.PropTypes.func.isRequired
     };
   }
 
@@ -58,24 +60,34 @@ class Page extends React.Component {
   }
 
   render() {
-    let groups = null;
-    let title = 'Not on page!';
+    let items = null;
     let page = this.props.page && this.props.page[1];
     if (page) {
-      groups = page.get('items').toJS()
-        .map(this.context.componentCreator)
-        .filter(group => group);
-      title = page.get('label');
+      let formItems = this.context.itemList(page);
+      let toRender = [];
+      for (let i = 0; i < formItems.length; i++) {
+        if (formItems[i].get('type') === 'note') {
+          console.log('NOTE')
+          toRender.push(formItems[i]);
+          continue;
+        }
+        let value = formItems[i].get('value');
+        if (typeof(value) !== 'undefined' || value != null) {
+          console.log('VALUE=', formItems[i].get('value'));
+          toRender.push(formItems[i]);
+          continue;
+        }
+         if (typeof(value) === 'undefined' || value == null) {
+          console.log('NULL');
+          toRender.push(formItems[i]);
+          break;
+         }
+      }
+      items = toRender.map(this.context.componentCreator).filter(item => item);
     }
     return (
       <div className='ff-page'>
-        <span className='ff-page-title'>{title}</span>
-        {groups}
-        <PageBar
-          onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
-          onBackward={this.props.backEnabled ? this.backTouch.bind(this) : null}
-          onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
-          />
+        {items}
       </div>
     );
   }

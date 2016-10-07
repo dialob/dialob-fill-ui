@@ -1,0 +1,27 @@
+@import 'theme';
+
+.ff-chat-line {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+
+  .ff-chat-name {
+    width: 10em;
+    font-weight: bold;
+    color: $c-blue-dark;
+  }
+
+  .ff-chat-item {
+    font-weight: 400;
+    flex-grow: 1;
+
+    input[type='text'] {
+      width: 100%;
+    }
+
+  }
+}

@@ -43,7 +43,6 @@ export default class Group extends React.Component {
       .filter(question => question);
     return (
       <div className='ff-group'>
-        <span className='ff-group-title'>{title}</span>
         {questions}
       </div>
     );

@@ -16,12 +16,13 @@
 
 import {batchActionsTo} from './batchActionsTo';
 import {componentCreator} from './componentCreator';
-import {findQuestionnaire, findItemById, findValuesetById} from './formUtils';
+import {findQuestionnaire, findItemById, findValuesetById, getItemList} from './formUtils';
 
 export {
   batchActionsTo,
   componentCreator,
   findQuestionnaire,
   findItemById,
-  findValuesetById
+  findValuesetById,
+  getItemList
 };

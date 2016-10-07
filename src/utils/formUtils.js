@@ -57,9 +57,29 @@ function connectToAnswer(component) {
 	})(component);
 }
 
+//
+// Get flat item list
+//
+function getItemList(data, item) {
+  let items = [];
+  let ids = item.get('items').toJS();
+  for (let i = 0; i < ids.length; i++) {
+    let child = findItemById(data, ids[i]);
+    if (child) {
+      if (child[1].get('type') === 'group') {
+        items = items.concat(getItemList(data, child[1]));
+      } else {
+        items.push(child[1]);
+      }
+    }
+  }
+  return items;
+}
+
 export {
 	findQuestionnaire,
 	findItemById,
 	findValuesetById,
-	connectToAnswer
+	connectToAnswer,
+  getItemList
 }

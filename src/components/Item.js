@@ -16,6 +16,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import {BOT_NAME, USER_NAME} from '../utils/constants';
 
 require('styles/item.scss');
 
@@ -54,6 +55,14 @@ export default class Item extends React.Component {
   // Returns true if item is read-only
   isReadOnly() {
     return !this.question || this.question.get('readOnly');
+  }
+
+  getUserName() {
+    return USER_NAME;
+  }
+
+  getBotName() {
+    return BOT_NAME;
   }
 
   // Return styles for this item

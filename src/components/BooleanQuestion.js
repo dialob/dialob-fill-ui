@@ -20,6 +20,7 @@ import Errors from './Errors';
 import classnames from 'classnames';
 import Item from './Item';
 import Label from './Label';
+import ChatLine from './ChatLine';
 
 require('styles/tristate.scss');
 
@@ -59,14 +60,14 @@ class BooleanQuestion extends Item {
       value = false;
     }
     return (
-       <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <div id={q.get('id')}>
+       <div>
+        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()}>
           <div className={classnames('ff-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
             <span className={classnames('ff-tristate-true', {'ff-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}>Yes</span>
             <span className={classnames('ff-tristate-false', {'ff-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}>No</span>
           </div>
-        </div>
+        </ChatLine>
         <Errors errors={q.get('errors')} />
       </div>
     );

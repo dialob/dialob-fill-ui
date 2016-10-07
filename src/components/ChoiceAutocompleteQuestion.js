@@ -20,6 +20,7 @@ import Errors from './Errors';
 import Label from './Label';
 import {ChoiceQuestion} from './ChoiceQuestion';
 import Select from 'react-select';
+import ChatLine from './ChatLine';
 
 import 'react-select/dist/react-select.css';
 
@@ -49,9 +50,11 @@ class ChoiceAutocompleteQuestion extends ChoiceQuestion {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-       <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
+       <div>
+        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()}>
+          <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
+        </ChatLine>
         <Errors errors={q.get('errors')} />
       </div>
     );

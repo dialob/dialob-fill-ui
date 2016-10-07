@@ -19,17 +19,9 @@
 div.ff-item {
   display: flex;
   flex-direction: column;
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-bottom: 0.5em;
-  border-radius: 1em;
-  border-left-style: solid;
-  border-left-width: 3px;
-  border-left-color: lighten($c-resys-grey, 50%);
   padding-left: 0.5em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  transition: border-left-color 0.5s ease-in;
 
   label {
     font-weight: 200;

@@ -21,7 +21,7 @@ import {connect} from 'react-redux';
 import ConnectionStatus from '../components/ConnectionStatus';
 import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
-import {findItemById,findValuesetById} from '../utils/formUtils';
+import {findItemById,findValuesetById,getItemList} from '../utils/formUtils';
 import Completed from '../components/Completed';
 
 require('normalize.css/normalize.css');
@@ -39,14 +39,16 @@ class FlexiForm extends React.Component {
   static get childContextTypes() {
     return {
       componentCreator: React.PropTypes.func.isRequired,
-      valueSetById: React.PropTypes.func.isRequired
+      valueSetById: React.PropTypes.func.isRequired,
+      itemList: React.PropTypes.func.isRequired
     };
   }
 
   getChildContext() {
     return {
       componentCreator: itemId => componentCreatorState(this.props.data,this.props.componentCreator,itemId),
-      valueSetById: setId => findValuesetById(this.props.data, setId)
+      valueSetById: setId => findValuesetById(this.props.data, setId),
+      itemList: parent => getItemList(this.props.data, parent)
     };
   }
 

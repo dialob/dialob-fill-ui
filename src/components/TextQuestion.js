@@ -18,6 +18,7 @@ import React from 'react';
 import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
+import ChatLine from './ChatLine';
 import {connectToAnswer} from '../utils/formUtils';
 
 // In how many milliseconds after last keypress the value is sent to back-end
@@ -47,8 +48,8 @@ class TextQuestion extends Item {
     };
   }
 
-  onChangeText(event) {
-    let value = event.target.value;
+  onChangeText(value) {
+    //let value = event.target.value;
     if (value === '') {
       value = null;
     }
@@ -70,16 +71,23 @@ class TextQuestion extends Item {
     }
   }
 
+  keyDown(event) {
+    if (event.keyCode == 13) {
+      this.onChangeText(event.target.value);
+    }
+  }
+
   render() {
     let q = this.question;
     if (!q) {
       return null;
     }
     return (
-      <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <input ref='inputControl' name={q.get('id')} type={this.props.entryType} value={this.state.value} onChange={this.onChangeText.bind(this)} />
-        <Errors errors={q.get('errors')} />
+      <div>
+        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()}>
+          <input ref='inputControl' name={q.get('id')} type={this.props.entryType} defaultValue={this.state.value} onKeyDown={this.keyDown.bind(this)} />
+        </ChatLine>
       </div>
     );
   }

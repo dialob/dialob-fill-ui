@@ -17,8 +17,10 @@
 @import 'theme';
 
 div.ff-page {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 5em;
   padding-bottom: 5em;
 
   .ff-page-title {
