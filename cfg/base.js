@@ -36,6 +36,10 @@ module.exports = {
     library: 'FlexiForm',
     libraryTarget: 'umd'
   },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  },
   devServer: {
     contentBase: './src/',
     historyApiFallback: true,

@@ -22,7 +22,7 @@ import Item from './components/Item';
 import Label from './components/Label';
 import Errors from './components/Errors';
 import FlexiForm from './containers/FlexiForm';
-import {createStore} from 'stores';
+import {createStore} from './stores';
 import {componentCreator} from './utils/componentCreator';
 import {connectToAnswer} from './utils/formUtils';
 
