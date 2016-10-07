@@ -53,6 +53,7 @@ export {
   connectToAnswer,
   React,
   ReactDOM,
+  Item,
   Label,
   Errors
 };

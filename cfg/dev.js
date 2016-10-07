@@ -53,7 +53,10 @@ config.module.loaders.push({
   include: [].concat(
     config.additionalPaths,
     [ path.join(__dirname, '/../src') ]
-  )
+  ),
+  query: {
+    plugins: ['react-hot-loader/babel']
+  }
 });
 
 module.exports = config;
