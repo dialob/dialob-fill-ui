@@ -1,6 +1,6 @@
 {
   "name": "flexiform-fill-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "FlexiForm filling ui",
   "main": "src/index.js",
   "license": "Apache-2.0",
