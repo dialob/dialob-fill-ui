@@ -37,7 +37,8 @@ function renderFlexiForm(element,config) {
 
   var delegateComponentCreator = componentCreator;
   if (config.componentCreator) {
-    delegateComponentCreator = item => config.componentCreator(item,componentCreator);
+    const customComponentCreator = config.componentCreator;
+    delegateComponentCreator = item => customComponentCreator(item,componentCreator);
     delete config.componentCreator;
   }
 
