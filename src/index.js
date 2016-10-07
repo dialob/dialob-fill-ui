@@ -19,6 +19,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import Item from './components/Item';
+import Label from './components/Label';
+import Errors from './components/Errors';
 import FlexiForm from './containers/FlexiForm';
 import {createStore} from 'stores';
 import {componentCreator} from './utils/componentCreator';
@@ -27,7 +29,6 @@ import {connectToAnswer} from './utils/formUtils';
 require('styles/app.scss');
 
 // TODO add support for callbacks
-// TODO custom componentCreator
 function renderFlexiForm(element,config) {
   if (typeof config === 'string') {
     config = {
@@ -49,7 +50,9 @@ function renderFlexiForm(element,config) {
 
 export {
   renderFlexiForm,
-  Item,
   connectToAnswer,
-  React
+  React,
+  ReactDOM,
+  Label,
+  Errors
 };
