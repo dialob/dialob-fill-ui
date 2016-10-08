@@ -30,7 +30,8 @@ let config = Object.assign({}, baseConfig, {
     ff: path.join(__dirname, '../src/index')
   },
   cache: false,
-  devtool: 'sourcemap',
+  debug: false,
+  devtool: false,
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({

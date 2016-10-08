@@ -51,8 +51,6 @@ function renderFlexiForm(element,config) {
 export {
   renderFlexiForm,
   connectToAnswer,
-  React,
-  ReactDOM,
   Item,
   Label,
   Errors
