@@ -33,19 +33,21 @@ div.ff-page {
     justify-content: space-around;
     position: fixed;
     bottom: 0em;
-    font-size: 2em;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.8);
 
     padding-bottom: 0.5em;
     padding-top: 0.5em;
+  }
+}
 
-    .ff-nav-button,
+ .ff-nav-button,
     .ff-complete-button {
       text-align: center;
       border-radius: 0.5em;
-      width: 10em;
+      width: 100%;
       display: block;
+      font-size: 2em;
     }
 
     .ff-nav-button {
@@ -69,8 +71,6 @@ div.ff-page {
       animation-duration: 0.7s;
       animation-fill-mode: both;
     }
-  }
-}
 
 @keyframes navButtonReveal {
   from {
