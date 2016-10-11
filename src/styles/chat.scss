@@ -7,7 +7,8 @@
   margin-bottom: 0.5em;
   align-items: center;
   opacity: 1;
-  transition: opacity 1s ease-in-out;
+  padding: 5px;
+  border-radius: 3px;
 
   .ff-chat-name {
     width: 10em;
@@ -22,6 +23,20 @@
     input[type='text'] {
       width: 100%;
     }
-
   }
 }
+
+.ff-chat-line.ff-bot {
+ animation: new_item_indicator 1s;
+ background-color: transparentize($c-blue-light, 0.9);
+}
+
+@keyframes new_item_indicator {
+  from {
+    background-color: transparentize($c-blue-light, 0.5);
+  }
+  to {
+    background-color: transparentize($c-blue-light, 0.9);
+  }
+}
+

@@ -20,6 +20,7 @@ import Item from './Item';
 import Label from './Label';
 import ChatLine from './ChatLine';
 import {connectToAnswer} from '../utils/formUtils';
+import ReactDOM from 'react-dom';
 
 // In how many milliseconds after last keypress the value is sent to back-end
 const SAVE_DELAY = 300;
@@ -77,6 +78,10 @@ class TextQuestion extends Item {
     }
   }
 
+  componentDidMount() {
+    ReactDOM.findDOMNode(this.refs.inputControl).focus();
+  }
+
   render() {
     let q = this.question;
     if (!q) {
@@ -84,8 +89,8 @@ class TextQuestion extends Item {
     }
     return (
       <div>
-        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
-        <ChatLine name={this.getUserName()}>
+        <ChatLine name={this.getBotName()} className='ff-bot'>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()} className='ff-user'>
           <input ref='inputControl' name={q.get('id')} type={this.props.entryType} defaultValue={this.state.value} onKeyDown={this.keyDown.bind(this)} />
         </ChatLine>
       </div>

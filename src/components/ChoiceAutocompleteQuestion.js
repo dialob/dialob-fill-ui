@@ -34,6 +34,7 @@ class ChoiceAutocompleteQuestion extends ChoiceQuestion {
   }
 
   onChange(value) {
+    console.log('>>>', value);
     this.props.answerQuestion(this.props.question[0], value ? value.value : null);
   }
 
@@ -51,9 +52,9 @@ class ChoiceAutocompleteQuestion extends ChoiceQuestion {
     let options = this.choiceList();
     return (
        <div>
-        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
-        <ChatLine name={this.getUserName()}>
-          <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
+        <ChatLine name={this.getBotName()} className='ff-bot'>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()} className='ff-user'>
+          <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} placeholder='-' autofocus={true}/>
         </ChatLine>
         <Errors errors={q.get('errors')} />
       </div>

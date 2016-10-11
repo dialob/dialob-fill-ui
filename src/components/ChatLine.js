@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import classnames from 'classnames';
 
 require('styles/chat.scss');
 
@@ -23,13 +24,14 @@ export default class ChatLine extends React.Component {
 
   static get propTypes() {
     return {
-      name: React.PropTypes.string.isRequired
+      name: React.PropTypes.string.isRequired,
+      className: React.PropTypes.string
     };
   }
 
   render() {
     return (
-      <div className='ff-chat-line'>
+      <div className={classnames('ff-chat-line', this.props.className)}>
         <div className='ff-chat-name'>
           {this.props.name}:
         </div>

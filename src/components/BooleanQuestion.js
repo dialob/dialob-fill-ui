@@ -47,6 +47,10 @@ class BooleanQuestion extends Item {
     }
   }
 
+  componentDidMount() {
+    ReactDOM.findDOMNode(this.refs.inputControl).focus();
+  }
+
   render() {
     let q = this.question;
     if (!q) {
@@ -61,9 +65,9 @@ class BooleanQuestion extends Item {
     }
     return (
        <div>
-        <ChatLine name={this.getBotName()}>{q.get('label')}</ChatLine>
-        <ChatLine name={this.getUserName()}>
-          <div className={classnames('ff-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
+        <ChatLine name={this.getBotName()} className='ff-bot'>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()} className='ff-user'>
+          <div ref='inputControl' className={classnames('ff-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
             <span className={classnames('ff-tristate-true', {'ff-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}>Yes</span>
             <span className={classnames('ff-tristate-false', {'ff-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}>No</span>
           </div>

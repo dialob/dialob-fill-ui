@@ -22,7 +22,7 @@ export default class Note extends Item {
 
   render() {
     return (
-      <ChatLine name={this.getBotName()}>
+      <ChatLine name={this.getBotName()} className='ff-bot'>
         <span>{this.question && this.question.get('label')}</span>
       </ChatLine>
     );
