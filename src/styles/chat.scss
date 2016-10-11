@@ -38,6 +38,16 @@
 
     input[type='text'] {
       width: 100%;
+      line-height: 34px;
+      border-radius: 4px;
+      border: 1px solid rgb(204, 204, 204);
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .ff-tristate-false,
+    .ff-tristate-true {
+      line-height: 34px;
     }
   }
 }
@@ -45,6 +55,7 @@
 .ff-chat-line.ff-bot {
  animation: new_item_indicator 1s;
  background-color: transparentize($c-blue-light, 0.9);
+ line-height: 24px;
 }
 
 @keyframes new_item_indicator {

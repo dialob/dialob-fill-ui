@@ -18,7 +18,8 @@ import React from 'react';
 import Errors from './Errors';
 import {connectToAnswer} from '../utils/formUtils';
 import Item from './Item';
-import Label from './Label'
+import Label from './Label';
+import ChatLine from './ChatLine';
 
 // Item for Date and Time questions
 class DateQuestion extends Item {
@@ -47,17 +48,37 @@ class DateQuestion extends Item {
     this.props.answerQuestion(this.props.question[0], event.target.value);
   }
 
+  keyDown(event) {
+    if (event.keyCode == 13) {
+      this.props.answerQuestion(this.props.question[0], event.target.value);
+    }
+  }
+
+  componentDidMount() {
+    ReactDOM.findDOMNode(this.refs.inputControl).focus();
+  }
+
   render() {
     let q = this.props.question[1];
     let dateValue = q.get('value');
     return (
+       <div>
+        <ChatLine name={this.getBotName()} className='ff-bot'>{q.get('label')}</ChatLine>
+        <ChatLine name={this.getUserName()} className='ff-user'>
+          <input ref='inputControl' name={q.get('id')} type={this.props.entryType} defaultValue={dateValue} onKeyDown={this.keyDown.bind(this)} />
+        </ChatLine>
+        <Errors errors={q.get('errors')} />
+      </div>
+
+    );
+  }
+  /*
       <div className={this.getStyles()}>
         <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
         <input name={q.get('id')} type={this.props.entryType} value={dateValue} onChange={this.onChange.bind(this)} />
-        <Errors errors={q.get('errors')} />
+
       </div>
-    );
-  }
+  */
 }
 
 const DateQuestionConnected = connectToAnswer(DateQuestion);

@@ -59,6 +59,11 @@ class Page extends React.Component {
     }
   }
 
+  hasErrors(question) {
+    console.log('E >', question.toJS());
+    return (question && question.get('errors') && question.get('errors').size > 0);
+  }
+
   render() {
     let items = null;
     let page = this.props.page && this.props.page[1];
@@ -67,21 +72,18 @@ class Page extends React.Component {
       let toRender = [];
       for (let i = 0; i < formItems.length; i++) {
         if (formItems[i].get('type') === 'note') {
-          console.log('NOTE')
           toRender.push(formItems[i]);
           continue;
         }
         let value = formItems[i].get('value');
-        if (typeof(value) !== 'undefined' || value != null) {
-          console.log('VALUE=', formItems[i].get('value'));
-          toRender.push(formItems[i]);
-          continue;
-        }
-         if (typeof(value) === 'undefined' || value == null) {
-          console.log('NULL');
+         if (typeof(value) === 'undefined' || value == null || this.hasErrors(formItems[i])) {
           toRender.push(formItems[i]);
           break;
          }
+         if (typeof(value) !== 'undefined' || value != null) {
+          toRender.push(formItems[i]);
+          continue;
+        }
       }
       items = toRender.map(this.context.componentCreator).filter(item => item);
     }

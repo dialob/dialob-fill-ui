@@ -17,12 +17,16 @@
 @import 'theme';
 
 div.ff-errors {
-  margin-top: 0.5em;
   display: flex;
   flex-direction: column;
+  font-size: 1.5em;
+  margin-left: 10em;
+  margin-top: -1em;
 
   .ff-error {
     margin: 0.5em;
+    color: $c-red-bright;
+
     .fa {
       color: $c-red-bright;
       margin-right: 0.5em;
