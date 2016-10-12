@@ -36,7 +36,10 @@
     font-weight: 400;
     flex-grow: 1;
 
-    input[type='text'] {
+    input[type='text'],
+    input[type='date'],
+    input[type='time'],
+    input[type='number'] {
       width: 100%;
       line-height: 34px;
       border-radius: 4px;

@@ -72,13 +72,6 @@ class DateQuestion extends Item {
 
     );
   }
-  /*
-      <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <input name={q.get('id')} type={this.props.entryType} value={dateValue} onChange={this.onChange.bind(this)} />
-
-      </div>
-  */
 }
 
 const DateQuestionConnected = connectToAnswer(DateQuestion);
