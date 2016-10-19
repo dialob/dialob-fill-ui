@@ -41,8 +41,8 @@
 
     // Render the main component into the dom
     window.FlexiForm.renderFlexiForm(document.getElementById('app'), {
-      url: 'https://demo.flexiform.io/session/' + sessionID,
-      reviewUrl: 'https://demo.flexiform.io/review/' + sessionID,
+      url: '/session/' + sessionID,
+      reviewUrl: '/review/' + sessionID,
       //['websocket','xhr-streaming','xdr-streaming','eventsource','iframe-eventsource','htmlfile','iframe-htmlfile','xhr-polling','xdr-polling','iframe-xhr-polling','jsonp-polling']
       transports: undefined
 
