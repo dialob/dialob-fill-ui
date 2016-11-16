@@ -21,6 +21,6 @@ const reducers = {
   config: configReducer
 };
 
-export const reducer =  batchActionsReducer(combineReducers(reducers));
-
-// export const reducer = combineReducers(reducers);
+export function buildReducers(customReducers) {
+  return batchActionsReducer(combineReducers(Object.assign({}, reducers, customReducers)));
+}
