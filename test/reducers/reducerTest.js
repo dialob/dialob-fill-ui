@@ -17,7 +17,9 @@
 /*global expect */
 /*eslint no-console: 0*/
 
-import {reducer} from 'reducers';
+import {buildReducers} from 'reducers';
+
+var reducer = buildReducers(null);
 
 describe('reducer', () => {
     it('accepts null as initial state', () => {
