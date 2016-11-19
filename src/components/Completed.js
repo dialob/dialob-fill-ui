@@ -29,7 +29,7 @@ export default class Completed extends React.Component {
   render() {
     return (
       <div className='ff-completed'>
-        <h2>This questionnaire has been completed!</h2>
+        <h2>This session has been completed!</h2>
         {
           this.props.reviewUrl ?
             <p>To review the results, please click <a href={this.props.reviewUrl}>here</a></p>
