@@ -29,7 +29,7 @@ import {connectToAnswer} from './utils/formUtils';
 require('styles/app.scss');
 
 // TODO add support for callbacks
-function renderFlexiForm(element,config) {
+function renderDialob(element,config) {
   if (typeof config === 'string') {
     config = {
       url: config
@@ -49,7 +49,7 @@ function renderFlexiForm(element,config) {
 }
 
 export {
-  renderFlexiForm,
+  renderDialob,
   connectToAnswer,
   Item,
   Label,

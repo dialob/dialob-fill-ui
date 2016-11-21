@@ -33,7 +33,7 @@ module.exports = {
     path: path.join(__dirname, '/../dist'),
     filename: 'javascript/[name].js',
     publicPath: `.${defaultSettings.publicPath}`,
-    library: 'FlexiForm',
+    library: 'Dialob',
     libraryTarget: 'umd'
   },
   externals: {
