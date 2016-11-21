@@ -43,9 +43,17 @@ function renderDialob(element,config) {
     delete config.componentCreator;
   }
 
-  var store = createStore({config});
+  let customReducers = null;
+  if (config.reducers) {
+    customReducers = config.reducers;
+    delete config.reducers;
+  }
+
+  var store = createStore({config}, customReducers);
 
   ReactDOM.render(<Provider store={store}><FlexiForm componentCreator={delegateComponentCreator}/></Provider>, element);
+
+  return store;
 }
 
 export {

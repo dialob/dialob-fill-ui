@@ -15,7 +15,7 @@
  */
 
 import * as redux from 'redux';
-import {reducer} from '../reducers';
+import {buildReducers} from '../reducers';
 import {middleware} from '../middlewares';
 import Immutable from 'immutable';
 
@@ -25,9 +25,9 @@ const DEFAULT_INITIAL_STATE = {
     })
 };
 
-export function createStore(initialState = DEFAULT_INITIAL_STATE) {
+export function createStore(initialState = DEFAULT_INITIAL_STATE, customReducers) {
     if (initialState.config) {
         initialState.config = Immutable.Map(initialState.config);
     }
-    return redux.createStore(reducer, initialState, middleware);
+    return redux.createStore(buildReducers(customReducers), initialState, middleware);
 }
