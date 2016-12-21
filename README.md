@@ -6,18 +6,18 @@ Embedding Dialob
 
 Fill ui stylesheet
 ```html
-  <link rel="stylesheet" href="https://unpkg.com/dialob-fill-ui@0.0.7/dist/css/ff.css">
+  <link rel="stylesheet" href="https://unpkg.com/dialob-fill-ui@0.1.1/dist/css/dialob.css">
 ```
 
 Fill ui depends on [`window.React`](https://facebook.github.io/react/index.html) library.
 ```html
-  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+  <script src="https://unpkg.com/react@15.4.1/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.4.1/dist/react-dom.js"></script>
 ```
 
 Fill ui is available from [unpkg.com](https://unpkg.com) CDN service
 ```html
-  <script src="https://unpkg.com/dialob-fill-ui@latest/dist/javascript/ff.js"></script>
+  <script src="https://unpkg.com/dialob-fill-ui@latest/dist/javascript/dialob.js"></script>
 ```
 
 Placeholder for dialob application
