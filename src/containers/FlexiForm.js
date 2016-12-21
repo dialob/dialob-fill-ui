@@ -24,7 +24,6 @@ import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
 
-require('normalize.css/normalize.css');
 require('styles/app.scss');
 
 class FlexiForm extends React.Component {
