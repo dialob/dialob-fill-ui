@@ -26,7 +26,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let config = Object.assign({}, baseConfig, {
   entry: {
-    'ff': [
+    'dialob': [
       'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
       'webpack/hot/only-dev-server',
       './src/index'

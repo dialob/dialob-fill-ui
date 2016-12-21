@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import {Loading} from 'flexiform-common';
+import {Loading} from 'dialob-common';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
 

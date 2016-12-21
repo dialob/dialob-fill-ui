@@ -27,7 +27,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let config = Object.assign({}, baseConfig, {
   entry: {
-    ff: path.join(__dirname, '../src/index')
+    dialob: path.join(__dirname, '../src/index')
   },
   cache: false,
   debug: false,
