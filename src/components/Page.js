@@ -68,8 +68,8 @@ class Page extends React.Component {
       title = page.get('label');
     }
     return (
-      <div className='ff-page'>
-        <span className='ff-page-title'>{title}</span>
+      <div className='dialob-page'>
+        <span className='dialob-page-title'>{title}</span>
         {groups}
         <PageBar
           onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}

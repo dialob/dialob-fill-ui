@@ -16,21 +16,21 @@
 
 
 
-.ff-itemtype-array {
-  .ff-checkbox {
+.dialob-itemtype-array {
+  .dialob-checkbox {
     font-size: 1.5em;
     width: 1.5em;
     vertical-align: bottom;
   }
 
-  .ff-multichoice-option {
+  .dialob-multichoice-option {
     margin-left: 2em;
     margin-top: 0.3em;
     display: flex;
     flex-direction: row;
   }
 
-  .ff-multichoice-option:first-of-type {
+  .dialob-multichoice-option:first-of-type {
     margin-top: 1em;
   }
 

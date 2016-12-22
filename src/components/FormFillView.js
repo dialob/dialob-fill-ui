@@ -52,8 +52,8 @@ export default class FormFillView extends React.Component {
       return (<Loading />);
     } else {
       return (
-        <div className='ff-questionnaire'>
-          <span className='ff-questionnaire-title'>{title}</span>
+        <div className='dialob-questionnaire'>
+          <span className='dialob-questionnaire-title'>{title}</span>
           {page}
         </div>
       );

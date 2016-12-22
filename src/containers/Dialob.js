@@ -26,7 +26,7 @@ import Completed from '../components/Completed';
 
 require('styles/app.scss');
 
-class FlexiForm extends React.Component {
+class Dialob extends React.Component {
 
   static get propTypes() {
     return {
@@ -74,7 +74,7 @@ class FlexiForm extends React.Component {
   }
 }
 
-const FlexiFormConnected = connect(
+const DialobConnected = connect(
   state => {
       return {
           data: state.data,
@@ -83,8 +83,8 @@ const FlexiFormConnected = connect(
   },{
     connect: connectAction
   }
-)(FlexiForm);
+)(Dialob);
 
 export {
-  FlexiFormConnected as default
+  DialobConnected as default
 };

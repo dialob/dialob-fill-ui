@@ -19,6 +19,6 @@ import React from 'react';
 export default class QuestionnaireNotFound extends React.Component {
 
     render() {
-        return <div id='ff-not-exists'>Questionnaire not found.</div>;
+        return <div id='dialob-not-exists'>Questionnaire not found.</div>;
     }
 }

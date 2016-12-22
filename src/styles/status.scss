@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @import 'theme';
 
-.ff-status-indicator {
+.dialob-status-indicator {
     position: absolute;
     top: 0;
     right: 0;
@@ -25,14 +25,14 @@
     text-align: center;
 }
 
-.ff-status-open,
-.ff-status-connecting {
+.dialob-status-open,
+.dialob-status-connecting {
  i {
      color: $c-green-light;
   }
 }
 
-.ff-status-closed {
+.dialob-status-closed {
   i.fa-ban {
     color: $c-red-bright;
     opacity: 1;
@@ -40,7 +40,7 @@
   }
 }
 
-.ff-status-connecting {
+.dialob-status-connecting {
   i {
     animation: opacity_anim 0.5s ease-out alternate infinite;
   }

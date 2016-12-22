@@ -21,7 +21,7 @@ import { Provider } from 'react-redux'
 import Item from './components/Item';
 import Label from './components/Label';
 import Errors from './components/Errors';
-import FlexiForm from './containers/FlexiForm';
+import Dialob from './containers/Dialob';
 import {createStore} from './stores';
 import {componentCreator} from './utils/componentCreator';
 import {connectToAnswer} from './utils/formUtils';
@@ -51,7 +51,7 @@ function renderDialob(element,config) {
 
   var store = createStore({config}, customReducers);
 
-  ReactDOM.render(<Provider store={store}><FlexiForm componentCreator={delegateComponentCreator}/></Provider>, element);
+  ReactDOM.render(<Provider store={store}><Dialob componentCreator={delegateComponentCreator}/></Provider>, element);
 
   return store;
 }

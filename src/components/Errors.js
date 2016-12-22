@@ -32,10 +32,10 @@ export default class Errors extends React.Component {
         let errors = this.props.errors
             .filter(error => error !== 'You must answer this question')
             .map(error => {
-                return <span key={error} className='ff-error'><i className='fa fa-exclamation'></i>{error}</span>;
+                return <span key={error} className='dialob-error'><i className='fa fa-exclamation'></i>{error}</span>;
             });
         if (errors.size > 0) {
-            return <div className='ff-errors'>{errors.toJS()}</div>;
+            return <div className='dialob-errors'>{errors.toJS()}</div>;
         }
     }
     return null;

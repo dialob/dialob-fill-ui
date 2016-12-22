@@ -17,19 +17,19 @@
 -->
 <head>
   <meta charset="utf-8">
-  <title>FlexiFormIO</title>
+  <title>Dialob</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet"  type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/ff.css">
+  <link rel="stylesheet" href="css/dialob.css">
 </head>
 <body>
-  <div class="ff-app-container">
-    <div class="ff-app-top">
-      <img src="http://flexiform.azureedge.net/flexiform-ui/latest/images/resys_logo_hires.png" width="121" height="40">
-      <span class="ff-app-title">FlexiFormIO</span>
-      <span class="ff-app-subtitle">Filling</span>
+  <div class="dialob-app-container">
+    <div class="dialob-app-top">
+      <img src="https://flexiformcdn.blob.core.windows.net/flexiform-ui/latest/images/dialob_logo.svg" width="180" height="40">
+      <span class="dialob-app-title">Dialob</span>
+      <span class="dialob-app-subtitle">Filling</span>
     </div>
     <div id="app"></div>
   </div>
@@ -37,7 +37,7 @@
   <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
   <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
-  <script type="text/javascript" src="javascript/ff.js"></script>
+  <script type="text/javascript" src="javascript/dialob.js"></script>
 
   <script>
     // Get session ID from URL fragment
@@ -47,7 +47,7 @@
     }
 
     // Render the main component into the dom
-    window.FlexiForm.renderFlexiForm(document.getElementById('app'), {
+    window.Dialob.renderDialob(document.getElementById('app'), {
       url: 'http://localhost:8080/session/' + sessionID,
       reviewUrl: 'http://localhost:8080/review/' + sessionID,
       //['websocket','xhr-streaming','xdr-streaming','eventsource','iframe-eventsource','htmlfile','iframe-htmlfile','xhr-polling','xdr-polling','iframe-xhr-polling','jsonp-polling']

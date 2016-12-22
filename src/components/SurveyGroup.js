@@ -62,16 +62,16 @@ export default class SurveyGroup extends React.Component {
     let surveyHeader = null;
     if (headers.length > 0) {
       surveyHeader = (
-        <div className='ff-survey-header'>
-          <span className='ff-survey-label'></span>
+        <div className='dialob-survey-header'>
+          <span className='dialob-survey-label'></span>
           {headers}
         </div>
       );
     }
 
     return (
-      <div className='ff-group ff-survey'>
-        <span className='ff-group-title'>{title}</span>
+      <div className='dialob-group dialob-survey'>
+        <span className='dialob-group-title'>{title}</span>
         {surveyHeader}
         {questions}
       </div>

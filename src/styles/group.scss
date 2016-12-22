@@ -16,7 +16,7 @@
 
 @import 'theme';
 
-div.ff-group {
+div.dialob-group {
   display: flex;
   flex-direction: column;
 
@@ -30,7 +30,7 @@ div.ff-group {
   margin-right: 1em;
   border-collapse: collapse;
 
-  .ff-group-title {
+  .dialob-group-title {
     padding-left: 1em;
     font-size: 1.5em;
     margin-top: 0.5em;
@@ -38,7 +38,7 @@ div.ff-group {
     border-bottom: 3px solid lighten($c-resys-grey, 50%);
   }
 
-  .ff-survey-header{
+  .dialob-survey-header{
     display: flex;
     flex-direction: row;
     margin-left: 1em;
@@ -46,11 +46,11 @@ div.ff-group {
     border-left-width: 2px;
     padding-left: 0.5em;
 
-    span.ff-survey-label {
+    span.dialob-survey-label {
       width: 30%;
     }
 
-    span:not(.ff-survey-label) {
+    span:not(.dialob-survey-label) {
       flex: 1;
       text-align: center;
       background-color: lighten($c-resys-grey, 50%);

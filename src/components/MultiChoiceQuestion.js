@@ -51,7 +51,7 @@ class MultiChoiceQuestion extends Item {
   option(key, label, checked) {
     let name = `${this.props.question[0]}[${key}]`;
     return (
-      <span className='ff-multichoice-option' key={name}>
+      <span className='dialob-multichoice-option' key={name}>
         <Checkbox id={name} value={checked} onChange={this.setOptionValue.bind(this, key)} />
         <label htmlFor={name}>{label}</label>
       </span>

@@ -28,7 +28,7 @@ export default class Completed extends React.Component {
 
   render() {
     return (
-      <div className='ff-completed'>
+      <div className='dialob-completed'>
         <h2>This session has been completed!</h2>
         {
           this.props.reviewUrl ?

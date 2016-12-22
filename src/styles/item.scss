@@ -16,7 +16,7 @@
 
 @import 'theme';
 
-div.ff-item {
+div.dialob-item {
   display: flex;
   flex-direction: column;
   margin-left: 1em;
@@ -75,19 +75,19 @@ div.ff-item {
   }
 }
 
-div.ff-item.ff-item-errors {
+div.dialob-item.dialob-item-errors {
   border-left-color: $c-red-bright;
   transition: border-left-color 0.5s ease-in;
 }
 
-div.ff-item.ff-itemtype-note {
+div.dialob-item.dialob-itemtype-note {
   span {
     font-size: 1.2em;
   }
 }
 
-div.ff-item.ff-itemtype-text.survey {
-  .ff-survey-content {
+div.dialob-item.dialob-itemtype-text.survey {
+  .dialob-survey-content {
     display: flex;
     flex-direction: row;
 

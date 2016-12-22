@@ -16,16 +16,16 @@
 
 @import 'theme';
 
-div.ff-page {
+div.dialob-page {
   margin-left: 1em;
   margin-right: 1em;
   padding-bottom: 5em;
 
-  .ff-page-title {
+  .dialob-page-title {
     font-size: 1.5em;
   }
 
-  .ff-page-controls {
+  .dialob-page-controls {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -38,31 +38,31 @@ div.ff-page {
     padding-bottom: 0.5em;
     padding-top: 0.5em;
 
-    .ff-nav-button,
-    .ff-complete-button {
+    .dialob-nav-button,
+    .dialob-complete-button {
       text-align: center;
       border-radius: 0.5em;
       width: 10em;
       display: block;
     }
 
-    .ff-nav-button {
+    .dialob-nav-button {
       flex-grow: 1;
       background-color: lighten($c-blueish, 30%);
     }
 
-    .ff-complete-button {
+    .dialob-complete-button {
       flex-grow: 2;
       background-color: lighten($c-green-light, 30%);
     }
 
-    .ff-button-disabled {
+    .dialob-button-disabled {
       background-color: lighten($c-resys-grey, 50%);
       color: white;
       transition: background-color,color 0.5s ease-in;
     }
 
-    .ff-button-enabled {
+    .dialob-button-enabled {
       animation-name: navButtonReveal;
       animation-duration: 0.7s;
       animation-fill-mode: both;

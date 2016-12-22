@@ -16,7 +16,7 @@
 
 @import 'theme';
 
-.ff-rowgroup {
+.dialob-rowgroup {
   i {
     font-size: 1.2em;
     padding: 0.2em;
@@ -34,7 +34,7 @@
 
 }
 
-.ff-rowgroup-row {
+.dialob-rowgroup-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -48,7 +48,7 @@
     color: $c-red-bright;
   }
 
-  .ff-item {
+  .dialob-item {
     border-left: 0;
     flex-grow: 1;
 
@@ -57,11 +57,11 @@
     }
   }
 
-  .ff-itemtype-text.textbox {
+  .dialob-itemtype-text.textbox {
     flex-grow: 2;
   }
 }
 
-.ff-rowgroup-row:nth-of-type(even) {
+.dialob-rowgroup-row:nth-of-type(even) {
   background-color: lighten($c-resys-grey, 50%);
 }

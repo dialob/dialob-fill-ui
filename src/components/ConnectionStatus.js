@@ -51,7 +51,7 @@ class ConnectionStatus extends React.Component {
               indicator = (<span>{this.props.state}</span>);
         }
         return (
-          <div className={classnames('ff-status-indicator', 'ff-status-' + this.props.state.toLowerCase())}>
+          <div className={classnames('dialob-status-indicator', 'dialob-status-' + this.props.state.toLowerCase())}>
              {indicator}
           </div>
         );

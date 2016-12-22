@@ -57,7 +57,7 @@ class SurveyQuestion extends Item {
     let options = this.choiceList();
     return (
       <div className={this.getStyles()}>
-        <span className='ff-survey-content'>
+        <span className='dialob-survey-content'>
           <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
           {options}
         </span>

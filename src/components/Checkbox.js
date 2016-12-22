@@ -29,7 +29,7 @@ export default class Checkbox extends React.Component {
 
   render() {
    return (
-     <i className={classnames('ff-checkbox', 'fa', {'fa-check-square-o': this.props.value}, {'fa-square-o': !this.props.value})}
+     <i className={classnames('dialob-checkbox', 'fa', {'fa-check-square-o': this.props.value}, {'fa-square-o': !this.props.value})}
         onClick={this.props.onChange.bind(this, !this.props.value)}></i>
    );
   }

@@ -30,7 +30,7 @@ class PageBar extends React.Component {
   renderBackButton() {
     let enabled = this.props.onBackward;
     return (
-      <span className={classnames('ff-nav-button', {'ff-button-disabled': !enabled}, {'ff-button-enabled': enabled})} onClick={this.props.onBackward}>
+      <span className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>
         <i className='fa fa-chevron-left'></i>
       </span>
     );
@@ -39,7 +39,7 @@ class PageBar extends React.Component {
   renderForwardButton() {
     let enabled = this.props.onForward;
     return (
-      <span className={classnames('ff-nav-button', {'ff-button-disabled': !enabled}, {'ff-button-enabled': enabled})} onClick={this.props.onForward}>
+      <span className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>
         <i className='fa fa-chevron-right'></i>
       </span>
     );
@@ -48,7 +48,7 @@ class PageBar extends React.Component {
   renderCompleteButton() {
     let enabled = this.props.onComplete;
     return (
-      <span className={classnames('ff-complete-button', {'ff-button-disabled': !enabled}, {'ff-button-enabled': enabled})} onClick={this.props.onComplete}>
+      <span className={classnames('dialob-complete-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}>
         <i className='fa fa-check'></i>
       </span>
     );
@@ -56,7 +56,7 @@ class PageBar extends React.Component {
 
   render() {
     return (
-      <div className='ff-page-controls'>
+      <div className='dialob-page-controls'>
         <div>
         {this.renderBackButton()}
         </div>

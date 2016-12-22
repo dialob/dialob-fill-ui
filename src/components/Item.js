@@ -65,11 +65,11 @@ export default class Item extends React.Component {
     }
 
     return classnames(
-      'ff-item',
-      'ff-itemtype-' + (this.question && this.question.get('type')),
+      'dialob-item',
+      'dialob-itemtype-' + (this.question && this.question.get('type')),
       customStyles,
-      {'ff-item-errors': this.hasErrors()},
-      {'ff-readonly': this.isReadOnly()}
+      {'dialob-item-errors': this.hasErrors()},
+      {'dialob-readonly': this.isReadOnly()}
     );
   }
 }

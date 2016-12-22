@@ -43,7 +43,7 @@ class RowGroupRow extends React.Component {
       .map(this.context.componentCreator)
       .filter(question => question);
     return (
-      <div className='ff-rowgroup-row'>
+      <div className='dialob-rowgroup-row'>
        {questions}
        <i className='fa fa-remove' onClick={this.props.removeRow.bind(this)}></i>
       </div>

@@ -45,8 +45,8 @@ class RowGroup extends React.Component {
     let title = group.get('label');
     let rows = group.get('items').toJS().map(this.props.createRow).filter(item => item);
     return (
-      <div className='ff-group ff-rowgroup'>
-        <span className='ff-group-title'>{title}</span>
+      <div className='dialob-group dialob-rowgroup'>
+        <span className='dialob-group-title'>{title}</span>
         {rows}
         <i className='fa fa-plus' onClick={this.props.addNewRow.bind(this)}></i>
       </div>

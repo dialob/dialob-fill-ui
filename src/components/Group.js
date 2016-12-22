@@ -42,8 +42,8 @@ export default class Group extends React.Component {
       .map(this.context.componentCreator)
       .filter(question => question);
     return (
-      <div className='ff-group'>
-        <span className='ff-group-title'>{title}</span>
+      <div className='dialob-group'>
+        <span className='dialob-group-title'>{title}</span>
         {questions}
       </div>
     );
