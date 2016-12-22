@@ -60,8 +60,8 @@ class BooleanQuestion extends Item {
     }
     return (
        <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <div id={q.get('id')}>
+        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        <div id={this.getControlId()}>
           <div className={classnames('dialob-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
             <span className={classnames('dialob-tristate-true', {'dialob-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}>Yes</span>
             <span className={classnames('dialob-tristate-false', {'dialob-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}>No</span>

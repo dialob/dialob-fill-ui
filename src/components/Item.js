@@ -56,6 +56,11 @@ export default class Item extends React.Component {
     return !this.question || this.question.get('readOnly');
   }
 
+  // Get DOM ID for input control
+  getControlId() {
+    return 'dialob-control-' + (this.question ? this.question.get('id') : '');
+  }
+
   // Return styles for this item
   getStyles() {
     let className = this.question && this.question.get('className');

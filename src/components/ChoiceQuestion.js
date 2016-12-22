@@ -55,8 +55,8 @@ class ChoiceQuestion extends Item {
     let options = this.choiceList();
     return (
        <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)}>
+        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        <select id={this.getControlId()} name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)}>
           {options}
         </select>
         <Errors errors={q.get('errors')} />

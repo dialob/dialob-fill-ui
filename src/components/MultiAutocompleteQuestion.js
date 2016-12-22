@@ -43,8 +43,8 @@ class MultiChoiceAutocompleteQuestion extends ChoiceAutocompleteQuestion {
     let value = q.get('value') ? q.get('value').toJS() : null;
     return (
        <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <Select multi={true} name={q.get('id')} value={value} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
+        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        <Select inputProps={{id: this.getControlId()}} multi={true} name={q.get('id')} value={value} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
         <Errors errors={q.get('errors')} />
       </div>
     );

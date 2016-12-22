@@ -52,8 +52,8 @@ class DateQuestion extends Item {
     let dateValue = q.get('value');
     return (
       <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <input name={q.get('id')} type={this.props.entryType} value={dateValue} onChange={this.onChange.bind(this)} />
+        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        <input id={this.getControlId()} ame={q.get('id')} type={this.props.entryType} value={dateValue} onChange={this.onChange.bind(this)} />
         <Errors errors={q.get('errors')} />
       </div>
     );

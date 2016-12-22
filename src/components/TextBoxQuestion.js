@@ -45,8 +45,8 @@ class TextBoxQuestion extends TextQuestion {
     let rows = this.getLineCount(q.get('value'));
     return (
       <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        <textarea ref='inputControl' value={this.state.value}  rows={rows} onChange={this.onChangeText.bind(this)}/>
+        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        <textarea id={this.getControlId()} ref='inputControl' value={this.state.value}  rows={rows} onChange={this.onChangeText.bind(this)}/>
         <Errors errors={q.get('errors')} />
       </div>
     );
