@@ -32,6 +32,6 @@ describe('Note', () => {
       type: 'note'
     };
     var wrapper = shallow(<Note question={[question.id,Immutable.fromJS(question)]}/>);
-    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-note ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-note ');
   });
 });

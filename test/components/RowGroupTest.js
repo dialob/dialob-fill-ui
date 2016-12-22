@@ -44,7 +44,7 @@ describe('RowGroup', () => {
     addNewRow.never();
 
     var wrapper = shallow(<RowGroup group={[group.id,Immutable.fromJS(group)]} addNewRow={addNewRow} createRow={createRow} />,{context});
-    expect(wrapper.props().className).to.equal('ff-group ff-rowgroup');
+    expect(wrapper.props().className).to.equal('dialob-group dialob-rowgroup');
     context.componentCreator.verify();
     createRow.verify();
     addNewRow.verify();

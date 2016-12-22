@@ -33,7 +33,7 @@ describe('Errors', () => {
 
   it('should render immutable set to errors', () => {
     var wrapper = shallow(<Errors errors={Immutable.Set.of('Error 1','Error 2')}/>);
-    expect(wrapper.html()).to.equal('<div class="ff-errors"><span class="ff-error"><i class="fa fa-exclamation"></i>Error 1</span><span class="ff-error"><i class="fa fa-exclamation"></i>Error 2</span></div>');
+    expect(wrapper.html()).to.equal('<div class="dialob-errors"><span class="dialob-error"><i class="fa fa-exclamation"></i>Error 1</span><span class="dialob-error"><i class="fa fa-exclamation"></i>Error 2</span></div>');
   });
   it('"You must answer this question" is not rendered', () => {
     var wrapper = shallow(<Errors errors={Immutable.Set.of('You must answer this question')}/>);

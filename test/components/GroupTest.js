@@ -39,7 +39,7 @@ describe('Group', () => {
 
 
     var wrapper = shallow(<Group group={[group.id,Immutable.fromJS(group)]}/>,{context});
-    expect(wrapper.props().className).to.equal('ff-group');
+    expect(wrapper.props().className).to.equal('dialob-group');
     context.componentCreator.verify();
   });
 });

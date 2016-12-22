@@ -41,7 +41,7 @@ describe('RowGroupRow', () => {
     removeRow.never();
 
     var wrapper = shallow(<RowGroupRow group={[group.id,Immutable.fromJS(group)]} removeRow={removeRow} />,{context});
-    expect(wrapper.props().className).to.equal('ff-rowgroup-row');
+    expect(wrapper.props().className).to.equal('dialob-rowgroup-row');
     context.componentCreator.verify();
     removeRow.verify();
   });

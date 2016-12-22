@@ -33,6 +33,6 @@ describe('PageBar', () => {
   });
 
   it('should have its component name as default className', () => {
-    expect(PageBarComponent.props.className).to.equal('ff-page-controls');
+    expect(PageBarComponent.props.className).to.equal('dialob-page-controls');
   });
 });

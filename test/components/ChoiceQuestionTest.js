@@ -46,7 +46,7 @@ describe('ChoiceQuestion', () => {
 
     var wrapper = shallow(<ChoiceQuestion question={[question.id, Immutable.fromJS(question)]}/>,{context});
 
-    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-list ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-list ');
     context.valueSetById.verify();
   });
 });

@@ -31,6 +31,6 @@ describe('TextQuestion', () => {
       type: 'text'
     };
     let wrapper = shallow(<TextQuestion question={[question.id, Immutable.fromJS(question)]}/>);
-    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-text ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-text ');
   });
 });

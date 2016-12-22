@@ -46,7 +46,7 @@ describe('MultiChoiceQuestion', () => {
 
     var wrapper = shallow(<MultiChoiceQuestion question={[question.id, Immutable.fromJS(question)]}/>,{context});
 
-    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-array ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-array ');
     context.valueSetById.verify();
   });
 });

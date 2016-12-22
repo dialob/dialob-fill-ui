@@ -26,7 +26,7 @@ import SurveyGroup from 'components/SurveyGroup';
 
 describe('SurveyGroup', () => {
 
-  it('should have its component name and ff-survey as className', () => {
+  it('should have its component name and dialob-survey as className', () => {
     var group = {
       id: 'g1',
       type: 'group',
@@ -41,7 +41,7 @@ describe('SurveyGroup', () => {
 
 
     var wrapper = shallow(<SurveyGroup group={[group.id,Immutable.fromJS(group)]}/>,{context});
-    expect(wrapper.props().className).to.equal('ff-group ff-survey');
+    expect(wrapper.props().className).to.equal('dialob-group dialob-survey');
     context.componentCreator.verify();
   });
 });

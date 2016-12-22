@@ -36,6 +36,6 @@ describe('DateQuestion', () => {
     };
     var wrapper = shallow(<DateQuestion type='date' question={[question.id, Immutable.fromJS(question)]}/>,{context});
 
-    expect(wrapper.props().className).to.equal('ff-item ff-itemtype-date ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-date ');
   });
 });

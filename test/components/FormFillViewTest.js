@@ -46,6 +46,6 @@ describe('FormFillView', () => {
       questionnaire={Immutable.fromJS(questionnaire)}
       activePageItem={[page.id,Immutable.fromJS(page)]}
     />, {context});
-    expect(wrapper.props().className).to.equal('ff-questionnaire');
+    expect(wrapper.props().className).to.equal('dialob-questionnaire');
   });
 });

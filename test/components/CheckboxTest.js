@@ -31,9 +31,9 @@ describe('Checkbox', () => {
     var onChange = () => {};
 
     var wrapper = shallow(<Checkbox value={false} onChange={onChange}/>);
-    expect(wrapper.props().className).to.equal('ff-checkbox fa fa-square-o');
+    expect(wrapper.props().className).to.equal('dialob-checkbox fa fa-square-o');
 
     wrapper = shallow(<Checkbox value={true} onChange={onChange}/>);
-    expect(wrapper.props().className).to.equal('ff-checkbox fa fa-check-square-o');
+    expect(wrapper.props().className).to.equal('dialob-checkbox fa fa-check-square-o');
   });
 });

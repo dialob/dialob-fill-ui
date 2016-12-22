@@ -39,6 +39,6 @@ describe('Page', () => {
     };
 
     var wrapper = shallow(<Page page={[page.id,Immutable.fromJS(page)]} backEnabled={false} completeEnabled={false} forwardEnabled={false} />,{context});
-    expect(wrapper.props().className).to.equal('ff-page');
+    expect(wrapper.props().className).to.equal('dialob-page');
   });
 });

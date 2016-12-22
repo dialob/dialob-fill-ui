@@ -29,12 +29,12 @@ describe('ConnectionStatus', () => {
   it('Should have class names set according to status', () => {
 
     var wrapper = shallow(<ConnectionStatus state={'OPEN'}/>);
-    expect(wrapper.props().className).to.equal('ff-status-indicator ff-status-open');
+    expect(wrapper.props().className).to.equal('dialob-status-indicator dialob-status-open');
 
     wrapper = shallow(<ConnectionStatus state={'CLOSED'}/>);
-    expect(wrapper.props().className).to.equal('ff-status-indicator ff-status-closed');
+    expect(wrapper.props().className).to.equal('dialob-status-indicator dialob-status-closed');
 
     wrapper = shallow(<ConnectionStatus state={'CONNECTING'}/>);
-    expect(wrapper.props().className).to.equal('ff-status-indicator ff-status-connecting');
+    expect(wrapper.props().className).to.equal('dialob-status-indicator dialob-status-connecting');
   });
 });
