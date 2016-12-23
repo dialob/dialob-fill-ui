@@ -15,22 +15,21 @@
  */
 
 import React from 'react';
-import classnames from 'classnames';
 
 // Simple stateless checkbox control
 export default class Checkbox extends React.Component {
 
   static get propTypes() {
     return {
+      id: React.PropTypes.string,
       value: React.PropTypes.bool,
       onChange: React.PropTypes.func.isRequired
     };
   }
 
   render() {
-   return (
-     <i className={classnames('dialob-checkbox', 'fa', {'fa-check-square-o': this.props.value}, {'fa-square-o': !this.props.value})}
-        onClick={this.props.onChange.bind(this, !this.props.value)}></i>
-   );
+    return (
+      <input id={this.props.id} type='checkbox' className='dialob-checkbox' value={this.props.value} onChange={this.props.onChange.bind(this, !this.props.value)} />
+    );
   }
 }

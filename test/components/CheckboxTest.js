@@ -26,14 +26,12 @@ import Checkbox from 'components/Checkbox';
 
 describe('Checkbox', () => {
 
-  it('Stlye class should reflect value', () => {
+  it('Stlye class for checkbox', () => {
 
     var onChange = () => {};
 
     var wrapper = shallow(<Checkbox value={false} onChange={onChange}/>);
-    expect(wrapper.props().className).to.equal('dialob-checkbox fa fa-square-o');
+    expect(wrapper.props().className).to.equal('dialob-checkbox');
 
-    wrapper = shallow(<Checkbox value={true} onChange={onChange}/>);
-    expect(wrapper.props().className).to.equal('dialob-checkbox fa fa-check-square-o');
   });
 });
