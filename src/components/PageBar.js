@@ -30,41 +30,41 @@ class PageBar extends React.Component {
   renderBackButton() {
     let enabled = this.props.onBackward;
     return (
-      <span className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>
+      <button disabled={!enabled} className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>
         <i className='fa fa-chevron-left'></i>
-      </span>
+      </button>
     );
   }
 
   renderForwardButton() {
     let enabled = this.props.onForward;
     return (
-      <span className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>
+      <button disabled={!enabled} className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>
         <i className='fa fa-chevron-right'></i>
-      </span>
+      </button>
     );
   }
 
   renderCompleteButton() {
     let enabled = this.props.onComplete;
     return (
-      <span className={classnames('dialob-complete-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}>
+      <button disabled={!enabled} className={classnames('dialob-complete-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}>
         <i className='fa fa-check'></i>
-      </span>
+      </button>
     );
   }
 
   render() {
     return (
       <div className='dialob-page-controls'>
-        <div>
-        {this.renderBackButton()}
+        <div className='dialob-back-button-wrapper'>
+          {this.renderBackButton()}
         </div>
-        <div>
-        {this.renderCompleteButton()}
+        <div className='dialob-complete-button-wrapper'>
+          {this.renderCompleteButton()}
         </div>
-        <div>
-        {this.renderForwardButton()}
+        <div className='dialob-forward-button-wrapper'>
+          {this.renderForwardButton()}
         </div>
       </div>
     );

@@ -44,6 +44,13 @@ div.dialob-page {
       border-radius: 0.5em;
       width: 10em;
       display: block;
+      border: 1px solid transparent;
+      outline: none;
+    }
+
+    .dialob-nav-button:focus,
+    .dialob-complete-button:focus {
+       border: 1px solid $c-blue-light;
     }
 
     .dialob-nav-button {
