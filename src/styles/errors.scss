@@ -15,6 +15,7 @@
  */
 
 @import 'theme';
+@import 'icons';
 
 div.dialob-errors {
   margin-top: 0.5em;
@@ -23,14 +24,16 @@ div.dialob-errors {
 
   .dialob-error {
     margin: 0.5em;
-    .fa {
+  }
+
+  .dialob-icon-error:before {
       color: $c-red-bright;
       margin-right: 0.5em;
       animation-name: zoomIn;
       animation-duration: 0.7s;
       animation-fill-mode: both;
-    }
   }
+
 }
 
 @keyframes zoomIn {

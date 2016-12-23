@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import classnames from 'classnames';
 
 // Renders a form item control label with requirement indicator
 export default class Label extends React.Component {
@@ -28,13 +29,8 @@ export default class Label extends React.Component {
 
   render() {
     return (
-      <label htmlFor={this.props.htmlFor}>{this.props.children}
-      {
-        this.props.required ?
-          <i className='fa fa-asterisk'></i>
-          :
-            null
-      }
+      <label htmlFor={this.props.htmlFor} className={classnames({'dialob-icon-required': this.props.required})}>
+        {this.props.children}
       </label>
     );
   }

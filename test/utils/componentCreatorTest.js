@@ -42,6 +42,6 @@ describe('componentCreator', () => {
     };
     var component = componentCreator([question.id,Immutable.fromJS(question)]);
     var wrapper = shallow(component,{context});
-    expect(wrapper.html()).to.equal('<div class="dialob-item dialob-itemtype-text "><label for="dialob-control-q">Question to you</label><input type="text" id="dialob-control-q" name="q"/></div>');
+    expect(wrapper.html()).to.equal('<div class="dialob-item dialob-itemtype-text "><label for="dialob-control-q" class="">Question to you</label><input type="text" id="dialob-control-q" name="q"/></div>');
   });
 });

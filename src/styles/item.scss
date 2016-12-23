@@ -34,14 +34,13 @@ div.dialob-item {
   label {
     font-weight: 200;
     font-size: 1.2em;
+  }
 
-    .fa-asterisk {
+  label.dialob-icon-required:after {
       color: $c-red-bright;
       margin-left: 0.2em;
       font-size: 0.8em;
       vertical-align: super;
-    }
-
   }
 
   textarea {

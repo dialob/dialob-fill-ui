@@ -45,7 +45,7 @@ class RowGroupRow extends React.Component {
     return (
       <div className='dialob-rowgroup-row'>
        {questions}
-       <i className='fa fa-remove' onClick={this.props.removeRow.bind(this)}></i>
+       <button className='dialob-rowgroup-remove dialob-icon-remove' onClick={this.props.removeRow.bind(this)} />
       </div>
     );
   }

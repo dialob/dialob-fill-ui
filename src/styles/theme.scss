@@ -42,3 +42,14 @@ $dialob-base-font-family: 'Myriad Set Pro', 'Helvetica Neue', helvetica, sans-se
 $dialob-monospace-font-family: Menlo, 'DejaVu Sans Mono', monospace;
 $dialob-base-font-color: rgb(57, 57, 57);
 $dialob-normal-border-color: rgb(200, 200, 200);
+
+// Controls
+
+button {
+  outline: none;
+  border: 1px solid transparent;
+}
+
+button:focus {
+ border: 1px solid $c-blue-light;
+}

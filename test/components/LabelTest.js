@@ -29,6 +29,6 @@ describe('Label', () => {
   it('should have its component name as default className', () => {
     var wrapper = shallow(<Label htmlFor="x1" required={true}/>);
 
-    expect(wrapper.props().className).to.equal(undefined);
+    expect(wrapper.props().className).to.equal('dialob-icon-required');
   });
 });

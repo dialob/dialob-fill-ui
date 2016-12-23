@@ -48,7 +48,7 @@ class RowGroup extends React.Component {
       <div className='dialob-group dialob-rowgroup'>
         <span className='dialob-group-title'>{title}</span>
         {rows}
-        <i className='fa fa-plus' onClick={this.props.addNewRow.bind(this)}></i>
+        <button className='dialob-rowgroup-add dialob-icon-add' onClick={this.props.addNewRow.bind(this)} />
       </div>
     );
   }

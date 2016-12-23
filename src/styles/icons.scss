@@ -14,23 +14,37 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import classnames from 'classnames';
+.dialob-icon-back:before {
+  font-family: FontAwesome;
+  content: "\f053";
+}
 
-// Simple stateless checkbox control
-export default class Checkbox extends React.Component {
+.dialob-icon-forward:before {
+  font-family: FontAwesome;
+  content: "\f054";
+}
 
-  static get propTypes() {
-    return {
-      id: React.PropTypes.string,
-      value: React.PropTypes.bool,
-      onChange: React.PropTypes.func.isRequired
-    };
-  }
+.dialob-icon-complete:before {
+  font-family: FontAwesome;
+  content: "\f00c";
+}
 
-  render() {
-    return (
-    <input id={this.props.id} type='checkbox' className={classnames('dialob-checkbox',{'dialob-checkbox-checked': this.props.value})} value={this.props.value} onChange={this.props.onChange.bind(this, !this.props.value)} />
-    );
-  }
+.dialob-icon-add:before {
+  font-family: FontAwesome;
+  content: "\f067";
+}
+
+.dialob-icon-remove:before {
+  font-family: FontAwesome;
+  content: "\f00d";
+}
+
+.dialob-icon-error:before {
+  font-family: FontAwesome;
+  content: "\f12a";
+}
+
+.dialob-icon-required:after {
+  font-family: FontAwesome;
+  content: "\f069"
 }

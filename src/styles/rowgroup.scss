@@ -15,6 +15,7 @@
  */
 
 @import 'theme';
+@import 'icons';
 
 .dialob-rowgroup {
   i {
@@ -23,7 +24,7 @@
     border-radius: 3px;
   }
 
-  i.fa-plus {
+  button.dialob-rowgroup-add {
     margin-left: 40%;
     margin-right: 40%;
     text-align: center;
@@ -41,11 +42,14 @@
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 
-  .fa {
-    align-self: center;
+  button.dialob-rowgroup-remove {
+     align-self: center;
+     background: transparent;
+     border-radius: 0.25em;
   }
-  .fa:hover {
-    color: $c-red-bright;
+
+  button.dialob-rowgroup-remove:hover {
+     color: $c-red-bright;
   }
 
   .dialob-item {

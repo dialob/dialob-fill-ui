@@ -30,27 +30,21 @@ class PageBar extends React.Component {
   renderBackButton() {
     let enabled = this.props.onBackward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>
-        <i className='fa fa-chevron-left'></i>
-      </button>
+      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-back', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward} />
     );
   }
 
   renderForwardButton() {
     let enabled = this.props.onForward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>
-        <i className='fa fa-chevron-right'></i>
-      </button>
+      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-forward', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward} />
     );
   }
 
   renderCompleteButton() {
     let enabled = this.props.onComplete;
     return (
-      <button disabled={!enabled} className={classnames('dialob-complete-button', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}>
-        <i className='fa fa-check'></i>
-      </button>
+      <button disabled={!enabled} className={classnames('dialob-complete-button', 'dialob-icon-complete', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete} />
     );
   }
 
