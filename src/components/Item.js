@@ -69,11 +69,14 @@ export default class Item extends React.Component {
       customStyles = className.toJS();
     }
 
+    let hasAnswer = this.question.get('value') != null;
     return classnames(
       'dialob-item',
       'dialob-itemtype-' + (this.question && this.question.get('type')),
       customStyles,
       {'dialob-item-errors': this.hasErrors()},
+      {'dialob-item-valid': !this.hasErrors() && hasAnswer},
+      {'dialob-item-answered': hasAnswer},
       {'dialob-readonly': this.isReadOnly()}
     );
   }
