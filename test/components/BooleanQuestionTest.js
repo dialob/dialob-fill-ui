@@ -35,6 +35,6 @@ describe('BooleanQuestion', () => {
       value: false
     };
     var wrapper = shallow(<BooleanQuestion question={[question.id,Immutable.fromJS(question)]}/>);
-    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-undefined ');
+    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-undefined  dialob-item-valid dialob-item-answered');
   });
 });
