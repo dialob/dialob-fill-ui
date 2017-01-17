@@ -16,13 +16,14 @@
 
 import React from 'react';
 import Item from './Item';
+import ReactMarkdown from 'react-markdown';
 
 export default class Note extends Item {
 
   render() {
     return (
       <div className={this.getStyles()}>
-        <span>{this.question && this.question.get('label')}</span>
+        <ReactMarkdown source={this.question.get('label')} escapeHtml={true} />
       </div>
     );
   }
