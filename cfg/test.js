@@ -40,6 +40,10 @@ module.exports = {
         test: /\.(png|jpg|gif|woff|woff2|css|sass|scss|less|styl)$/,
         loader: 'null-loader'
       },
+       {
+        test: /\.json$/,
+        loader: 'json'
+      },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
