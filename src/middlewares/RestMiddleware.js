@@ -16,6 +16,7 @@
 
 import {batchActionsTo} from '../utils/batchActionsTo';
 import {setRequestToken} from '../actions/Actions';
+import {onOpen} from '../actions/WebsocketActions';
 import * as Actions from '../actions/ActionConstants';
 import 'whatwg-fetch';
 
@@ -62,6 +63,7 @@ function getFullState(csrf, url, dispatch) {
       .then(resoponse => resoponse.json())
       .then(message => {
         dispatchServerActions(message, dispatch);
+        dispatch(onOpen(true));
       })
       .catch(error => console.error('Fetch failed', error));
 }
