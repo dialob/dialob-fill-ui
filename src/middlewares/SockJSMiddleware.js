@@ -84,6 +84,9 @@ const prevRev = (state) => state.connection.get('token');
 const websocketMiddleware = store => {
     var state = store.getState();
     var configuration = state.config.toJS();
+    if (configuration.connectionMode === 'rest') {
+      return next => action => next(action);
+    }
     var socket = connectToWebsocket(configuration, action => store.dispatch(action));
     let postponedActions = [];
     return next => action => {

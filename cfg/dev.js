@@ -29,6 +29,7 @@ let config = Object.assign({}, baseConfig, {
     'dialob': [
       'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
       'webpack/hot/only-dev-server',
+      'whatwg-fetch',
       './src/index'
     ]
   },
