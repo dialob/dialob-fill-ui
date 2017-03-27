@@ -28,6 +28,7 @@ import RowGroup from '../components/RowGroup';
 import Note from '../components/Note';
 import MultiChoiceQuestion from '../components/MultiChoiceQuestion';
 import MultiChoiceAutocompleteQuestion from '../components/MultiAutocompleteQuestion';
+import RadioChoiceQuestion from '../components/RadioChoiceQuestion';
 import {findItemById} from './formUtils';
 
 // TODO: Make this extendable
@@ -45,6 +46,8 @@ function componentCreator(question) {
       if (question[1].get('valueSetId')) { // TODO: Remove this workaround...
         if (hasClass('autocomplete')) {
           return <ChoiceAutocomplete key={id} question={question} />;
+        } else if (hasClass('radio')) {
+        return <RadioChoiceQuestion key={id} question={question} />;
         } else {
           return <ChoiceQuestion key={id} question={question} />;
         }
@@ -66,6 +69,8 @@ function componentCreator(question) {
     case 'list':
       if (hasClass('autocomplete')) {
         return <ChoiceAutocomplete key={id} question={question} />;
+      } else if (hasClass('radio')) {
+        return <RadioChoiceQuestion key={id} question={question} />;
       } else {
         return <ChoiceQuestion key={id} question={question} />;
       }
