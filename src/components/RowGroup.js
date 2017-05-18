@@ -19,6 +19,7 @@ import {connect} from 'react-redux';
 import {addRow} from '../actions/Actions';
 import RowGroupRow from './RowGroupRow';
 import {findItemById} from '../utils/formUtils';
+import classnames from 'classnames';
 
 require('styles/group.scss');
 require('styles/rowgroup.scss');
@@ -42,10 +43,17 @@ class RowGroup extends React.Component {
     if (!group) {
       return null;
     }
+
+    let className = group.get('className');
+    let customStyles = [];
+    if (className) {
+      customStyles = className.toJS();
+    }
+
     let title = group.get('label');
     let rows = group.get('items').toJS().map(this.props.createRow).filter(item => item);
     return (
-      <div className='dialob-group dialob-rowgroup'>
+      <div className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
         {rows}
         <button className='dialob-rowgroup-add dialob-icon-add' onClick={this.props.addNewRow.bind(this)} />

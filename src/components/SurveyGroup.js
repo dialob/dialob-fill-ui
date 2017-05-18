@@ -50,6 +50,13 @@ export default class SurveyGroup extends React.Component {
     if (!group) {
       return null;
     }
+
+    let className = group.get('className');
+    let customStyles = [];
+    if (className) {
+      customStyles = className.toJS();
+    }
+
     let title = group.get('label');
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
@@ -70,7 +77,7 @@ export default class SurveyGroup extends React.Component {
     }
 
     return (
-      <div className='dialob-group dialob-survey'>
+      <div className={classnames('dialob-group', 'dialob-survey', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
         {surveyHeader}
         {questions}

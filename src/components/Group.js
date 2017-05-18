@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import classnames from 'classnames';
 
 require('styles/group.scss');
 
@@ -37,12 +38,19 @@ export default class Group extends React.Component {
     if (!group) {
       return null;
     }
+
+    let className = group.get('className');
+    let customStyles = [];
+    if (className) {
+      customStyles = className.toJS();
+    }
+
     let title = group.get('label');
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
       .filter(question => question);
     return (
-      <div className='dialob-group'>
+      <div className={classnames('dialob-group', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
         {questions}
       </div>
