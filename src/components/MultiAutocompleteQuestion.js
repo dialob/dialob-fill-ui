@@ -44,6 +44,7 @@ class MultiChoiceAutocompleteQuestion extends ChoiceAutocompleteQuestion {
     return (
        <div className={this.getStyles()}>
         <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        {this.renderDescription()}
         <Select inputProps={{id: this.getControlId()}} multi={true} name={q.get('id')} value={value} onChange={this.onChange.bind(this)} options={options} placeholder='-'/>
         <Errors errors={q.get('errors')} />
       </div>

@@ -78,6 +78,7 @@ class TextQuestion extends Item {
     return (
       <div className={this.getStyles()}>
         <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        { this.renderDescription() }
         <input id={this.getControlId()} ref='inputControl' name={q.get('id')} type={this.props.entryType} value={this.state.value} onChange={this.onChangeText.bind(this)} />
         <Errors errors={q.get('errors')} />
       </div>

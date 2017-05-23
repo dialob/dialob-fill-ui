@@ -16,6 +16,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import ReactMarkdown from 'react-markdown';
 
 require('styles/item.scss');
 
@@ -59,6 +60,18 @@ export default class Item extends React.Component {
   // Get DOM ID for input control
   getControlId() {
     return 'dialob-control-' + (this.question ? this.question.get('id') : '');
+  }
+
+  renderDescription() {
+    if (this.question.get('description')) {
+      return (
+        <div className='dialob-description'>
+           <ReactMarkdown source={this.question.get('description')} escapeHtml={true} />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
   // Return styles for this item

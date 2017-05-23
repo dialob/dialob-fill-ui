@@ -56,6 +56,7 @@ class ChoiceQuestion extends Item {
     return (
        <div className={this.getStyles()}>
         <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+        {this.renderDescription()}
         <select id={this.getControlId()} name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)}>
           {options}
         </select>

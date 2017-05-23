@@ -20,6 +20,7 @@ import {addRow} from '../actions/Actions';
 import RowGroupRow from './RowGroupRow';
 import {findItemById} from '../utils/formUtils';
 import classnames from 'classnames';
+import ReactMarkdown from 'react-markdown';
 
 require('styles/group.scss');
 require('styles/rowgroup.scss');
@@ -36,6 +37,18 @@ class RowGroup extends React.Component {
     return {
       componentCreator: React.PropTypes.func.isRequired
     };
+  }
+
+  renderDescription() {
+    if (this.props.group[1].get('description')) {
+      return (
+        <div className='dialob-description'>
+           <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -55,6 +68,7 @@ class RowGroup extends React.Component {
     return (
       <div className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
+        {this.renderDescription()}
         {rows}
         <button className='dialob-rowgroup-add dialob-icon-add' onClick={this.props.addNewRow.bind(this)} />
       </div>

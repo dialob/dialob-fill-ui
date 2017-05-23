@@ -16,6 +16,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import ReactMarkdown from 'react-markdown';
 
 require('styles/group.scss');
 
@@ -31,6 +32,18 @@ export default class Group extends React.Component {
     return {
       componentCreator: React.PropTypes.func.isRequired
     };
+  }
+
+  renderDescription() {
+    if (this.props.group[1].get('description')) {
+      return (
+        <div className='dialob-description'>
+           <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -52,6 +65,7 @@ export default class Group extends React.Component {
     return (
       <div className={classnames('dialob-group', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
+        { this.renderDescription() }
         {questions}
       </div>
     );

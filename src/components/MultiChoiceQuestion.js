@@ -77,6 +77,7 @@ class MultiChoiceQuestion extends Item {
     return (
        <div className={this.getStyles()}>
         <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
+        {this.renderDescription()}
         {options}
         <Errors errors={q.get('errors')} />
       </div>

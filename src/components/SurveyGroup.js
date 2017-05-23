@@ -15,6 +15,8 @@
  */
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import classnames from 'classnames';
 
 require('styles/group.scss');
 
@@ -43,6 +45,18 @@ export default class SurveyGroup extends React.Component {
     return {
       surveyValueSet: () => this.context.valueSetById(this.props.group[1].get('valueSetId'))
     };
+  }
+
+  renderDescription() {
+    if (this.props.group[1].get('description')) {
+      return (
+        <div className='dialob-description'>
+           <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -79,6 +93,7 @@ export default class SurveyGroup extends React.Component {
     return (
       <div className={classnames('dialob-group', 'dialob-survey', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
+        {this.renderDescription()}
         {surveyHeader}
         {questions}
       </div>

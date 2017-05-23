@@ -61,6 +61,7 @@ class SurveyQuestion extends Item {
           <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
           {options}
         </span>
+        { this.renderDescription() }
         <Errors errors={q.get('errors')} />
       </div>
     );

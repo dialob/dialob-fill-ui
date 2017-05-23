@@ -41,7 +41,7 @@ describe('SurveyGroup', () => {
 
 
     var wrapper = shallow(<SurveyGroup group={[group.id,Immutable.fromJS(group)]}/>,{context});
-    expect(wrapper.props().className).to.equal('dialob-group dialob-survey');
+    expect(wrapper.props().className).to.equal('dialob-group dialob-survey survey');
     context.componentCreator.verify();
   });
 });
