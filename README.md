@@ -38,3 +38,16 @@ window.Dialob.renderDialob(
 );
 </script>
 ```
+
+```
+Dialob.renderDialob(targetElement, options)
+```
+
+ * `targetElement` - dom element where dialob ui will be rendered
+ * `options` dialob ui settings
+   - `url` session communication endpoint url
+   - `reviewUrl` if questionnaire is completed redirect ui to this url
+   - `csrf` cross-site request forgery token settings
+     * `headerName` header to be added on http POST requests
+     * `token` payload for csrf header
+ 
