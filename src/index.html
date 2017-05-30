@@ -40,6 +40,11 @@
   <script type="text/javascript" src="javascript/dialob.js"></script>
 
   <script>
+    // Client-side submit handler example
+    function defaultSubmitCallback(context) {
+      console.log('Submit callback called with context:', context);
+    }
+
     // Get session ID from URL fragment
     var sessionID = '';
     if (window.location.hash) {
@@ -51,7 +56,8 @@
       url: 'http://localhost:8080/session/' + sessionID,
       reviewUrl: 'http://localhost:8080/review/' + sessionID,
       //['websocket','xhr-streaming','xdr-streaming','eventsource','iframe-eventsource','htmlfile','iframe-htmlfile','xhr-polling','xdr-polling','iframe-xhr-polling','jsonp-polling']
-      transports: undefined
+      transports: undefined,
+      submitCallback: defaultSubmitCallback
 
       // Custom componentCreator
       // - item item's data object.

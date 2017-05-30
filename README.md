@@ -50,4 +50,5 @@ Dialob.renderDialob(targetElement, options)
    - `csrf` cross-site request forgery token settings
      * `headerName` header to be added on http POST requests
      * `token` payload for csrf header
- 
+   - `submitCallback` optional function to be called when questionnaire is completed. Function takes one parameter containing context object, where `questionnaireId` contains questionnaire ID that is completed.
+
