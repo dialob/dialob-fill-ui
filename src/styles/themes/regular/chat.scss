@@ -1,0 +1,44 @@
+.dialob-ui-chat {
+	.dialob-item{
+		margin:1em 0;
+	}
+	.dialob-item > label, .dialob-itemtype-note > div, .dialob-errors{
+
+	}
+	.dialob-errors{
+
+	}
+
+	.dialob-item  > label{
+		font-weight:normal;
+		font-weight:bold;
+		width:100%;
+		display:block;
+		margin-bottom:0.5em;
+		font-size:1.2em;
+	}
+	.dialob-itemtype-note{
+		p{
+			margin:0;
+		}
+	}
+
+	.dialob-radio-choice-wrapper{
+		display:block;
+	}
+	.dialob-radio-choice-label{
+		margin:0 1em 0.5em 0;
+
+		display:inline-block;
+	}
+	.dialob-radio-choice-text{
+		white-space:nowrap;
+		display:inline-block;
+		margin-left:5px;
+	}
+	.dialob-itemtype-note{
+		h3{
+			font-size:1em;
+		}
+	}
+}

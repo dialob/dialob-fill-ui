@@ -1,0 +1,143 @@
+.dialob-item{
+	margin-bottom:1.5em;
+	> label{
+		display:inline-block;
+		margin-right:2%;
+		width:40%;
+		vertical-align:top;
+		padding-top:$theme-regular-padding;
+		font-size:0.9em;
+		+ div{
+			display:inline-block;
+		}
+	}
+}
+
+.dialob-itemtype-note{
+	margin:4em 0;
+}
+
+
+input[type=text],input[type=number], input[type=date], textarea, select{
+	padding:$theme-regular-padding;
+	border:1px solid $theme-regular-border;
+}
+
+.dialob-tristate-control{
+	display:inline-block;
+	overflow:hidden;
+	border:1px solid $theme-regular-border;
+	.dialob-ui-brand &{
+		border-color:$theme-regular-border;
+	}
+}
+.dialob-tristate-false, .dialob-tristate-true{
+	padding:$theme-regular-padding 1em;
+	display:inline-block;
+	cursor:pointer;
+}
+.dialob-tristate-active{
+	background:$theme-regular-active;
+	color:#000;
+	.dialob-ui-brand &{
+		background:$theme-regular-active;
+	}
+}
+
+
+.dialob-survey-content{
+	span{
+		position:relative;
+		&:after{
+			position:absolute;
+			content:"";
+			display:block;
+			background:#fff;
+			height:2em;
+			width:2em;
+			top:0;
+			left:50%;
+			margin-left:-1em;
+			z-index:-1;
+			opacity:0.1;
+
+		}
+	}
+	input[type="radio"] {
+
+		width   : 1em;
+		height:1em;
+		margin  : 0;
+		padding : 0;
+		margin-top:0.5em;
+		//opacity : 0;
+	}
+}
+
+
+
+.dialob-survey-header, .dialob-survey-content{
+	@extend .box;
+	span{
+		display:block;
+		float:left;
+		width:15%;
+		text-align:center;
+	}
+
+}
+.dialob-survey-header{
+	font-size:1em;
+	padding-bottom:0.5em;
+	border-bottom:2px solid currentColor;
+}
+.dialob-survey-content{
+	display:block;
+}
+.dialob-survey-label:before{
+	content:"\00a0";
+}
+.dialob-survey-header .dialob-survey-label, .dialob-survey-content label{
+	display:block;
+	float:left;
+	width:25%;
+	text-align:left;
+	padding-top:$theme-regular-padding;
+	font-size:0.9em;
+}
+
+
+.dialob-complete-button{
+	padding:$theme-regular-padding;
+	display:inline-block;
+	&:before{
+		content:"Submit";
+	}
+}
+.dialob-back-button-wrapper  .dialob-nav-button{
+	margin-right:1em;
+
+	padding:$theme-regular-padding;
+	&:before{
+		content:"Previous page";
+	}
+}
+.dialob-forward-button-wrapper .dialob-nav-button{
+	margin-left:1em;
+
+	padding:$theme-regular-padding;
+	&:before{
+		content:"Next page";
+	}
+}
+
+.dialob-page-controls{
+	margin:2em 0;
+	div{
+		display:inline-block;
+	}
+}
+
+.dialob-errors{
+	color:red;
+}

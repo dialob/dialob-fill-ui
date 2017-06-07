@@ -1,0 +1,114 @@
+.dialob-app-form{
+	padding:1.5em;
+	padding-bottom:3em;
+	position:relative;
+	color:$dialob-text-color;
+	overflow:hidden;
+
+	.dialob-app-chatbox &{
+		padding:0;
+		overflow:auto;
+	//	position:absolute;
+		top:0;
+		bottom:0;
+		left:2em;
+		right:0;
+		padding-right:2em;
+		padding-top:2em;
+	}
+
+}
+
+
+.dialob-app-frame{
+	background:$dialob-body-bg;
+}
+
+
+.dialob-app-chatbox{
+	//border:6px solid darken($brand-alt,10%);
+	padding:2em 2em 6em 2em;
+	right:20px;
+	top:10%;
+	bottom:20%;
+	box-shadow: 0 5px 40px rgba(0,0,0,.2)!important;
+	border-radius:1em;
+
+	&:before{
+		position:absolute;
+		left:0;
+		left:-38px;
+		top:30%;
+		margin-top:1px;
+		content:"";
+		display:block;
+		@include up-right-arrow(#fff);
+		font-size:40px;
+		z-index:2;
+
+	}
+	&:after{
+		position:absolute;
+		left:0;
+		left:-40px;
+		top:30%;
+		content:"";
+		display:block;
+		@include up-right-arrow(#e8e8e8);
+		font-size:40px;
+		z-index:1;
+
+	}
+
+}
+
+
+.dialob-app_is-chat{
+	font-size:$dialob-font-size;
+	margin-left:0 !important;
+	width:260px;
+	height:300px;
+	.dialob-app-form{
+		overflow:auto;
+		max-height:300px;
+	}
+}
+
+
+@media only screen and (max-width: $dialob-w-mobile) {
+	.dialob-app-form{
+		padding:1em;
+	}
+	.dialob-app_is-sidebar{
+		right:20px;
+		bottom:0;
+		top:auto;
+		width:260px;
+		.dialob-app-form{
+			overflow:auto;
+			max-height:300px;
+		}
+	}
+	.l-page-has-sidebar{
+		padding-right:0;
+	}
+}
+
+
+body.page.home .dialob-app-chatbox{
+	right:auto;
+	left:50%;
+	margin-left:100px;
+}
+@media only screen and (min-width: 1220px) {
+
+	.dialob-app-chatbox{
+		right:auto;
+		left:50%;
+		margin-left:300px;
+		body.page.home &{
+			margin-left:130px;
+		}
+	}
+
+}

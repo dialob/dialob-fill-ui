@@ -1,0 +1,31 @@
+.dialob-questionnaire{
+	margin:0 auto;
+//	max-width:40em;
+}
+
+.dialob-group{
+
+}
+
+.dialob-errors{
+	margin-top:0.25em;
+	font-size:0.9em;
+	color:red;
+}
+
+.ff-loading-indicator{
+	font-size:1em;
+	//text-align:center;
+	display:none;
+	.site-mode-dev & {
+		display:block;
+	}
+}
+.fa-spinner:before{
+	font-style:normal;
+	display:inline-block;
+	content:"loading";
+	margin-bottom:1em;
+}
+
+

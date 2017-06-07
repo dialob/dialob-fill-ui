@@ -1,0 +1,156 @@
+@import "mui";
+
+.dialob-group{
+	@extend .mui-form;
+}
+
+.dialob-item{
+	@extend .mui-textfield;
+	@extend .mui-select;
+	margin-bottom:2em;
+}
+
+
+button{
+	@extend .mui-btn;
+}
+
+
+
+.dialob-complete-button{
+	&:before{
+		content:"Submit";
+	}
+}
+.dialob-back-button-wrapper  .dialob-nav-button{
+	margin-right:1em;
+
+	&:before{
+		content:"Previous page";
+	}
+}
+.dialob-forward-button-wrapper .dialob-nav-button{
+	margin-left:1em;
+	&:before{
+		content:"Next page";
+	}
+}
+
+.dialob-page-controls{
+	margin:2em 0;
+	div{
+		display:inline-block;
+	}
+}
+
+
+.dialob-errors{
+	color:#F44336;
+	padding:0.5em 0;
+	font-size:0.7em;
+}
+
+.dialob-item-errors{
+	input{
+		border-bottom:solid 2px #F44336;
+	}
+	label{
+		color: #F44336;
+	}
+}
+
+
+.dialob-survey-content{
+	span{
+		position:relative;
+		&:after{
+			position:absolute;
+			content:"";
+			display:block;
+			background:#fff;
+			height:2em;
+			width:2em;
+			top:0;
+			left:50%;
+			margin-left:-1em;
+			z-index:-1;
+			opacity:0.1;
+
+		}
+	}
+	input[type="radio"] {
+
+		width   : 1em;
+		height:1em;
+		margin  : 0;
+		padding : 0;
+		margin-top:0.5em;
+		//opacity : 0;
+	}
+}
+
+
+
+.dialob-survey-header, .dialob-survey-content{
+	@extend .box;
+	span{
+		display:block;
+		float:left;
+		width:15%;
+		text-align:center;
+
+	}
+
+}
+.dialob-survey-header{
+	font-size:1em;
+	padding-bottom:0.5em;
+	border-bottom:2px solid currentColor;
+	span{
+		color: rgba(0,0,0,0.54);
+    	font-size: 12px;
+    	font-weight: 400;
+	}
+}
+.dialob-survey-content{
+	display:block;
+}
+.dialob-survey-label:before{
+	content:"\00a0";
+}
+.dialob-survey-header .dialob-survey-label, .dialob-survey-content label{
+	display:block;
+	float:left;
+	width:25%;
+	text-align:left;
+	padding-top:0.5em;
+	font-size:0.9em;
+}
+
+
+
+.dialob-tristate-control{
+	display:inline-block;
+	overflow:hidden;
+}
+.dialob-tristate-false, .dialob-tristate-true{
+	@extend .mui-btn;
+	@extend .mui-btn--raised;
+
+}
+.dialob-tristate-active{
+	@extend .mui-btn--primary;
+
+}
+
+
+.dialob-radio-choice-wrapper{
+	@extend .mui-checkbox;
+}
+.dialob-radio-choice-label{
+	display:block;
+	padding-bottom:0.5em;
+}
+.dialob-radio-choice-text{
+	margin-left:3px;
+}

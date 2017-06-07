@@ -1,0 +1,223 @@
+.dialob-ui-chat {
+	.dialob-item{
+		margin:1em 0;
+		text-align:right;
+	}
+	.dialob-item > label, .dialob-itemtype-note > div, .dialob-errors{
+		background:#efefef;
+		color:#000;
+		padding:1em;
+		margin-right:2em;
+		border-radius:1em;
+		text-align:left;
+	}
+	.dialob-errors{
+		font-size:1em;
+		background:$error;
+		color:#fff;
+		margin-top:1em;
+
+	}
+
+	.dialob-item label{
+		font-weight:normal;
+		max-width:80%;
+	}
+	.dialob-itemtype-note{
+		p{
+			margin:0;
+		}
+	}
+}
+
+
+
+
+.dialob-ui-chat
+.dialob-item{
+	-webkit-animation: moveBubbleUp 0.45s ease forwards;
+	animation: moveBubbleUp 0.45s ease forwards;
+}
+
+@-webkit-keyframes moveBubbleUp {
+	0% {
+		-webkit-transform: translateY(30px);
+	//	opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0);
+	//	opacity: 1;
+	}
+}
+
+@keyframes moveBubbleUp {
+	0% {
+		transform: translateY(30px);
+	//	opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+	//	opacity: 1;
+	}
+}
+
+
+ .dialog-single-chat{
+	background:$dialob-form-bg;
+	color:$dialob-text-color;
+	padding:1.5em;
+	padding-bottom:0.25em;
+	border-radius:1em;
+	position:relative;
+	.dialob-item {
+		input[type=text],input[type=number], input[type=date], textarea, select, .dialob-tristate-control{
+			border-color:$brand;
+			-webkit-appearance: none;
+		}
+		h1,h2,h3{
+			margin:0;
+		}
+
+	}
+
+	&.has-submit{
+		margin-bottom:5em;
+		.dialob-page-controls{
+			position:absolute;
+			bottom:-4.5em;
+			left:0;
+			right:0;
+			text-align:center;
+			padding:0.5em;
+		}
+		.dialob-button-enabled{
+			background:$brand;
+			color:$brand-text;
+		}
+	}
+
+	.dialob-complete-button{
+		&:before{
+		content:"End conversation";
+		}
+		&:hover{
+			border-color:$dialob-active-bg;
+			background:$dialob-active-bg;
+		}
+	}
+
+	.dialob-errors{
+		margin:0.5em 0 0 0;
+		padding:0;
+		text-align:center;
+		font-size:0.8em;
+		color:$dialob-error;
+		background:none;
+
+	}
+
+	// User avatars
+	.dialob-item{
+		padding-left:3.5em;
+		padding-right:3.5em;
+		position:relative;
+		&:before, &:after{
+			content:"";
+			width:2.25em;
+			height:2.25em;
+			display:none;
+			position:absolute;
+			border-radius:100%;
+			background:currentColor;
+			border-color:currentcolor;
+			border-width:2px;
+			border-style:solid;
+		}
+		&:before{
+			top:0.25em;
+			left:0;
+			color:$dialob-chat-bot;
+
+		}
+		&:after{
+			bottom:0;
+			right:0;
+			color:$dialob-chat-user;
+		}
+		&.dialob-itemtype-text, &.dialob-itemtype-boolean{
+			&:before, &:after{
+				display:block;
+			}
+		}
+		&.dialob-itemtype-note{
+			&:before{
+				display:block;
+			}
+		}
+
+		// User input area
+		&.dialob-item-chatbox:not(.dialob-item-valid){
+			&:after{
+				display:none;
+			}
+			> label{
+				margin-bottom:2em;
+				&:after{
+					position:absolute;
+					content:"";
+					background:#efefef;
+					height:2px;
+					left:-1em;
+					right:-1em;
+					margin-top:2em;
+					border-radius:0;
+					width:auto;
+					display:block;
+				}
+			}
+			input[type=text],input[type=number], input[type=date], textarea, select{
+				width:100%;
+			}
+			.dialob-radio-choice-wrapper{
+				margin-left:-5em;
+				margin-right:-5em;
+			}
+		}
+
+		// User input area
+	}
+	.dialob-item-valid.dialob-item-answered{
+			input[type=text],input[type=number], input[type=date], textarea, select, .dialob-tristate-control{
+				background-color:$brand;
+				color:$brand-text;
+				pointer-events:none;
+				&:focus{
+					background-color:$dialob-form-bg;
+					color:$dialob-text-color;
+				}
+			}
+			.dialob-radio-choice-wrapper{
+				text-align:right;
+				font-size:1em;
+				.dialob-radio-choice-text{
+					display:none;
+				}
+				.dialob-radio-choice-input{
+					&:checked + .dialob-radio-choice-text{
+						display:inline-block;
+						padding: 0.75em 1em;
+					}
+				}
+				.dialob-radio-choice-label{
+					margin:0;
+				}
+			}
+	}
+	// User avatars
+	.dialob-radio-choice-wrapper{
+		text-align:center;
+		font-size:0.8em;
+	}
+
+ }
+
