@@ -18,8 +18,6 @@ import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 
-require('styles/group.scss');
-
 export default class Group extends React.Component {
 
   static get propTypes() {

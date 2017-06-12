@@ -74,3 +74,10 @@ export function deleteRow(rowId) {
     id: rowId
   };
 }
+
+export function setTheme(styleClass) {
+  return {
+    type: ActionConstants.SET_THEME,
+    styleClass
+  };
+}

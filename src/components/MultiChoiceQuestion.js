@@ -22,8 +22,6 @@ import Label from './Label';
 import {List} from 'immutable';
 import Checkbox from './Checkbox';
 
-require('styles/multichoice.scss');
-
 // Form item for multiple-selection controls
 class MultiChoiceQuestion extends Item {
 

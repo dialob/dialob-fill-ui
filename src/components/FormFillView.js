@@ -19,15 +19,14 @@ import {Loading} from 'dialob-common';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
 
-require('styles/questionnaire.scss');
-
 export default class FormFillView extends React.Component {
 
   static get propTypes() {
     return {
       status: React.PropTypes.string,
       questionnaire: React.PropTypes.object,
-      activePageItem: React.PropTypes.array
+      activePageItem: React.PropTypes.array,
+      theme: React.PropTypes.string
     };
   }
 
@@ -52,9 +51,15 @@ export default class FormFillView extends React.Component {
       return (<Loading />);
     } else {
       return (
-        <div className='dialob-questionnaire'>
-          <span className='dialob-questionnaire-title'>{title}</span>
-          {page}
+        <div className={this.props.theme}>
+          <div className='dialob-single-form is-inlined'>
+            <div>
+              <div className='dialob-questionnaire'>
+                <span className='dialob-questionnaire-title'>{title}</span>
+                {page}
+              </div>
+            </div>
+          </div>
         </div>
       );
     }

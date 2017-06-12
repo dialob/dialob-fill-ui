@@ -18,8 +18,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteRow} from '../actions/Actions';
 
-require('styles/rowgroup.scss');
-
 class RowGroupRow extends React.Component {
 
   static get propTypes() {

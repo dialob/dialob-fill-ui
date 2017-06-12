@@ -18,8 +18,6 @@ import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 
-require('styles/item.scss');
-
 // Base class for form items
 export default class Item extends React.Component {
 

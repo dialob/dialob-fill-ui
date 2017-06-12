@@ -16,8 +16,6 @@
 
 import React from 'react';
 
-require('styles/errors.scss');
-
 // Renders a list of validation errors for a form item
 export default class Errors extends React.Component {
 

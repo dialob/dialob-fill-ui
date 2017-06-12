@@ -11,14 +11,14 @@ import { batchActionsReducer } from './batchActionsReducer';
 import { formActionsReducer } from './formActionsReducer';
 import { connectionStateReducer } from './connectionStateReducer';
 import { configReducer } from './configReducer';
-
-
+import { themeReducer } from './themeReducer';
 
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   data: formActionsReducer,
   connection: connectionStateReducer,
-  config: configReducer
+  config: configReducer,
+  theme: themeReducer
 };
 
 export function buildReducers(customReducers) {

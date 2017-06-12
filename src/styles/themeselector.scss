@@ -1,0 +1,27 @@
+.has-ui-branded{
+	button, input, select, textarea{
+
+	}
+  @import 'titles';
+	@import "themes/dialob/dialob";
+}
+.has-ui-regular{
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:0.9em;
+  @import 'titles';
+	@import "themes/regular/regular";
+}
+
+.has-ui-mui{
+	font-family:Helvetica, Arial, sans-serif;
+  @import 'titles';
+	@import "themes/mui/theme";
+}
+
+.dialob-theme-selector {
+  float: right;
+  padding-right: 2em;
+  label {
+    padding-right: 1em;
+  }
+}

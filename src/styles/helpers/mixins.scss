@@ -1,0 +1,75 @@
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+
+@mixin right-arrow($triangle-color:$text-color){
+	content:"";
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-top: 0.3em solid transparent;
+	border-left: 0.5em solid $triangle-color;
+	border-bottom: 0.3em solid transparent;
+	margin-left:0.3em;
+}
+@mixin left-arrow($triangle-color:$text-color){
+	content:"";
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-top: 0.3em solid transparent;
+	border-right: 0.5em solid $triangle-color;
+	border-bottom: 0.3em solid transparent;
+	margin-right:0.3em;
+}
+@mixin down-arrow($triangle-color:$text-color){
+	content:"";
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 1em solid transparent;
+	border-right: 1em solid transparent;
+	border-top: 1em solid $triangle-color;
+}
+
+@mixin up-arrow($triangle-color:$text-color){
+	content:"";
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 1em solid transparent;
+	border-right: 1em solid transparent;
+	border-bottom: 1em solid $triangle-color;
+}
+
+@mixin up-right-arrow($triangle-color:$text-color){
+	content:"";
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 1em 1em 0;
+	border-color: transparent $triangle-color transparent transparent;
+}
+
+
+
+@mixin visuallyhidden(){
+	border: 0; clip: rect(0 0 0 0); height: 1px !important; margin: -1px; overflow: hidden  !important; padding: 0; position: absolute  !important; width: 1px  !important;
+}
+
+@mixin clear-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin disable_select{ -webkit-user-select: none;    -moz-user-select: none;    -ms-user-select: none;   -o-user-select: none;  user-select: none; }
+@mixin enable_select{ -webkit-user-select: text;    -moz-user-select: text;    -ms-user-select: text;   -o-user-select: text;  user-select: text; }
+
+

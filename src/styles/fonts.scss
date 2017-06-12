@@ -1,0 +1,47 @@
+$dialob_type_path : "http://www.dialob.io/wp-content/themes/dialob/assets/fonts/dialob";
+
+/*
+// Regular
+@font-face {
+  font-family: 'dialob-type';
+  src: url('#{$dialob_type_path}/CircularStd-Book.eot');
+  src: url('#{$dialob_type_path}/CircularStd-Book.eot?#iefix') format('embedded-opentype'),
+       url('#{$dialob_type_path}/CircularStd-Book.woff') format('woff'),
+       url('#{$dialob_type_path}/CircularStd-Book.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+// Bold
+@font-face {
+  font-family: 'dialob-type';
+  src: url('#{$dialob_type_path}/CircularStd-Bold.eot');
+  src: url('#{$dialob_type_path}/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$dialob_type_path}/CircularStd-Bold.woff') format('woff'),
+       url('#{$dialob_type_path}/CircularStd-Bold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+*/
+
+
+@font-face {
+  font-family: 'dialob-type';
+  src: url('#{$dialob_type_path}/MarkPro-Bold.eot');
+  src: url('#{$dialob_type_path}/MarkPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('#{$dialob_type_path}/MarkPro-Bold.woff') format('woff'),
+    url('#{$dialob_type_path}/MarkPro-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'dialob-type';
+  src: url('#{$dialob_type_path}/MarkPro.eot');
+  src: url('#{$dialob_type_path}/MarkPro.eot?#iefix') format('embedded-opentype'),
+    url('#{$dialob_type_path}/MarkPro.woff') format('woff'),
+    url('#{$dialob_type_path}/MarkPro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

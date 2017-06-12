@@ -19,8 +19,6 @@ import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
 
-require('styles/page.scss');
-
 // Component for questionnaire page
 class Page extends React.Component {
 

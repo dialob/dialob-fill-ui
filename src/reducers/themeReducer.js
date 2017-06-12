@@ -14,35 +14,16 @@
  * limitations under the License.
  */
 
-@import 'theme';
-@import 'icons';
+import Immutable from 'immutable';
+import * as ActionConstants from '../actions/ActionConstants';
 
-div.dialob-errors {
-  margin-top: 0.5em;
-  display: flex;
-  flex-direction: column;
+const DEFAULT_STATE = Immutable.Map();
 
-  .dialob-error {
-    margin: 0.5em;
-  }
-
-  .dialob-icon-error:before {
-      color: $c-red-bright;
-      margin-right: 0.5em;
-      animation-name: zoomIn;
-      animation-duration: 0.7s;
-      animation-fill-mode: both;
-  }
-
+export function themeReducer(state = DEFAULT_STATE, action) { // eslint-disable-line no-unused-vars
+    switch (action.type) {
+      case ActionConstants.SET_THEME:
+        return state.set('selectedTheme', action.styleClass);
+    }
+    return state;
 }
 
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale3d(3, 3, 3);
-  }
-
-  70% {
-    opacity: 1;
-  }
-}

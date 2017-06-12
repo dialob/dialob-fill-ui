@@ -22,8 +22,6 @@ import {ChoiceAutocompleteQuestion} from './ChoiceAutocompleteQuestion';
 import Select from 'react-select';
 import {List} from 'immutable';
 
-import 'react-select/dist/react-select.css';
-
 // Form item for multi-choice dropdown selection with autocomplete controls
 class MultiChoiceAutocompleteQuestion extends ChoiceAutocompleteQuestion {
 

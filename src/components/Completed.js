@@ -16,8 +16,6 @@
 
 import React from 'react';
 
-require('styles/completed.scss');
-
 export default class Completed extends React.Component {
 
  static get propTypes() {

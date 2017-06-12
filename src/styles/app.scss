@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@import 'theme';
+//@import 'theme';
+
+@import 'settings';
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -24,4 +26,15 @@
 	font-weight: normal !important;
 }
 
-@import 'custom';
+body {
+  font-family: "dialob-type",Helvetica,Arial,sans-serif;
+}
+
+.dialob-single-form {
+  padding: 2em;
+}
+
+//@import 'custom';
+@import 'helpers/mixins';
+@import 'fonts';
+@import 'themeselector';

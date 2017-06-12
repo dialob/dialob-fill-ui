@@ -21,8 +21,6 @@ import Label from './Label';
 import {ChoiceQuestion} from './ChoiceQuestion';
 import Select from 'react-select';
 
-import 'react-select/dist/react-select.css';
-
 // Form item for dropdown selection with autocomplete controls
 class ChoiceAutocompleteQuestion extends ChoiceQuestion {
 

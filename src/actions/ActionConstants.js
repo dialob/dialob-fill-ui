@@ -46,3 +46,4 @@ export const WAKE_UP = 'WAKE_UP';
 
 export const CONNECT = 'CONNECT';
 
+export const SET_THEME = 'SET_THEME';

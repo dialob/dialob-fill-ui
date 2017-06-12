@@ -23,6 +23,7 @@ import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
+import ThemeSelector from '../components/ThemeSelector';
 
 require('styles/app.scss');
 
@@ -54,10 +55,12 @@ class Dialob extends React.Component {
     let data = this.props.data;
     let config = this.props.config;
     let content = null;
+    let theme = this.props.theme.get('selectedTheme') ? this.props.theme.get('selectedTheme') : 'has-ui-branded';
     let props = {
         status: data.get('status'),
         questionnaire: data.get('questionnaire'),
-        activePageItem: findItemById(data, data.getIn(['questionnaire','activeItem']))
+        activePageItem: findItemById(data, data.getIn(['questionnaire','activeItem'])),
+        theme
     };
     if (props.status === 'NOT_FOUND') {
         content = <QuestionnaireNotFound/>;
@@ -68,7 +71,7 @@ class Dialob extends React.Component {
     }
     return (
         <div>
-          <ConnectionStatus />
+          <ThemeSelector />
           {content}
         </div>);
   }
@@ -78,7 +81,8 @@ const DialobConnected = connect(
   state => {
       return {
           data: state.data,
-          config: state.config
+          config: state.config,
+          theme: state.theme
       };
   },{
     connect: connectAction
