@@ -40,7 +40,7 @@ describe('SurveyQuestion', () => {
     ]);
 
     let wrapper = shallow(<SurveyQuestion question={[question.id, Immutable.fromJS(question)]}/>,{context});
-    expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-text survey');
+    expect(wrapper.props().className).to.equal('dialob-survey-question');
     context.surveyValueSet.verify();
   });
 });
