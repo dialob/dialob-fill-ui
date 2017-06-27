@@ -37,9 +37,9 @@ class SurveyQuestion extends Item {
   option(key) {
     let q = this.props.question[1];
     return (
-      <span key={key}>
+      <div className='dialob-survey-option' key={key}>
         <input type='radio' name={q.get('id')} value={key} checked={q.get('value') === key} onChange={this.onChange.bind(this, key)} />
-      </span>
+      </div>
     );
   }
 
@@ -56,13 +56,11 @@ class SurveyQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-      <div className={this.getStyles()}>
-        <span className='dialob-survey-content'>
+      <div className='dialob-survey-question'>
+        <div className='dialob-survey-question-label'>
           <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-          {options}
-        </span>
-        { this.renderDescription() }
-        <Errors errors={q.get('errors')} />
+        </div>
+        {options}
       </div>
     );
   }

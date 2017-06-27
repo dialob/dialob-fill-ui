@@ -37,26 +37,5 @@ div.dialob-group {
     margin-bottom: 0.5em;
     border-bottom: 3px solid lighten($c-resys-grey, 50%);
   }
-
-  .dialob-survey-header{
-    display: flex;
-    flex-direction: row;
-    margin-left: 1em;
-    margin-right: 1em;
-    border-left-width: 2px;
-    padding-left: 0.5em;
-
-    span.dialob-survey-label {
-      width: 30%;
-    }
-
-    span:not(.dialob-survey-label) {
-      flex: 1;
-      text-align: center;
-      background-color: lighten($c-resys-grey, 50%);
-      margin: 0.5em;
-      border-radius: 3px;
-    }
-  }
 }
 

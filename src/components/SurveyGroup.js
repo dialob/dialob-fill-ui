@@ -18,7 +18,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import classnames from 'classnames';
 
-require('styles/group.scss');
+require('styles/survey.scss');
 
 export default class SurveyGroup extends React.Component {
 
@@ -59,6 +59,10 @@ export default class SurveyGroup extends React.Component {
     }
   }
 
+  hasStyleClass(styleClass) {
+    return this.props.group && this.props.group[1].get('className') && this.props.group[1].get('className').contains(styleClass);
+  }
+
   render() {
     let group = this.props.group && this.props.group[1];
     if (!group) {
@@ -70,7 +74,7 @@ export default class SurveyGroup extends React.Component {
     if (className) {
       customStyles = className.toJS();
     }
-
+    let vertical = this.hasStyleClass('vertical');
     let title = group.get('label');
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
@@ -78,13 +82,13 @@ export default class SurveyGroup extends React.Component {
     let valueSet = this.context.valueSetById(group.get('valueSetId'));
     let headers = [];
     if (valueSet) {
-      headers = valueSet.toJS().map(e => <span key={e.key}>{e.value}</span>);
+      headers = valueSet.toJS().map(e => <div className='dialob-survey-header-label' key={e.key}>{e.value}</div>);
     }
     let surveyHeader = null;
     if (headers.length > 0) {
       surveyHeader = (
         <div className='dialob-survey-header'>
-          <span className='dialob-survey-label'></span>
+          <div className='dialob-survey-header-spacer'></div>
           {headers}
         </div>
       );
@@ -94,8 +98,10 @@ export default class SurveyGroup extends React.Component {
       <div className={classnames('dialob-group', 'dialob-survey', customStyles)}>
         <span className='dialob-group-title'>{title}</span>
         {this.renderDescription()}
-        {surveyHeader}
-        {questions}
+        <div className={classnames('dialob-survey-container', {'dialob-survey-horizontal': !vertical, 'dialob-survey-vertical': vertical})}>
+          {surveyHeader}
+          {questions}
+        </div>
       </div>
     );
   }

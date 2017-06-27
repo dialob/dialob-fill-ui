@@ -1,0 +1,50 @@
+.dialob-survey-container {
+  margin-left: 1em;
+}
+
+.dialob-survey-header,
+.dialob-survey-question {
+  display: flex;
+  div {
+    flex: 1;
+  }
+}
+
+.dialob-survey-question-label {
+  font-weight: bold;
+}
+
+.dialob-survey-option {
+  text-align: center;
+}
+
+.dialob-survey-vertical {
+  display: flex;
+  flex-direction: row;
+  .dialob-survey-header,.dialob-survey-question {
+    flex-direction: column;
+  }
+  .dialob-survey-question {
+    flex: 1;
+  }
+  .dialob-survey-question-label {
+    text-align: center;
+  }
+  .dialob-survey-header-label,
+  .dialob-survey-question-label,
+  .dialob-survey-option {
+    margin-bottom: 0.5em;
+  }
+}
+
+.dialob-survey-horizontal {
+  display: flex;
+  flex-direction: column;
+  .dialob-survey-header,.dialob-survey-question {
+    flex-direction: row;
+    margin-bottom: 0.5em;
+  }
+  .dialob-survey-header {
+    text-align: center;
+  }
+}
