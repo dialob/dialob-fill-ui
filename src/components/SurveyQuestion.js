@@ -19,6 +19,7 @@ import {connectToAnswer} from '../utils/formUtils';
 import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
+import classnames from 'classnames';
 
 // Form item for survey choices
 class SurveyQuestion extends Item {
@@ -56,7 +57,7 @@ class SurveyQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-      <div className='dialob-survey-question'>
+      <div className={classnames('dialob-survey-question', {'dialob-survey-errors': this.hasErrors()})}>
         <div className='dialob-survey-question-label'>
           <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
         </div>
