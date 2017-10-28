@@ -23,7 +23,7 @@ import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
-import PropTypes from 'PropTypes';
+import PropTypes from 'prop-types';
 
 require('styles/app.scss');
 
