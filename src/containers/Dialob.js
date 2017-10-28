@@ -23,6 +23,7 @@ import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
+import PropTypes from 'PropTypes';
 
 require('styles/app.scss');
 
@@ -30,15 +31,15 @@ class Dialob extends React.Component {
 
   static get propTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired,
-      status: React.PropTypes.string
+      componentCreator: PropTypes.func.isRequired,
+      status: PropTypes.string
     };
   }
 
   static get childContextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired,
-      valueSetById: React.PropTypes.func.isRequired
+      componentCreator: PropTypes.func.isRequired,
+      valueSetById: PropTypes.func.isRequired
     };
   }
 

@@ -38,7 +38,7 @@ export default class SurveyGroup extends React.Component {
 
   static get childContextTypes() {
     return {
-      surveyValueSet: React.PropTypes.func.isRequired
+      surveyValueSet: PropTypes.func.isRequired
     };
   }
 
