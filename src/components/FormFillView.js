@@ -18,6 +18,7 @@ import React from 'react';
 import {Loading} from 'dialob-common';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
+import PropTypes from 'prop-types';
 
 require('styles/questionnaire.scss');
 
@@ -25,9 +26,9 @@ export default class FormFillView extends React.Component {
 
   static get propTypes() {
     return {
-      status: React.PropTypes.string,
-      questionnaire: React.PropTypes.object,
-      activePageItem: React.PropTypes.array
+      status: PropTypes.string,
+      questionnaire: PropTypes.object,
+      activePageItem: PropTypes.array
     };
   }
 

@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 require('styles/errors.scss');
 
@@ -23,7 +24,7 @@ export default class Errors extends React.Component {
 
   static get propTypes() {
     return {
-      errors: React.PropTypes.object
+      errors: PropTypes.object
     };
   }
 

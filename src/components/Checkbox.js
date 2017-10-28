@@ -16,15 +16,16 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 // Simple stateless checkbox control
 export default class Checkbox extends React.Component {
 
   static get propTypes() {
     return {
-      id: React.PropTypes.string,
-      value: React.PropTypes.bool,
-      onChange: React.PropTypes.func.isRequired
+      id: PropTypes.string,
+      value: PropTypes.bool,
+      onChange: PropTypes.func.isRequired
     };
   }
 

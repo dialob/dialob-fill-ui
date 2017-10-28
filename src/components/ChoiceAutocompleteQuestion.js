@@ -20,6 +20,7 @@ import Errors from './Errors';
 import Label from './Label';
 import {ChoiceQuestion} from './ChoiceQuestion';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 import 'react-select/dist/react-select.css';
 
@@ -28,7 +29,7 @@ class ChoiceAutocompleteQuestion extends ChoiceQuestion {
 
   static get contextTypes() {
     return {
-      valueSetById: React.PropTypes.func.isRequired
+      valueSetById: PropTypes.func.isRequired
     };
   }
 

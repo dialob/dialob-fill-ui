@@ -17,6 +17,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
+import PropTypes from 'prop-types';
 
 require('styles/item.scss');
 
@@ -25,7 +26,7 @@ export default class Item extends React.Component {
 
   static get propTypes() {
     return {
-      question: React.PropTypes.array.isRequired
+      question: PropTypes.array.isRequired
     };
   }
 

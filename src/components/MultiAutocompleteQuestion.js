@@ -21,6 +21,7 @@ import Label from './Label';
 import {ChoiceAutocompleteQuestion} from './ChoiceAutocompleteQuestion';
 import Select from 'react-select';
 import {List} from 'immutable';
+import PropTypes from 'prop-types';
 
 import 'react-select/dist/react-select.css';
 
@@ -29,7 +30,7 @@ class MultiChoiceAutocompleteQuestion extends ChoiceAutocompleteQuestion {
 
   static get contextTypes() {
     return {
-      valueSetById: React.PropTypes.func.isRequired
+      valueSetById: PropTypes.func.isRequired
     };
   }
 

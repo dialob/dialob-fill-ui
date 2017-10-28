@@ -19,13 +19,14 @@ import {connectToAnswer} from '../utils/formUtils';
 import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
+import PropTypes from 'prop-types';
 
 // Form item for dropdown selection controls
 class RadioChoiceQuestion extends Item {
 
   static get contextTypes() {
     return {
-      valueSetById: React.PropTypes.func.isRequired
+      valueSetById: PropTypes.func.isRequired
     };
   }
 
@@ -44,7 +45,6 @@ class RadioChoiceQuestion extends Item {
     let choices = [];
     let q = this.props.question[1];
     let valueSet = this.context.valueSetById(this.props.question[1].get('valueSetId'));
-    let value = this.props.question[1].get('value');
     if (valueSet) {
       choices = valueSet.map(e => this.option(q.get('id'), e.get('key'), e.get('value'), e.get('key') === q.get('value')));
     }

@@ -22,6 +22,9 @@ import React from 'react';
 import Immutable from 'immutable';
 
 import {BooleanQuestion} from 'components/BooleanQuestion';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme'
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('BooleanQuestion', () => {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 export default function createComponent(component, props = {}, ...children) {
   const shallowRenderer = TestUtils.createRenderer();

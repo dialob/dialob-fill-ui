@@ -19,13 +19,14 @@ import Errors from './Errors';
 import {connectToAnswer} from '../utils/formUtils';
 import Item from './Item';
 import Label from './Label'
+import PropTypes from 'prop-types';
 
 // Item for Date and Time questions
 class DateQuestion extends Item {
 
   static get propTypes() {
     return {
-      entryType: React.PropTypes.oneOf(['date', 'time'])
+      entryType: PropTypes.oneOf(['date', 'time'])
     };
   }
 

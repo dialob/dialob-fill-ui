@@ -17,6 +17,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
+import PropTypes from 'prop-types';
 
 require('styles/group.scss');
 
@@ -24,13 +25,13 @@ export default class Group extends React.Component {
 
   static get propTypes() {
     return {
-      group: React.PropTypes.array.isRequired
+      group: PropTypes.array.isRequired
     };
   }
 
   static get contextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: PropTypes.func.isRequired
     };
   }
 

@@ -21,6 +21,7 @@ import Item from './Item';
 import Label from './Label';
 import {List} from 'immutable';
 import Checkbox from './Checkbox';
+import PropTypes from 'prop-types';
 
 require('styles/multichoice.scss');
 
@@ -29,7 +30,7 @@ class MultiChoiceQuestion extends Item {
 
   static get contextTypes() {
     return {
-      valueSetById: React.PropTypes.func.isRequired
+      valueSetById: PropTypes.func.isRequired
     };
   }
 

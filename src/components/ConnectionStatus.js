@@ -17,6 +17,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 require('styles/status.scss');
 
@@ -24,7 +25,7 @@ class ConnectionStatus extends React.Component {
 
     static get propTypes() {
         return {
-            state: React.PropTypes.string.isRequired
+            state: PropTypes.string.isRequired
         };
     }
 

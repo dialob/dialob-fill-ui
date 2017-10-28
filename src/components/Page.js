@@ -18,6 +18,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
+import PropTypes from 'prop-types';
 
 require('styles/page.scss');
 
@@ -26,16 +27,16 @@ class Page extends React.Component {
 
   static get propTypes() {
     return {
-      page: React.PropTypes.array.isRequired,
-      forwardEnabled: React.PropTypes.bool.isRequired,
-      backEnabled: React.PropTypes.bool.isRequired,
-      completeEnabled: React.PropTypes.bool.isRequired
+      page: PropTypes.array.isRequired,
+      forwardEnabled: PropTypes.bool.isRequired,
+      backEnabled: PropTypes.bool.isRequired,
+      completeEnabled: PropTypes.bool.isRequired
     };
   }
 
   static get contextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: PropTypes.func.isRequired
     };
   }
 

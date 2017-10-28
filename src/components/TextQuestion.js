@@ -19,6 +19,7 @@ import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
 import {connectToAnswer} from '../utils/formUtils';
+import PropTypes from 'prop-types';
 
 // In how many milliseconds after last keypress the value is sent to back-end
 const SAVE_DELAY = 300;
@@ -28,7 +29,7 @@ class TextQuestion extends Item {
 
   static get propTypes() {
     return {
-      entryType: React.PropTypes.oneOf(['text', 'number'])
+      entryType: PropTypes.oneOf(['text', 'number'])
     };
   }
 

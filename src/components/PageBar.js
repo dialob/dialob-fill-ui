@@ -16,14 +16,15 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 class PageBar extends React.Component {
 
   static get propTypes() {
     return {
-      onForward: React.PropTypes.func,
-      onBackward: React.PropTypes.func,
-      onComplete: React.PropTypes.func
+      onForward: PropTypes.func,
+      onBackward: PropTypes.func,
+      onComplete: PropTypes.func
     };
   }
 

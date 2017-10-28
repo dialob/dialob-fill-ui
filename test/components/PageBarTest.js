@@ -14,25 +14,17 @@
  * limitations under the License.
  */
 
-/*eslint-env node, mocha */
+/*eslint-env karma */
 /*global expect */
 /*eslint no-console: 0*/
-
-// Uncomment the following lines to use the react test utilities
-// import React from 'react/addons';
-// const TestUtils = React.addons.TestUtils;
-import createComponent from 'helpers/shallowRenderHelper';
+import { shallow } from 'enzyme';
+import React from 'react';
 
 import PageBar from 'components/PageBar';
 
 describe('PageBar', () => {
-  let PageBarComponent;
-
-  beforeEach(() => {
-    PageBarComponent = createComponent(PageBar);
-  });
-
   it('should have its component name as default className', () => {
-    expect(PageBarComponent.props.className).to.equal('dialob-page-controls');
+    var wrapper = shallow(<PageBar />);
+    expect(wrapper.props().className).to.equal('dialob-page-controls');
   });
 });

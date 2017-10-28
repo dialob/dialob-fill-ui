@@ -17,6 +17,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteRow} from '../actions/Actions';
+import PropTypes from 'prop-types';
 
 require('styles/rowgroup.scss');
 
@@ -24,13 +25,13 @@ class RowGroupRow extends React.Component {
 
   static get propTypes() {
     return {
-      group: React.PropTypes.array.isRequired
+      group: PropTypes.array.isRequired
     };
   }
 
   static get contextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: PropTypes.func.isRequired
     };
   }
 

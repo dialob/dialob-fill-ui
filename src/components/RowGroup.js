@@ -21,6 +21,7 @@ import RowGroupRow from './RowGroupRow';
 import {findItemById} from '../utils/formUtils';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
+import PropTypes from 'prop-types';
 
 require('styles/group.scss');
 require('styles/rowgroup.scss');
@@ -29,13 +30,13 @@ class RowGroup extends React.Component {
 
   static get propTypes() {
     return {
-      group: React.PropTypes.array.isRequired
+      group: PropTypes.array.isRequired
     };
   }
 
   static get contextTypes() {
     return {
-      componentCreator: React.PropTypes.func.isRequired
+      componentCreator: PropTypes.func.isRequired
     };
   }
 

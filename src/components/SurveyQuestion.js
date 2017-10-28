@@ -16,18 +16,18 @@
 
 import React from 'react';
 import {connectToAnswer} from '../utils/formUtils';
-import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 // Form item for survey choices
 class SurveyQuestion extends Item {
 
   static get contextTypes() {
     return {
-      valueSetById: React.PropTypes.func.isRequired,
-      surveyValueSet: React.PropTypes.func.isRequired
+      valueSetById: PropTypes.func.isRequired,
+      surveyValueSet: PropTypes.func.isRequired
     };
   }
 

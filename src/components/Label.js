@@ -16,14 +16,15 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 // Renders a form item control label with requirement indicator
 export default class Label extends React.Component {
 
   static get propTypes() {
     return {
-      htmlFor: React.PropTypes.string.isRequired,
-      required: React.PropTypes.bool.isRequired
+      htmlFor: PropTypes.string.isRequired,
+      required: PropTypes.bool.isRequired
     };
   }
 
