@@ -56,8 +56,13 @@ export default class Item extends React.Component {
     return 'dialob-control-' + (this.question ? this.question.get('id') : '');
   }
 
+  hasDescription() {
+    let descr = this.question.get('description');
+    return (descr && descr.replace(/(?:^[\s\u00a0\u200b]+)|(?:[\s\u00a0\u200b]+$)/g, '').trim());
+  }
+
   renderDescription() {
-    if (this.question.get('description')) {
+    if (this.hasDescription()) {
       return (
         <div className='dialob-description'>
            <ReactMarkdown source={this.question.get('description')} escapeHtml={true} />
