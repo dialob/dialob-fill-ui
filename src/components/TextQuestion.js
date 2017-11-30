@@ -54,9 +54,6 @@ class TextQuestion extends Item {
       value = null;
     }
     this.setState({value});
-    if (this.refs.inputControl.type !== 'number') {
-      this.setState({cursorPos: this.refs.inputControl.selectionStart});
-    }
     clearTimeout(this.timer);
     this.timer = setTimeout(() => this.props.answerQuestion(this.props.question[0], value), SAVE_DELAY);
   }
