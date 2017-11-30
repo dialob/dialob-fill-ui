@@ -43,12 +43,7 @@ export default class Item extends React.Component {
 
   // Returns true if item is required, but not answered
   isRequired() {
-    let errors = this.question.get('errors');
-    if (!errors || errors.size === 0) {
-      return false;
-    }
-    let required = errors.includes('You must answer this question');
-    return required;
+    return this.question.get('required');
   }
 
   // Returns true if item is read-only
@@ -89,6 +84,7 @@ export default class Item extends React.Component {
       {'dialob-item-errors': this.hasErrors()},
       {'dialob-item-valid': !this.hasErrors() && hasAnswer},
       {'dialob-item-answered': hasAnswer},
+      {'dialob-item-required': this.isRequired()},
       {'dialob-readonly': this.isReadOnly()}
     );
   }
