@@ -62,12 +62,8 @@ class TextQuestion extends Item {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({value: nextProps.question[1].get('value')});
-  }
-
-  componentDidUpdate() {
-    if (this.refs.inputControl.type !== 'number' && this.refs.inputControl === document.activeElement) {
-      this.refs.inputControl.setSelectionRange(this.state.cursorPos, this.state.cursorPos);
+    if (this.inputField !== document.activeElement) {
+      this.setState({value: nextProps.question[1].get('value')});
     }
   }
 
@@ -80,7 +76,7 @@ class TextQuestion extends Item {
       <div className={this.getStyles()}>
         <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
         { this.renderDescription() }
-        <input id={this.getControlId()} ref='inputControl' name={q.get('id')} type={this.props.entryType} value={this.state.value} onChange={this.onChangeText.bind(this)} />
+        <input id={this.getControlId()} ref={inputField => this.inputField = inputField} name={q.get('id')} type={this.props.entryType} value={this.state.value} onChange={this.onChangeText.bind(this)} />
         <Errors errors={q.get('errors')} />
       </div>
     );
