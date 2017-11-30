@@ -31,7 +31,7 @@ const SOCKET_ACTIONS = [
   Actions.ADD_ROW,
   Actions.DELETE_ROW,
   WebsocketAction.MESSAGE,
-  WebsocketAction.RECONNECT,
+  //WebsocketAction.RECONNECT,
   WebsocketAction.OPEN,
   WebsocketAction.CLOSE
 ];
@@ -103,9 +103,10 @@ const websocketMiddleware = store => {
         if (!socket) {
           postponedActions.push(action);
           socket = connectToWebsocket(configuration, action => store.dispatch(action));
+        /*
         } else if (action.type === WebsocketAction.RECONNECT && socket.readyState === SockJS.CLOSED) {
           // TODO: Check reconnect action?
-          socket = connectToWebsocket(configuration, action => store.dispatch(action));
+          socket = connectToWebsocket(configuration, action => store.dispatch(action)); */
         } else if (socket.readyState === SockJS.OPEN) {
           let actions = {
             prevRev: prevRev(store.getState()),

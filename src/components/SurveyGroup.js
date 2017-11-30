@@ -19,8 +19,6 @@ import ReactMarkdown from 'react-markdown';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-require('styles/survey.scss');
-
 export default class SurveyGroup extends React.Component {
 
   static get propTypes() {

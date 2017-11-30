@@ -25,8 +25,6 @@ import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
 import PropTypes from 'prop-types';
 
-require('styles/app.scss');
-
 class Dialob extends React.Component {
 
   static get propTypes() {

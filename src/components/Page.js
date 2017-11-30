@@ -20,8 +20,6 @@ import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
 import PropTypes from 'prop-types';
 
-require('styles/page.scss');
-
 // Component for questionnaire page
 class Page extends React.Component {
 

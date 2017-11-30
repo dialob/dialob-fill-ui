@@ -14,27 +14,24 @@
  * limitations under the License.
  */
 
+/*eslint-env node, mocha */
+/*global expect */
+/*eslint no-console: 0*/
+
+import { shallow, mount } from 'enzyme';
 import React from 'react';
-import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 
-export default class Completed extends React.Component {
+import Label from '../../src/components/Label';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme'
+Enzyme.configure({ adapter: new Adapter() });
 
- static get propTypes() {
-    return {
-        reviewUrl: PropTypes.string
-    };
-  }
+describe('Label', () => {
 
-  render() {
-    return (
-      <div className='dialob-completed'>
-        <h2>This session has been completed!</h2>
-        {
-          this.props.reviewUrl ?
-            <p>To review the results, please click <a href={this.props.reviewUrl}>here</a></p>
-          : null
-        }
-      </div>
-    );
-  }
-}
+  it('should have its component name as default className', () => {
+    var wrapper = shallow(<Label htmlFor="x1" required={true}/>);
+
+    expect(wrapper.props().className).to.equal('dialob-icon-required');
+  });
+});

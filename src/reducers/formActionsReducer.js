@@ -84,17 +84,6 @@ export function formActionsReducer(state, action) {
       return state.mergeIn(['valueSets',action.valueSet.id], Immutable.fromJS(action.valueSet));
     case ActionConstants.REMOVE_VALUE_SET:
       return state.deleteIn(['valueSets',action.valueSetId]);
-    case ActionConstants.FOCUS_QUESTION:
-      var prevFocus = state.get('focusOn');
-      state = state.set('focusOn', action.questionId);
-      if (action.questionId) {
-        state = state.setIn(['items',action.questionId,'focused'], true);
-      }
-      if (prevFocus) {
-        state = state.setIn(['items',prevFocus,'focused'], false);
-      }
-      return state;
-
     case ActionConstants.NEW_QUESTION:
       return newQuestion(state, action.question);
     case ActionConstants.REMOVE_QUESTION:

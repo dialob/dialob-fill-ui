@@ -23,9 +23,6 @@ import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 
-require('styles/group.scss');
-require('styles/rowgroup.scss');
-
 class RowGroup extends React.Component {
 
   static get propTypes() {

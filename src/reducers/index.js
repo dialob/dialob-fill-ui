@@ -1,20 +1,25 @@
-/* Combine all available reducers to a single root reducer.
+/**
+ *  Copyright 2017 ReSys OÜ
  *
- * CAUTION: When using the generators, this file is modified in some places.
- *          This is done via AST traversal - Some of your formatting may be lost
- *          in the process - no functionality should be broken though.
- *          This modifications only run once when the generator is invoked - if
- *          you edit them, they are not updated again.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 import { combineReducers } from 'redux';
 import { batchActionsReducer } from './batchActionsReducer';
 import { formActionsReducer } from './formActionsReducer';
 import { connectionStateReducer } from './connectionStateReducer';
 import { configReducer } from './configReducer';
 
-
-
-/* Populated by react-webpack-redux:reducer */
 const reducers = {
   data: formActionsReducer,
   connection: connectionStateReducer,

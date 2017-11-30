@@ -21,8 +21,6 @@ import classnames from 'classnames';
 import Item from './Item';
 import Label from './Label';
 
-require('styles/tristate.scss');
-
 // Form item for boolean (yes/no) questions
 class BooleanQuestion extends Item {
 

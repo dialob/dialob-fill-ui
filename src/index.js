@@ -26,9 +26,8 @@ import {createStore} from './stores';
 import {componentCreator} from './utils/componentCreator';
 import {connectToAnswer} from './utils/formUtils';
 
-require('styles/app.scss');
+require('./styles/app.scss');
 
-// TODO add support for callbacks
 function renderDialob(element,config) {
   if (typeof config === 'string') {
     config = {

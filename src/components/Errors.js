@@ -17,8 +17,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-require('styles/errors.scss');
-
 // Renders a list of validation errors for a form item
 export default class Errors extends React.Component {
 

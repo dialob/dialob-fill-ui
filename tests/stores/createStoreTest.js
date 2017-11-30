@@ -13,28 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*eslint-env node, mocha */
+/*global expect */
+/*eslint no-console: 0*/
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import {createStore} from '../../src/stores';
 
-export default class Completed extends React.Component {
-
- static get propTypes() {
-    return {
-        reviewUrl: PropTypes.string
-    };
-  }
-
-  render() {
-    return (
-      <div className='dialob-completed'>
-        <h2>This session has been completed!</h2>
-        {
-          this.props.reviewUrl ?
-            <p>To review the results, please click <a href={this.props.reviewUrl}>here</a></p>
-          : null
-        }
-      </div>
-    );
-  }
-}
+describe('createStore', () => {
+    it('make store with default config', () => {
+        var store = createStore();
+        expect(store.getState()).to.have.property('config')
+            .that.have.property('url')
+                .that.equal('http://localhost:8080/sockjs');
+    });
+});

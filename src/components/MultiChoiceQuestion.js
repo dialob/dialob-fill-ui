@@ -23,8 +23,6 @@ import {List} from 'immutable';
 import Checkbox from './Checkbox';
 import PropTypes from 'prop-types';
 
-require('styles/multichoice.scss');
-
 // Form item for multiple-selection controls
 class MultiChoiceQuestion extends Item {
 

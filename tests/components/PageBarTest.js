@@ -14,27 +14,20 @@
  * limitations under the License.
  */
 
+/*eslint-env karma */
+/*global expect */
+/*eslint no-console: 0*/
+import { shallow } from 'enzyme';
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export default class Completed extends React.Component {
+import PageBar from '../../src/components/PageBar';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme'
+Enzyme.configure({ adapter: new Adapter() });
 
- static get propTypes() {
-    return {
-        reviewUrl: PropTypes.string
-    };
-  }
-
-  render() {
-    return (
-      <div className='dialob-completed'>
-        <h2>This session has been completed!</h2>
-        {
-          this.props.reviewUrl ?
-            <p>To review the results, please click <a href={this.props.reviewUrl}>here</a></p>
-          : null
-        }
-      </div>
-    );
-  }
-}
+describe('PageBar', () => {
+  it('should have its component name as default className', () => {
+    var wrapper = shallow(<PageBar />);
+    expect(wrapper.props().className).to.equal('dialob-page-controls');
+  });
+});

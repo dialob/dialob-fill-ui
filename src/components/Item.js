@@ -19,8 +19,6 @@ import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 
-require('styles/item.scss');
-
 // Base class for form items
 export default class Item extends React.Component {
 
