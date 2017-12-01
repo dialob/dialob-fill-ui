@@ -21,6 +21,7 @@ import Immutable from 'immutable';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import TextQuestion from '../../src/components/TextQuestion';
+import { mountWithIntl } from '../helpers/intlHelper';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme'
 Enzyme.configure({ adapter: new Adapter() });
@@ -46,7 +47,7 @@ describe('componentCreator', () => {
         }
     };
     var component = componentCreator([question.id,Immutable.fromJS(question)]);
-    var wrapper = shallow(component,{context});
-    expect(wrapper.html()).to.equal('<div class="dialob-item dialob-itemtype-text "><label for="dialob-control-q" class="">Question to you</label><input type="text" id="dialob-control-q" name="q"/></div>');
+    var wrapper = mountWithIntl(component,{context});
+    expect(wrapper.html()).to.equal('<div class="dialob-item dialob-itemtype-text "><label for="dialob-control-q" class="">Question to you</label><input type="text" id="dialob-control-q" name="q"></div>');
   });
 });

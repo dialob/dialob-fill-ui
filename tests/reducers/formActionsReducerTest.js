@@ -132,7 +132,7 @@ describe('formActionsReducer',() => {
                   id: 'first',
                   className: ['a'],
                   value: '321',
-                  errors: ['Incorrect answer']
+                  errors: [{id: 'first', description: 'Incorrect answer'}]
               }
           }
         };
@@ -150,7 +150,7 @@ describe('formActionsReducer',() => {
                   id: 'first',
                   className: Immutable.List(['a']),
                   value: '321',
-                  errors: Immutable.Set(['Incorrect answer'])
+                  errors: Immutable.fromJS([{id: 'first', description: 'Incorrect answer'}])
               })
             })
         }),newErrorAction);

@@ -21,6 +21,7 @@
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Immutable from 'immutable';
+import { shallowWithIntl } from '../helpers/intlHelper';
 
 import Errors from '../../src/components/Errors';
 import Adapter from 'enzyme-adapter-react-16';
@@ -30,16 +31,23 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Errors', () => {
 
   it('should not output anything, if there is no errors', () => {
-    var wrapper = shallow(<Errors errors={null}/>);
-    expect(wrapper.html()).to.equal(null);
+    var wrapper = shallowWithIntl(<Errors errors={null} />);
+    expect(wrapper.html()).to.equal('');
   });
 
   it('should render immutable set to errors', () => {
-    var wrapper = shallow(<Errors errors={Immutable.Set.of('Error 1','Error 2')}/>);
+    var errors = Immutable.fromJS([
+      {description: 'Error 1'},
+      {description: 'Error 2'}
+    ]);
+    var wrapper = shallowWithIntl(<Errors errors={errors}/>);
     expect(wrapper.html()).to.equal('<div class="dialob-errors"><span class="dialob-error dialob-icon-error">Error 1</span><span class="dialob-error dialob-icon-error">Error 2</span></div>');
   });
   it('"You must answer this question" is not rendered', () => {
-    var wrapper = shallow(<Errors errors={Immutable.Set.of('You must answer this question')}/>);
-    expect(wrapper.html()).to.equal(null);
+    var errors = Immutable.fromJS([
+      {description: 'You must answer this question'}
+    ]);
+    var wrapper = shallowWithIntl(<Errors errors={errors}/>);
+    expect(wrapper.html()).to.equal('');
   });
 });

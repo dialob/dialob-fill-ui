@@ -12,10 +12,11 @@ module.exports = {
   },
   karma: {
     testFiles: ['tests/**/*Test.js'],
-    frameworks: ['mocha', 'chai', 'chai-immutable'],
+    frameworks: ['mocha', 'chai', 'chai-immutable', 'intl-shim'],
     plugins: [
       require('karma-chai-plugins'),
-      require('karma-chai-immutable')
+      require('karma-chai-immutable'),
+      require('karma-intl-shim')
     ]
   }
 }
