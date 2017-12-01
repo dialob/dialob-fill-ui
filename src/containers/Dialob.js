@@ -23,7 +23,14 @@ import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
+import {IntlProvider, addLocaleData} from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import fi from 'react-intl/locale-data/fi';
+import sv from 'react-intl/locale-data/sv';
+import messages from '../intl';
 import PropTypes from 'prop-types';
+
+addLocaleData([...en, ...fi, ...sv]);
 
 class Dialob extends React.Component {
 
@@ -58,6 +65,7 @@ class Dialob extends React.Component {
         questionnaire: data.get('questionnaire'),
         activePageItem: findItemById(data, data.getIn(['questionnaire','activeItem']))
     };
+    let locale = this.props.config.get('language') || 'en';
     if (props.status === 'NOT_FOUND') {
         content = <QuestionnaireNotFound/>;
     } else if (props.status === 'COMPLETED') {
@@ -66,10 +74,10 @@ class Dialob extends React.Component {
         content = <FormFillView {...props}/>;
     }
     return (
-        <div>
-          <ConnectionStatus />
+        <IntlProvider locale={locale} key={locale} messages={messages[locale]}>
           {content}
-        </div>);
+        </IntlProvider>
+    );
   }
 }
 

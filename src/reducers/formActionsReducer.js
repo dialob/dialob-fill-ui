@@ -101,9 +101,9 @@ export function formActionsReducer(state, action) {
       }
       return state.updateIn(['items',action.error.id, 'errors'], errors => {
           if (!errors) {
-              return Immutable.Set([action.error.description]);
+              return Immutable.Set(Immutable.fromJS([action.error]));
           }
-          return errors.add(action.error.description);
+          return errors.add(Immutable.fromJS(action.error));
       });
     case ActionConstants.REMOVE_ERROR:
       if (!action.error || !action.error.id) {
@@ -111,7 +111,7 @@ export function formActionsReducer(state, action) {
       }
       return state.updateIn(['items',action.error.id, 'errors'], errors => {
           if (errors) {
-              errors = errors.delete(action.error.description);
+            errors = errors.filter(e => e.get('description') !== action.error.description);
           }
           return errors;
 

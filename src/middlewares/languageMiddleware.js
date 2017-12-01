@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-import {applyMiddleware} from 'redux';
-import {websocketMiddleware} from './SockJSMiddleware';
-import {restMiddleware} from './RestMiddleware';
-import {submitCallbackMiddleware} from './submitCallbackMiddleware';
-import {languageMiddleware} from './languageMiddleware';
+import * as Actions from '../actions/ActionConstants';
+import {setLanguage} from '../actions/Actions';
 
-export const middleware = applyMiddleware(
-    websocketMiddleware,
-    restMiddleware,
-    submitCallbackMiddleware,
-    languageMiddleware
-);
+const languageMiddleware = store => next => action =>  {
+  if (action.type === Actions.NEW_QUESTION && action.question.type == 'questionnaire') {
+    if (action.question.props && action.question.props.language) {
+      store.dispatch(setLanguage(action.question.props.language));
+    }
+  }
+  return next(action);
+}
+
+export {
+  languageMiddleware
+};

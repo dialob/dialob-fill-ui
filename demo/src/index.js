@@ -5,7 +5,7 @@ import {renderDialob} from '../../src';
 
 const BOOT_BASE_URL = 'http://localhost:8081';
 const SESSION_BASE_URL = 'http://localhost:8080';
-const SESSION_ID = 'f2d5d5677e9f15426d7455428700e847';
+const SESSION_ID = 'f2d5d5677e9f15426d7455428700eee3';
 
 function defaultSubmitCallback(context) {
   console.log('Submit callback called with context:', context);
