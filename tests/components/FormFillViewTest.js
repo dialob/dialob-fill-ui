@@ -21,7 +21,7 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import Immutable from 'immutable';
 
-import FormFillView from '../../src/components/FormFillView';
+import {FormFillView} from '../../src/components/FormFillView';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme'
 Enzyme.configure({ adapter: new Adapter() });
@@ -33,7 +33,8 @@ describe('FormFillView', () => {
       id: 'questionnaire',
       type: 'questionnaire',
       items: [],
-      allowedActions: []
+      allowedActions: [],
+      availableItems: []
     };
     let page = {
       id: 'page1',

@@ -15,12 +15,13 @@
  */
 
 import React from 'react';
-//import {Loading} from 'dialob-common';
 import Page from './Page';
 import * as ActionConstants from '../actions/ActionConstants';
 import PropTypes from 'prop-types';
+import {findItemById} from '../utils/formUtils';
+import {connect} from 'react-redux';
 
-export default class FormFillView extends React.Component {
+class FormFillView extends React.Component {
 
   static get propTypes() {
     return {
@@ -31,18 +32,34 @@ export default class FormFillView extends React.Component {
   }
 
   render() {
-    let questionnaire = this.props.questionnaire;
+    const {questionnaire, activePageItem} = this.props;
     let page = null;
     let title = '';
+
     if (questionnaire) {
       title = questionnaire.get('label');
       if (this.props.activePageItem) {
+        let availableItems = questionnaire.get('availableItems');
         let isAllowedAction = action => questionnaire.get('allowedActions').includes(action);
+        let pageIndex = pageId => availableItems.findIndex(e => e === pageId);
+        let activeIndex = pageIndex(activePageItem[0]);
+        let showDisabled = !!questionnaire.getIn(['props', 'showDisabled']);
+        let prevPageLabel, nextPageLabel = undefined;
+        if (showDisabled) {
+          if (activeIndex > 0) {
+            prevPageLabel =  this.props.itemById(availableItems.get(activeIndex - 1))[1].get('label');
+          }
+          if (activeIndex < availableItems.size - 1) {
+            nextPageLabel = this.props.itemById(availableItems.get(activeIndex + 1))[1].get('label');
+          }
+        }
         let pageProps = {
-          page: this.props.activePageItem,
+          page: activePageItem,
           backEnabled: isAllowedAction(ActionConstants.PREVIOUS_PAGE),
           forwardEnabled: isAllowedAction(ActionConstants.NEXT_PAGE),
-          completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE)
+          completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE),
+          prevPageLabel,
+          nextPageLabel
         };
         page = <Page {...pageProps}/>;
       }
@@ -58,4 +75,16 @@ export default class FormFillView extends React.Component {
       );
     }
   }
+}
+
+const FormFillViewConnected = connect(
+  state => {
+    return {
+      get itemById() { return itemId => findItemById(state.data, itemId) }
+    };
+  })(FormFillView);
+
+export {
+  FormFillViewConnected as default,
+  FormFillView
 }

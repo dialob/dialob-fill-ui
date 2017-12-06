@@ -74,6 +74,8 @@ class Page extends React.Component {
           onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
           onBackward={this.props.backEnabled ? this.backTouch.bind(this) : null}
           onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
+          prevPageLabel={this.props.prevPageLabel}
+          nextPageLabel={this.props.nextPageLabel}
           />
       </div>
     );

@@ -24,21 +24,23 @@ class PageBar extends React.Component {
     return {
       onForward: PropTypes.func,
       onBackward: PropTypes.func,
-      onComplete: PropTypes.func
+      onComplete: PropTypes.func,
+      prevPageLabel: PropTypes.string,
+      nextPageLabel: PropTypes.string
     };
   }
 
   renderBackButton() {
     let enabled = this.props.onBackward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-back', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward} />
+      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-back', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>{this.props.prevPageLabel}</button>
     );
   }
 
   renderForwardButton() {
     let enabled = this.props.onForward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-forward', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward} />
+      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-forward', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>{this.props.nextPageLabel}</button>
     );
   }
 
