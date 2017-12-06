@@ -10,6 +10,11 @@ module.exports = {
       }
     }
   },
+  webpack: {
+    html: {
+      template: 'demo/src/index.html'
+    }
+  },
   karma: {
     testFiles: ['tests/**/*Test.js'],
     frameworks: ['mocha', 'chai', 'chai-immutable', 'intl-shim'],

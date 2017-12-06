@@ -113,3 +113,11 @@ div.dialob-item.dialob-itemtype-text.survey {
     margin-bottom: 0.5em;
   }
 }
+
+.dialob-datepicker-wrapper {
+  display: flex;
+  flex-direction: row;
+  .dialob-datepicker-input {
+    flex: 1;
+  }
+}

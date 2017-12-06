@@ -19,6 +19,7 @@
 /*eslint no-console: 0*/
 
 import { shallow, mount } from 'enzyme';
+import { shallowWithIntl } from '../helpers/intlHelper';
 import React from 'react';
 import Immutable from 'immutable';
 import sinon from 'sinon';
@@ -37,7 +38,7 @@ describe('DateQuestion', () => {
         id: 'date1',
         type: 'date'
     };
-    var wrapper = shallow(<DateQuestion type='date' question={[question.id, Immutable.fromJS(question)]}/>,{context});
+    var wrapper = shallowWithIntl(<DateQuestion type='date' question={[question.id, Immutable.fromJS(question)]}/>,{context});
 
     expect(wrapper.props().className).to.equal('dialob-item dialob-itemtype-date ');
   });
