@@ -17,6 +17,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 class PageBar extends React.Component {
 
@@ -47,7 +48,7 @@ class PageBar extends React.Component {
   renderCompleteButton() {
     let enabled = this.props.onComplete;
     return (
-      <button disabled={!enabled} className={classnames('dialob-complete-button', 'dialob-icon-complete', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete} />
+      <button disabled={!enabled} className={classnames('dialob-complete-button', 'dialob-icon-complete', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}><FormattedMessage id='complete' /></button>
     );
   }
 
@@ -68,4 +69,4 @@ class PageBar extends React.Component {
   }
 }
 
-export default PageBar;
+export default injectIntl(PageBar);

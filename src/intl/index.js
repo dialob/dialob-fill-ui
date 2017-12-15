@@ -2,16 +2,19 @@ module.exports = {
   'en': {
     "invalidFormat.number": "Invalid format",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "complete": "Complete"
   },
   'fi': {
     "invalidFormat.number": "Tarkista määrä",
     "yes": "Kyllä",
-    "no": "Ei"
+    "no": "Ei",
+    "complete":"Hyväksy"
   },
   'sv': {
     "invalidFormat.number": "Kontrollera beloppet",
     "yes": "Ja",
-    "no": "Nej"
+    "no": "Nej",
+    "complete": "Godkänn"
   }
 };
