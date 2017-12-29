@@ -57,6 +57,7 @@ function getFullState(csrf, url, dispatch) {
     }
     var options = {
       method: 'get',
+      credentials: 'include',
       headers
     }
     fetch(url, options)
@@ -79,6 +80,7 @@ function postActions(csrf, url, actions, dispatch) {
     var options = {
       method: 'post',
       body : JSON.stringify(actions),
+      credentials: 'include',
       headers
     }
     fetch(url, options)
