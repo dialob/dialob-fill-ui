@@ -66,7 +66,7 @@ class FormFillView extends React.Component {
       }
     }
     if (this.props.status === 'UNLOADED') {
-      return (<div>Loading...</div>);
+      return (<div><i className='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>);
     } else {
       return (
         <div className='dialob-questionnaire'>
