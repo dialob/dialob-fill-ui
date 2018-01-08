@@ -53,11 +53,12 @@ class FormFillView extends React.Component {
             nextPageLabel = this.props.itemById(availableItems.get(activeIndex + 1))[1].get('label');
           }
         }
+        let last = activeIndex == availableItems.size - 1;
         let pageProps = {
           page: activePageItem,
           backEnabled: isAllowedAction(ActionConstants.PREVIOUS_PAGE),
           forwardEnabled: isAllowedAction(ActionConstants.NEXT_PAGE),
-          completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE),
+          completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE) && last,
           prevPageLabel,
           nextPageLabel
         };
