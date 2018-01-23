@@ -15,12 +15,11 @@
  */
 
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 
-require('styles/errors.scss');
-
 // Renders a list of validation errors for a form item
-export default class Errors extends React.Component {
+class Errors extends React.Component {
 
   static get propTypes() {
     return {
@@ -28,12 +27,20 @@ export default class Errors extends React.Component {
     };
   }
 
+  getErrorText(error) {
+    if (error.get('code')) {
+      return this.props.intl.formatMessage({id: error.get('code')});
+    } else {
+      return error.get('description');
+    }
+  }
+
   render() {
     if (this.props.errors) {
         let errors = this.props.errors
-            .filter(error => error !== 'You must answer this question')
+            .filter(error => error.get('description') !== 'You must answer this question')
             .map(error => {
-                return <span key={error} className='dialob-error dialob-icon-error'>{error}</span>;
+                return <span key={error} className='dialob-error dialob-icon-error'>{this.getErrorText(error)}</span>;
             });
         if (errors.size > 0) {
             return <div className='dialob-errors'>{errors.toJS()}</div>;
@@ -42,3 +49,5 @@ export default class Errors extends React.Component {
     return null;
   }
 }
+
+export default injectIntl(Errors);

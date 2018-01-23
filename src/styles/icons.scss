@@ -19,7 +19,7 @@
   content: "\f053";
 }
 
-.dialob-icon-forward:before {
+.dialob-icon-forward:after {
   font-family: FontAwesome;
   content: "\f054";
 }
@@ -47,4 +47,9 @@
 .dialob-icon-required:after {
   font-family: FontAwesome;
   content: "\f069"
+}
+
+.dialob-icon-calendar:before {
+  font-family: FontAwesome;
+  content: "\f073";
 }

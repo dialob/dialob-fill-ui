@@ -74,3 +74,10 @@ export function deleteRow(rowId) {
     id: rowId
   };
 }
+
+export function setLanguage(language) {
+  return {
+    type: ActionConstants.SET_LANGUAGE,
+    language
+  };
+}

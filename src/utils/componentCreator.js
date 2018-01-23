@@ -21,6 +21,7 @@ import BooleanQuestion from '../components/BooleanQuestion';
 import ChoiceQuestion from '../components/ChoiceQuestion';
 import ChoiceAutocomplete from '../components/ChoiceAutocompleteQuestion';
 import DateQuestion from '../components/DateQuestion';
+import TimeQuestion from '../components/TimeQuestion';
 import Group from '../components/Group';
 import SurveyGroup from '../components/SurveyGroup';
 import SurveyQuestion from '../components/SurveyQuestion';
@@ -75,9 +76,9 @@ function componentCreator(question) {
         return <ChoiceQuestion key={id} question={question} />;
       }
     case 'date':
-      return <DateQuestion key={id} question={question} entryType='date'/>;
+      return <DateQuestion key={id} question={question}/>;
     case 'time':
-      return <DateQuestion key={id} question={question} entryType='time' />;
+      return <TimeQuestion key={id} question={question}/>;
     case 'note':
       return <Note key={id} question={question} />;
     case 'group':

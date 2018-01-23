@@ -19,8 +19,6 @@ import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 
-require('styles/item.scss');
-
 // Base class for form items
 export default class Item extends React.Component {
 
@@ -45,12 +43,7 @@ export default class Item extends React.Component {
 
   // Returns true if item is required, but not answered
   isRequired() {
-    let errors = this.question.get('errors');
-    if (!errors || errors.size === 0) {
-      return false;
-    }
-    let required = errors.includes('You must answer this question');
-    return required;
+    return this.question.get('required');
   }
 
   // Returns true if item is read-only
@@ -63,8 +56,13 @@ export default class Item extends React.Component {
     return 'dialob-control-' + (this.question ? this.question.get('id') : '');
   }
 
+  hasDescription() {
+    let descr = this.question.get('description');
+    return (descr && descr.replace(/(?:^[\s\u00a0\u200b]+)|(?:[\s\u00a0\u200b]+$)/g, '').trim());
+  }
+
   renderDescription() {
-    if (this.question.get('description')) {
+    if (this.hasDescription()) {
       return (
         <div className='dialob-description'>
            <ReactMarkdown source={this.question.get('description')} escapeHtml={true} />
@@ -91,6 +89,7 @@ export default class Item extends React.Component {
       {'dialob-item-errors': this.hasErrors()},
       {'dialob-item-valid': !this.hasErrors() && hasAnswer},
       {'dialob-item-answered': hasAnswer},
+      {'dialob-item-required': this.isRequired()},
       {'dialob-readonly': this.isReadOnly()}
     );
   }

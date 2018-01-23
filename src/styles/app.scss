@@ -19,9 +19,27 @@
   box-sizing: inherit;
 }
 
+body {
+	font-size: 12px;
+	font-family: 'Myriad Set Pro', 'Helvetica Neue', helvetica, sans-serif;
+	color: rgb(57, 57, 57);
+}
+
 // Workaround for hint font weight
 [data-hint]:after {
 	font-weight: normal !important;
 }
 
+@import 'completed';
+@import 'errors';
+@import 'group';
+@import 'icons';
+@import 'item';
+@import 'multichoice';
+@import 'page';
+@import 'questionnaire';
+@import 'rowgroup';
+@import 'status';
+@import 'survey';
+@import 'tristate';
 @import 'custom';

@@ -20,8 +20,7 @@ import Errors from './Errors';
 import classnames from 'classnames';
 import Item from './Item';
 import Label from './Label';
-
-require('styles/tristate.scss');
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 // Form item for boolean (yes/no) questions
 class BooleanQuestion extends Item {
@@ -64,8 +63,8 @@ class BooleanQuestion extends Item {
         {this.renderDescription()}
         <div id={this.getControlId()}>
           <div className={classnames('dialob-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
-            <span className={classnames('dialob-tristate-true', {'dialob-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}>Yes</span>
-            <span className={classnames('dialob-tristate-false', {'dialob-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}>No</span>
+            <span className={classnames('dialob-tristate-true', {'dialob-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}><FormattedMessage id='yes'/></span>
+            <span className={classnames('dialob-tristate-false', {'dialob-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}><FormattedMessage id='no'/></span>
           </div>
         </div>
         <Errors errors={q.get('errors')} />
@@ -75,7 +74,7 @@ class BooleanQuestion extends Item {
 }
 
 
-export const BooleanQuestionConnected = connectToAnswer(BooleanQuestion);
+export const BooleanQuestionConnected = connectToAnswer(injectIntl(BooleanQuestion));
 
 export {
   BooleanQuestionConnected as default,

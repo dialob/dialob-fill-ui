@@ -20,8 +20,6 @@ import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
 import PropTypes from 'prop-types';
 
-require('styles/page.scss');
-
 // Component for questionnaire page
 class Page extends React.Component {
 
@@ -42,12 +40,14 @@ class Page extends React.Component {
 
   backTouch() {
     if (this.props.backEnabled) {
+      this.page.scrollIntoView();
       this.props.previousPage();
     }
   }
 
   forwardTouch() {
     if (this.props.forwardEnabled) {
+      this.page.scrollIntoView();
       this.props.nextPage();
     }
   }
@@ -69,13 +69,15 @@ class Page extends React.Component {
       title = page.get('label');
     }
     return (
-      <div className='dialob-page'>
+      <div className='dialob-page' ref={pg => this.page = pg}>
         <span className='dialob-page-title'>{title}</span>
         {groups}
         <PageBar
           onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
           onBackward={this.props.backEnabled ? this.backTouch.bind(this) : null}
           onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
+          prevPageLabel={this.props.prevPageLabel}
+          nextPageLabel={this.props.nextPageLabel}
           />
       </div>
     );

@@ -47,7 +47,7 @@ class TextBoxQuestion extends TextQuestion {
       <div className={this.getStyles()}>
         <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
         {this.renderDescription()}
-        <textarea id={this.getControlId()} ref='inputControl' value={this.state.value}  rows={rows} onChange={this.onChangeText.bind(this)}/>
+        <textarea id={this.getControlId()} ref='inputControl' value={this.state.value || ''}  rows={rows} onChange={this.onChangeText.bind(this)}/>
         <Errors errors={q.get('errors')} />
       </div>
     );

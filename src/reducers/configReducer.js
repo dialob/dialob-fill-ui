@@ -15,10 +15,14 @@
  */
 
 import Immutable from 'immutable';
+import * as ActionConstants from '../actions/ActionConstants'
 
 const DEFAULT_STATE = Immutable.Map();
 
 export function configReducer(state = DEFAULT_STATE, action) { // eslint-disable-line no-unused-vars
+    if (action.type === ActionConstants.SET_LANGUAGE) {
+      return state.set('language', action.language);
+    }
     return state;
 }
 
