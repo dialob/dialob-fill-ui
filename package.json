@@ -35,7 +35,8 @@
     "react-markdown": "^3.0.2",
     "react-redux": "^5.0.6",
     "react-select": "^1.0.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "semantic-ui-react": "^0.77.2"
   },
   "peerDependencies": {
     "react": "15.x"

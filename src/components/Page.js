@@ -19,6 +19,7 @@ import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
 import PropTypes from 'prop-types';
+import {Segment, Header} from 'semantic-ui-react';
 
 // Component for questionnaire page
 class Page extends React.Component {
@@ -69,8 +70,8 @@ class Page extends React.Component {
       title = page.get('label');
     }
     return (
-      <div className='dialob-page' ref={pg => this.page = pg}>
-        <span className='dialob-page-title'>{title}</span>
+      <Segment basic className='dialob-page' ref={pg => this.page = pg}>
+        <Header as='h2' className='dialob-page-title'>{title}</Header>
         {groups}
         <PageBar
           onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
@@ -79,7 +80,7 @@ class Page extends React.Component {
           prevPageLabel={this.props.prevPageLabel}
           nextPageLabel={this.props.nextPageLabel}
           />
-      </div>
+      </Segment>
     );
   }
 }

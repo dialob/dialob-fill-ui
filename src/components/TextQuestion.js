@@ -20,6 +20,7 @@ import Item from './Item';
 import Label from './Label';
 import {connectToAnswer} from '../utils/formUtils';
 import PropTypes from 'prop-types';
+import {Form, Input} from 'semantic-ui-react';
 
 // In how many milliseconds after last keypress the value is sent to back-end
 const SAVE_DELAY = 300;
@@ -70,12 +71,12 @@ class TextQuestion extends Item {
       return null;
     }
     return (
-      <div className={this.getStyles()}>
-        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
         { this.renderDescription() }
-        <input id={this.getControlId()} ref={inputField => this.inputField = inputField} name={q.get('id')} type={this.props.entryType} value={this.state.value || ''} onChange={this.onChangeText.bind(this)} />
+        <Input id={this.getControlId()} ref={inputField => this.inputField = inputField} name={q.get('id')} type={this.props.entryType} value={this.state.value || ''} onChange={this.onChangeText.bind(this)} />
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }

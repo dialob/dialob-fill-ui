@@ -26,8 +26,6 @@ import {createStore} from './stores';
 import {componentCreator} from './utils/componentCreator';
 import {connectToAnswer} from './utils/formUtils';
 
-require('./styles/app.scss');
-
 function renderDialob(element,config) {
   if (typeof config === 'string') {
     config = {

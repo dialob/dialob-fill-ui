@@ -18,6 +18,7 @@ import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
+import {Message} from 'semantic-ui-react';
 
 // Base class for form items
 export default class Item extends React.Component {
@@ -64,9 +65,9 @@ export default class Item extends React.Component {
   renderDescription() {
     if (this.hasDescription()) {
       return (
-        <div className='dialob-description'>
+        <Message size='small' className='dialob-description'>
            <ReactMarkdown source={this.question.get('description')} escapeHtml={true} />
-        </div>
+        </Message>
       )
     } else {
       return null;

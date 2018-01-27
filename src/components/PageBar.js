@@ -18,6 +18,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { Segment, Button, Grid, Icon} from 'semantic-ui-react';
 
 class PageBar extends React.Component {
 
@@ -34,37 +35,45 @@ class PageBar extends React.Component {
   renderBackButton() {
     let enabled = this.props.onBackward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-back', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>{this.props.prevPageLabel}</button>
+      <Button icon labelPosition='left' disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-back', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onBackward}>
+        <Icon name='left arrow' />
+        {this.props.prevPageLabel}
+      </Button>
     );
   }
 
   renderForwardButton() {
     let enabled = this.props.onForward;
     return (
-      <button disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-forward', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>{this.props.nextPageLabel}</button>
+      <Button icon labelPosition='right' disabled={!enabled} className={classnames('dialob-nav-button', 'dialob-icon-forward', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onForward}>
+        <Icon name='right arrow' />
+        {this.props.nextPageLabel}
+      </Button>
     );
   }
 
   renderCompleteButton() {
     let enabled = this.props.onComplete;
     return (
-      <button disabled={!enabled} className={classnames('dialob-complete-button', 'dialob-icon-complete', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}><FormattedMessage id='complete' /></button>
+      <Button primary disabled={!enabled} className={classnames('dialob-complete-button', 'dialob-icon-complete', {'dialob-button-disabled': !enabled}, {'dialob-button-enabled': enabled})} onClick={this.props.onComplete}><FormattedMessage id='complete' /></Button>
     );
   }
 
   render() {
     return (
-      <div className='dialob-page-controls'>
-        <div className='dialob-back-button-wrapper'>
-          {this.renderBackButton()}
-        </div>
-        <div className='dialob-complete-button-wrapper'>
-          {this.renderCompleteButton()}
-        </div>
-        <div className='dialob-forward-button-wrapper'>
-          {this.renderForwardButton()}
-        </div>
-      </div>
+      <Segment basic>
+        <Grid columns={3}>
+          <Grid.Column textAlign='left'>
+            {this.renderBackButton()}
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            {this.renderCompleteButton()}
+          </Grid.Column>
+          <Grid.Column textAlign='right'>
+            {this.renderForwardButton()}
+          </Grid.Column>
+        </Grid>
+      </Segment>
     );
   }
 }

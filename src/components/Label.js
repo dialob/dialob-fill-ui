@@ -30,7 +30,7 @@ export default class Label extends React.Component {
 
   render() {
     return (
-      <label htmlFor={this.props.htmlFor} className={classnames({'dialob-icon-required': this.props.required})}>
+      <label htmlFor={this.props.htmlFor}>
         {this.props.children}
       </label>
     );

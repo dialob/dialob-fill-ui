@@ -17,6 +17,7 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
+import {Label} from 'semantic-ui-react';
 
 // Renders a list of validation errors for a form item
 class Errors extends React.Component {
@@ -43,7 +44,7 @@ class Errors extends React.Component {
                 return <span key={error} className='dialob-error dialob-icon-error'>{this.getErrorText(error)}</span>;
             });
         if (errors.size > 0) {
-            return <div className='dialob-errors'>{errors.toJS()}</div>;
+            return <Label basic color='red' pointing className='dialob-errors'>{errors.toJS()}</Label>;
         }
     }
     return null;

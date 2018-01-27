@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if IE ]>
+  <html lang="fi" class="ie">
+<![endif]-->
+<html lang="fi" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <title>Dialob</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link th:each="stylesheet: ${stylesheets}" rel="stylesheet" type="text/css" th:href="${stylesheet}"/>
+  </head>
+  <body>
+    <div>
+      <div class="ui top fixed menu">
+        <div class="ui container">
+          <h4 class="header item">
+            <img src="https://flexiform.azureedge.net/dialob-fill-ui/latest/dialob_logo.svg" style="height: 25px; margin-right: 1.5em" />
+            Dialob
+          </h4>
+        </div>
+      </div>
+      <div class="ui container">
+        <div style="margin-top: 7em;" id="dialob-app-content" />
+      </div>
+    </div>
+
+    <th:block layout:fragment="scripts">
+      <script th:if="${javascriptFiles != null}" th:each="javascriptFile: ${javascriptFiles}" type="text/javascript"
+              th:src="${javascriptFile}"></script>
+    </th:block>
+    <script th:if="${formConnectionOptions}" th:inline="javascript">
+        function defaultSubmitCallback(context) {
+          console.log('Submit callback called with context:', context);
+        }
+
+        var options = /*[[${formConnectionOptions}]]*/ {url: ''};
+        options.submitCallback = defaultSubmitCallback;
+
+        var params = (new URL(location)).searchParams;
+        var mode = params.get('mode');
+        if (mode) {
+          console.log('Overriding connection mode:', mode);
+          options.connectionMode = mode;
+        }
+        window.Dialob.renderDialob(document.getElementById('dialob-app-content'),options);
+      </script>
+  </body>
+</html>
+

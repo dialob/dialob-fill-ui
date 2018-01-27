@@ -20,6 +20,7 @@ import * as ActionConstants from '../actions/ActionConstants';
 import PropTypes from 'prop-types';
 import {findItemById} from '../utils/formUtils';
 import {connect} from 'react-redux';
+import {Loader, Header, Form} from 'semantic-ui-react';
 
 class FormFillView extends React.Component {
 
@@ -66,13 +67,13 @@ class FormFillView extends React.Component {
       }
     }
     if (this.props.status === 'UNLOADED') {
-      return (<div><i className='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>);
+      return (<Loader />);
     } else {
       return (
-        <div className='dialob-questionnaire'>
-          <span className='dialob-questionnaire-title'>{title}</span>
+        <Form className='dialob-questionnaire'>
+          <Header as='h1'>{title}</Header>
           {page}
-        </div>
+        </Form>
       );
     }
   }

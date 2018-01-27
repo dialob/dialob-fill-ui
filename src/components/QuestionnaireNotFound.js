@@ -15,10 +15,15 @@
  */
 
 import React from 'react';
+import {Message} from 'semantic-ui-react';
 
 export default class QuestionnaireNotFound extends React.Component {
 
     render() {
-        return <div id='dialob-not-exists'>Questionnaire not found.</div>;
+        return (
+          <Message negative>
+            Questionnaire not found.
+          </Message>
+        );
     }
 }

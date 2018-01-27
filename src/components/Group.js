@@ -18,6 +18,7 @@ import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
+import {Segment, Header, Message} from 'semantic-ui-react';
 
 export default class Group extends React.Component {
 
@@ -36,9 +37,9 @@ export default class Group extends React.Component {
   renderDescription() {
     if (this.props.group[1].get('description')) {
       return (
-        <div className='dialob-description'>
+        <Message size='small' className='dialob-description'>
            <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
-        </div>
+        </Message>
       )
     } else {
       return null;
@@ -62,11 +63,11 @@ export default class Group extends React.Component {
       .map(this.context.componentCreator)
       .filter(question => question);
     return (
-      <div className={classnames('dialob-group', customStyles)}>
-        <span className='dialob-group-title'>{title}</span>
+      <Segment className={classnames('dialob-group', customStyles)}>
+        <Header as='h3' className='dialob-group-title'>{title}</Header>
         { this.renderDescription() }
         {questions}
-      </div>
+      </Segment>
     );
   }
 }

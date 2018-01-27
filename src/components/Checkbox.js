@@ -31,7 +31,7 @@ export default class Checkbox extends React.Component {
 
   render() {
     return (
-    <input id={this.props.id} type='checkbox' className={classnames('dialob-checkbox',{'dialob-checkbox-checked': this.props.value})} value={this.props.value} onChange={this.props.onChange.bind(this, !this.props.value)} />
+    <input id={this.props.id} type='checkbox' className={classnames('dialob-checkbox',{'dialob-checkbox-checked': this.props.value})} value={this.props.value} checked={this.props.value} onChange={this.props.onChange.bind(this, !this.props.value)} />
     );
   }
 }
