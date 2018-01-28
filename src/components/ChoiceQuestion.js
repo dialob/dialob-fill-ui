@@ -20,6 +20,7 @@ import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
 import PropTypes from 'prop-types';
+import {Form, Select} from 'semantic-ui-react';
 
 // Form item for dropdown selection controls
 class ChoiceQuestion extends Item {
@@ -30,8 +31,8 @@ class ChoiceQuestion extends Item {
     };
   }
 
-  onChange(event) {
-    this.props.answerQuestion(this.props.question[0], event.target.value);
+  onChange(event, data) {
+    this.props.answerQuestion(this.props.question[0], data.value);
   }
 
   option(key, value) {
@@ -43,10 +44,7 @@ class ChoiceQuestion extends Item {
     let valueSet = this.context.valueSetById(this.props.question[1].get('valueSetId'));
     let value = this.props.question[1].get('value');
     if (valueSet) {
-      choices = valueSet.map(e => this.option(e.get('key'), e.get('value')));
-      if (value === null || value === undefined) {
-        choices = choices.unshift(this.option(null, '-'));
-      }
+      choices = valueSet.toJS().map(e => ({key: e.key, value: e.key, text: e.value}));
     }
     return choices;
   }
@@ -55,14 +53,12 @@ class ChoiceQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-       <div className={this.getStyles()}>
-        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
-        {this.renderDescription()}
-        <select id={this.getControlId()} name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)}>
-          {options}
-        </select>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
+        { this.renderDescription() }
+        <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options}/>
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }
