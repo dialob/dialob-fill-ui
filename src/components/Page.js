@@ -19,7 +19,7 @@ import {connect} from 'react-redux';
 import PageBar from './PageBar';
 import {nextPage, previousPage, completeQuestionnaire} from '../actions/Actions';
 import PropTypes from 'prop-types';
-import {Segment, Header} from 'semantic-ui-react';
+import {Segment, Header, Ref} from 'semantic-ui-react';
 
 // Component for questionnaire page
 class Page extends React.Component {
@@ -70,17 +70,19 @@ class Page extends React.Component {
       title = page.get('label');
     }
     return (
-      <Segment basic className='dialob-page' ref={pg => this.page = pg}>
-        <Header as='h2' className='dialob-page-title'>{title}</Header>
-        {groups}
-        <PageBar
-          onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
-          onBackward={this.props.backEnabled ? this.backTouch.bind(this) : null}
-          onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
-          prevPageLabel={this.props.prevPageLabel}
-          nextPageLabel={this.props.nextPageLabel}
-          />
-      </Segment>
+      <Ref innerRef={pg => this.page = pg}>
+        <Segment basic className='dialob-page'>
+          <Header as='h2' className='dialob-page-title'>{title}</Header>
+          {groups}
+          <PageBar
+            onForward={this.props.forwardEnabled ? this.forwardTouch.bind(this) : null}
+            onBackward={this.props.backEnabled ? this.backTouch.bind(this) : null}
+            onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
+            prevPageLabel={this.props.prevPageLabel}
+            nextPageLabel={this.props.nextPageLabel}
+            />
+        </Segment>
+      </Ref>
     );
   }
 }

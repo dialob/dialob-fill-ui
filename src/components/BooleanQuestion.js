@@ -21,28 +21,13 @@ import classnames from 'classnames';
 import Item from './Item';
 import Label from './Label';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { Checkbox, Form} from 'semantic-ui-react';
 
 // Form item for boolean (yes/no) questions
 class BooleanQuestion extends Item {
 
-  onChange(value) {
-    this.props.answerQuestion(this.props.question[0], value);
-  }
-
-  // Keyboard interaction
-  keyPress(event) {
-    let keyCode = event.keyCode;
-    switch (keyCode) {
-      // Space: toggle
-      case 32: this.onChange(!this.props.question[1].get('value'));
-               break;
-      // Y: yes / true
-      case 89: this.onChange(true);
-               break;
-      // N: no / false
-      case 78: this.onChange(false);
-               break;
-    }
+  onChange(event, data) {
+    this.props.answerQuestion(this.props.question[0], data.checked);
   }
 
   render() {
@@ -58,21 +43,15 @@ class BooleanQuestion extends Item {
       value = false;
     }
     return (
-       <div className={this.getStyles()}>
-        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
-        {this.renderDescription()}
-        <div id={this.getControlId()}>
-          <div className={classnames('dialob-tristate-control')} tabIndex={0} onKeyDown={this.keyPress.bind(this)}>
-            <span className={classnames('dialob-tristate-true', {'dialob-tristate-active': (value === true)})} onClick={this.onChange.bind(this, true)}><FormattedMessage id='yes'/></span>
-            <span className={classnames('dialob-tristate-false', {'dialob-tristate-active': (value === false)})} onClick={this.onChange.bind(this, false)}><FormattedMessage id='no'/></span>
-          </div>
-        </div>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
+        { this.renderDescription() }
+        <Checkbox toggle fitted onChange={this.onChange.bind(this)} checked={value === true} />
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }
-
 
 export const BooleanQuestionConnected = connectToAnswer(injectIntl(BooleanQuestion));
 
