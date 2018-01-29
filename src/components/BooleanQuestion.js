@@ -21,13 +21,13 @@ import classnames from 'classnames';
 import Item from './Item';
 import Label from './Label';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { Checkbox, Form} from 'semantic-ui-react';
+import { Checkbox, Form, Button} from 'semantic-ui-react';
 
 // Form item for boolean (yes/no) questions
 class BooleanQuestion extends Item {
 
-  onChange(event, data) {
-    this.props.answerQuestion(this.props.question[0], data.checked);
+  onChange(value) {
+    this.props.answerQuestion(this.props.question[0], value);
   }
 
   render() {
@@ -46,7 +46,11 @@ class BooleanQuestion extends Item {
       <Form.Field required={this.isRequired()}>
         <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
         { this.renderDescription() }
-        <Checkbox toggle fitted onChange={this.onChange.bind(this)} checked={value === true} />
+        <Button.Group>
+          <Button toggle active={value === true} onClick={this.onChange.bind(this, true)}><FormattedMessage id='yes'/></Button>
+          <Button.Or text='' />
+          <Button toggle active={value === false} onClick={this.onChange.bind(this, false)}><FormattedMessage id='no'/></Button>
+        </Button.Group>
         <Errors errors={q.get('errors')} />
       </Form.Field>
     );
