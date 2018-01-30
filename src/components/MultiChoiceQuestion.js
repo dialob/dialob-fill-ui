@@ -20,8 +20,8 @@ import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
 import {List} from 'immutable';
-import Checkbox from './Checkbox';
 import PropTypes from 'prop-types';
+import {Form, Checkbox} from 'semantic-ui-react';
 
 // Form item for multiple-selection controls
 class MultiChoiceQuestion extends Item {
@@ -32,7 +32,7 @@ class MultiChoiceQuestion extends Item {
     };
   }
 
-  setOptionValue(key, checked) {
+  setOptionValue(key, checked, event, data) {
     let value = this.props.question[1].get('value');
     if (!List.isList(value)) {
       value = new List();
@@ -50,10 +50,9 @@ class MultiChoiceQuestion extends Item {
   option(key, label, checked) {
     let name = `${this.props.question[0]}[${key}]`;
     return (
-      <span className='dialob-multichoice-option' key={name}>
-        <Checkbox id={name} value={checked} onChange={this.setOptionValue.bind(this, key)} />
-        <label htmlFor={name}>{label}</label>
-      </span>
+      <div key={name}>
+        <Checkbox id={name} checked={checked} label={label} onChange={this.setOptionValue.bind(this, key, !checked)} />
+      </div>
       );
   }
 
@@ -74,12 +73,12 @@ class MultiChoiceQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-       <div className={this.getStyles()}>
-        <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
         {this.renderDescription()}
         {options}
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }

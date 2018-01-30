@@ -23,8 +23,7 @@ export default class Label extends React.Component {
 
   static get propTypes() {
     return {
-      htmlFor: PropTypes.string.isRequired,
-      required: PropTypes.bool.isRequired
+      htmlFor: PropTypes.string.isRequired
     };
   }
 
