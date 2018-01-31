@@ -18,7 +18,7 @@ import React from 'react';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import {Segment, Header, Message} from 'semantic-ui-react';
+import {Segment, Header, Message, Grid} from 'semantic-ui-react';
 
 export default class Group extends React.Component {
 
@@ -46,6 +46,15 @@ export default class Group extends React.Component {
     }
   }
 
+  getColumnCount() {
+    let colStyle = this.props.group[1].get('className') && this.props.group[1].get('className').filter(c => c.startsWith('columns-')).toJS();
+    if (colStyle && colStyle.length > 0) {
+      let pos = colStyle[0].lastIndexOf('-')+1;
+      return parseInt(colStyle[0].substring(pos));
+    }
+    return 0;
+  }
+
   render() {
     let group = this.props.group && this.props.group[1];
     if (!group) {
@@ -58,15 +67,24 @@ export default class Group extends React.Component {
       customStyles = className.toJS();
     }
 
+    let columns = this.getColumnCount();
+
     let title = group.get('label');
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
-      .filter(question => question);
+      .filter(question => question)
+      .map((question, key) => columns > 0 ? <Grid.Column key={key}>{question}</Grid.Column> : question);
     return (
       <Segment className={classnames('dialob-group', customStyles)}>
         <Header as='h3' className='dialob-group-title'>{title}</Header>
         { this.renderDescription() }
-        {questions}
+        {
+          columns > 0 ?
+          <Grid stackable columns={columns}>
+            {questions}
+          </Grid>
+          : questions
+        }
       </Segment>
     );
   }
