@@ -30,6 +30,7 @@ import Note from '../components/Note';
 import MultiChoiceQuestion from '../components/MultiChoiceQuestion';
 import MultiChoiceAutocompleteQuestion from '../components/MultiAutocompleteQuestion';
 import RadioChoiceQuestion from '../components/RadioChoiceQuestion';
+import PieChartDisplay from '../components/PieChartDisplay';
 import {findItemById} from './formUtils';
 
 // TODO: Make this extendable
@@ -80,7 +81,11 @@ function componentCreator(question) {
     case 'time':
       return <TimeQuestion key={id} question={question}/>;
     case 'note':
-      return <Note key={id} question={question} />;
+      if (hasClass('piechart')) {
+        return <PieChartDisplay key={id} question={question}/>;
+      } else {
+        return <Note key={id} question={question} />;
+      }
     case 'group':
       if (hasClass('survey')) {
         return <SurveyGroup key={id} group={question}/>
