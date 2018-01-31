@@ -55,6 +55,10 @@ export default class Group extends React.Component {
     return 0;
   }
 
+  isDividedColumns() {
+    return this.props.group[1].get('className') && this.props.group[1].get('className').contains('divided');
+  }
+
   render() {
     let group = this.props.group && this.props.group[1];
     if (!group) {
@@ -69,6 +73,8 @@ export default class Group extends React.Component {
 
     let columns = this.getColumnCount();
 
+    let divided = columns > 0 && this.isDividedColumns;
+
     let title = group.get('label');
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
@@ -80,7 +86,7 @@ export default class Group extends React.Component {
         { this.renderDescription() }
         {
           columns > 0 ?
-          <Grid stackable columns={columns}>
+          <Grid stackable divided={divided} columns={columns}>
             {questions}
           </Grid>
           : questions
