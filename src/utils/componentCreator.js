@@ -31,6 +31,7 @@ import MultiChoiceQuestion from '../components/MultiChoiceQuestion';
 import MultiChoiceAutocompleteQuestion from '../components/MultiAutocompleteQuestion';
 import RadioChoiceQuestion from '../components/RadioChoiceQuestion';
 import PieChartDisplay from '../components/PieChartDisplay';
+import ImageDisplay from '../components/ImageDisplay';
 import {findItemById} from './formUtils';
 
 // TODO: Make this extendable
@@ -83,6 +84,8 @@ function componentCreator(question) {
     case 'note':
       if (hasClass('piechart')) {
         return <PieChartDisplay key={id} question={question}/>;
+      } else if (hasClass('imageurl')) {
+          return <ImageDisplay key={id} question={question}/>;
       } else {
         return <Note key={id} question={question} />;
       }

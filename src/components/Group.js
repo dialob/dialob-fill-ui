@@ -73,7 +73,7 @@ export default class Group extends React.Component {
 
     let columns = this.getColumnCount();
 
-    let divided = columns > 0 && this.isDividedColumns;
+    let divided = columns > 0 && this.isDividedColumns();
 
     let title = group.get('label');
     let questions = group.get('items').toJS()
