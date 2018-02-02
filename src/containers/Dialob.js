@@ -29,6 +29,7 @@ import fi from 'react-intl/locale-data/fi';
 import sv from 'react-intl/locale-data/sv';
 import messages from '../intl';
 import PropTypes from 'prop-types';
+import {Loader} from 'semantic-ui-react';
 
 addLocaleData([...en, ...fi, ...sv]);
 
@@ -59,7 +60,7 @@ class Dialob extends React.Component {
   render() {
     let data = this.props.data;
     let config = this.props.config;
-    let content = null;
+    let content = <Loader active inline='centered' />;
     let props = {
         status: data.get('status'),
         questionnaire: data.get('questionnaire'),
@@ -70,7 +71,7 @@ class Dialob extends React.Component {
         content = <QuestionnaireNotFound/>;
     } else if (props.status === 'COMPLETED') {
         content = <Completed reviewUrl={config.get('reviewUrl')}/>;
-    } else {
+    } else if (props.status === 'LOADED') {
         content = <FormFillView {...props}/>;
     }
     return (
