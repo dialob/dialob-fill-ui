@@ -17,14 +17,15 @@
 import React from 'react';
 import Item from './Item';
 import ReactMarkdown from 'react-markdown';
+import {Segment} from 'semantic-ui-react';
 
 export default class Note extends Item {
 
   render() {
     return (
-      <div className={this.getStyles()}>
+      <Segment basic className={this.getStyles()}>
         <ReactMarkdown source={this.question.get('label')} escapeHtml={true} />
-      </div>
+      </Segment>
     );
   }
 }
