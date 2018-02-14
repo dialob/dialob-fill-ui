@@ -19,6 +19,7 @@ import Errors from './Errors';
 import {TextQuestion} from './TextQuestion';
 import Label from './Label';
 import {connectToAnswer} from '../utils/formUtils';
+import {Form, TextArea} from 'semantic-ui-react';
 
 // How many lines to grow the input area before displaying a scrollbar
 const MAX_LINES = 25;
@@ -26,30 +27,21 @@ const MAX_LINES = 25;
 // Item for multi-line (textbox) questions
 class TextBoxQuestion extends TextQuestion {
 
-  getLineCount(text) {
-		if (text) {
-			let lines = String(text).split(/\r*\n/).length;
-			return lines > MAX_LINES ? MAX_LINES : lines;
-	  } else {
-			return 1;
-		}
-	}
-
+  /*
   onChangeText(event) {
     super.onChangeText(event);
-    this.refs.inputControl.rows = this.getLineCount(event.target.value);
   }
+  */
 
   render() {
     let q = this.props.question[1];
-    let rows = this.getLineCount(q.get('value'));
     return (
-      <div className={this.getStyles()}>
-        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
-        {this.renderDescription()}
-        <textarea id={this.getControlId()} ref='inputControl' value={this.state.value || ''}  rows={rows} onChange={this.onChangeText.bind(this)}/>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
+        { this.renderDescription() }
+        <TextArea id={this.getControlId()} name={q.get('id')} type={this.props.entryType} value={this.state.value || ''} onChange={this.onChangeText.bind(this)} autoHeight />
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }
