@@ -60,17 +60,19 @@ class PageBar extends React.Component {
   }
 
   render() {
+    let first = this.props.pageIndex === 0;
+    let last = this.props.pageIndex === this.props.totalPages - 1;
     return (
       <Segment basic>
         <Grid columns={3}>
           <Grid.Column textAlign='left'>
-            {this.renderBackButton()}
+            {first ? null : this.renderBackButton()}
           </Grid.Column>
           <Grid.Column textAlign='center'>
             {this.renderCompleteButton()}
           </Grid.Column>
           <Grid.Column textAlign='right'>
-            {this.renderForwardButton()}
+            {last ? null : this.renderForwardButton()}
           </Grid.Column>
         </Grid>
       </Segment>

@@ -80,6 +80,8 @@ class Page extends React.Component {
             onComplete={this.props.completeEnabled ? this.completeTouch.bind(this) : null}
             prevPageLabel={this.props.prevPageLabel}
             nextPageLabel={this.props.nextPageLabel}
+            pageIndex={this.props.pageIndex}
+            totalPages={this.props.totalPages}
             />
         </Segment>
       </Ref>

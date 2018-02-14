@@ -61,7 +61,9 @@ class FormFillView extends React.Component {
           forwardEnabled: isAllowedAction(ActionConstants.NEXT_PAGE),
           completeEnabled: isAllowedAction(ActionConstants.COMPLETE_QUESTIONNAIRE) && last,
           prevPageLabel,
-          nextPageLabel
+          nextPageLabel,
+          pageIndex: activeIndex,
+          totalPages: availableItems.size
         };
         page = <Page {...pageProps}/>;
       }
