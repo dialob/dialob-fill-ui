@@ -20,139 +20,50 @@ import {connectToAnswer} from '../utils/formUtils';
 import Item from './Item';
 import Label from './Label'
 import PropTypes from 'prop-types';
-import Pikaday from 'pikaday';
-import moment from 'moment';
-import {dateformats} from './dateformats';
+import {Form} from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment';
+import moment from 'moment';
 
 const DEFAULT_LOCALE = 'en';
 
 // Item for Date question
 class DateQuestion extends Item {
 
-  constructor(props) {
-    super();
-    let q = props.question[1];
-    let dateValue = q.get('value');
-    let userValue = undefined;
-    let m = dateValue ? moment(dateValue, 'YYYY-MM-DD') : null;
-    if (m && m.isValid()) {
-      userValue = m.format(dateformats[props.intl.locale || DEFAULT_LOCALE].format);
-    }
-
-    this.state = {
-      value: dateValue,
-      userValue,
-      valid: true
-    };
-  }
-
-  formatDate(dateStr) {
-    if (dateStr) {
-      return new Date(dateStr).toLocaleString();
-    } else {
-      return '';
-    }
-  }
-
-  onChangeText(event) {
-    this.update(event.target.value);
-  }
-
-  validateDate(userValue, locale) {
-    if (this.isEmpty(userValue)) {
-      return true;
-    }
-    let m = moment(userValue, dateformats[locale].format, true);
-    return m.isValid();
-  }
-
-  isEmpty(value) {
-    return !value || value.trim() === '';
-  }
-
-  update(userValue) {
-    this.setState(prevState => {
-      let valid = this.validateDate(userValue, this.props.intl.locale || DEFAULT_LOCALE);
-      let m = moment(userValue, dateformats[this.props.intl.locale || DEFAULT_LOCALE].format, true);
-      let value = null;
-      if (!this.isEmpty(userValue) && valid) {
-        value = m.format('YYYY-MM-DD');
-      }
-      let newState = {
-        userValue,
-        value,
-        valid
-      };
-      return newState;
-    });
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.value !== nextState.value) {
-      this.props.answerQuestion(this.props.question[0], nextState.value);
-    }
-  }
-
-  componentDidMount() {
-    let locale = this.props.intl.locale || DEFAULT_LOCALE;
-    let position = this.props.position || 'top';
-
-    this.pikaday = new Pikaday({
-      field: this.input,
-      trigger: this.button,
-      position: position +'right',
-      i18n: dateformats[locale],
-      firstDay: dateformats[locale].firstDay,
-      format: dateformats[locale].format,
-      onSelect: () => this.update(this.input.value)
-    });
-  }
-
-  componentWillUnmount() {
-    this.pikaday && this.pikaday.destroy();
-    this.pikaday = null;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let qOld = this.props.question[1];
-    let dateValue = qOld.get('value');
-
-    let qNew = nextProps.question[1];
-    let newDateValue = qNew.get('value');
-    if (newDateValue !== dateValue) {
-      let userValue = undefined;
-      let m = newDateValue ? moment(newDateValue, 'YYYY-MM-DD') : null;
-      if (m && m.isValid()) {
-        userValue = m.format(dateformats[this.props.intl.locale || DEFAULT_LOCALE].format);
-      }
-      this.setState({
-        value: newDateValue,
-        userValue
-      });
+  handleDayChange(day, modifiers) {
+    if (day) {
+      let value = moment(day).format('YYYY-MM-DD');
+      this.props.answerQuestion(this.props.question[0], value);
     }
   }
 
   render() {
     let q = this.props.question[1];
+    let value = q.get('value');
+    let dateValue = value ? moment(value).toDate() : null;
     return (
-      <div className={this.getStyles()}>
-        <Label htmlFor={this.getControlId()} required={this.isRequired()}>{q.get('label')}</Label>
-        {this.renderDescription()}
-        <div className='dialob-datepicker-wrapper'>
-          <input
-            id={this.getControlId()}
-            className='dialob-datepicker-input'
-            ref={input => this.input = input}
-            type='text'
-            name={q.get('id')}
-            value={this.state.userValue || ''}
-            onChange={this.onChangeText.bind(this)}
-            />
-          <button type='button' className='dialob-datepicker-button dialob-icon-calendar' ref={button => this.button = button}></button>
-        </div>
+      <Form.Field required={this.isRequired()}>
+        <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
+        { this.renderDescription() }
+        <DayPickerInput
+          onDayChange={this.handleDayChange.bind(this)}
+          value={dateValue || ''}
+          formatDate={formatDate}
+          parseDate={parseDate}
+          format="L"
+          placeholder={`${dateValue ? formatDate(dateValue, 'L', this.props.locale) : ''}`}
+          dayPickerProps={{
+            locale: this.props.locale,
+            localeUtils: MomentLocaleUtils,
+          }}
+         />
         <Errors errors={q.get('errors')} />
-      </div>
+      </Form.Field>
     );
   }
 }

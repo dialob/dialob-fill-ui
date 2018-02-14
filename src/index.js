@@ -25,6 +25,8 @@ import Dialob from './containers/Dialob';
 import {createStore} from './stores';
 import {componentCreator} from './utils/componentCreator';
 import {connectToAnswer} from './utils/formUtils';
+import 'moment/locale/fi';
+import 'moment/locale/sv';
 
 function renderDialob(element,config) {
   if (typeof config === 'string') {
