@@ -3,18 +3,24 @@ module.exports = {
     "invalidFormat.number": "Invalid format",
     "yes": "Yes",
     "no": "No",
-    "complete": "Complete"
+    "complete": "Complete",
+    "addRow": "Add row",
+    "removeRow": "Remove row"
   },
   'fi': {
     "invalidFormat.number": "Tarkista määrä",
     "yes": "Kyllä",
     "no": "Ei",
-    "complete":"Hyväksy"
+    "complete":"Hyväksy",
+    "addRow": "Add row",
+    "removeRow": "Remove row"
   },
   'sv': {
     "invalidFormat.number": "Kontrollera beloppet",
     "yes": "Ja",
     "no": "Nej",
-    "complete": "Godkänn"
+    "complete": "Godkänn",
+    "addRow": "Add row",
+    "removeRow": "Remove row"
   }
 };

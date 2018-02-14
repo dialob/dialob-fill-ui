@@ -22,6 +22,8 @@ import {findItemById} from '../utils/formUtils';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
+import {Segment, Grid, Header, Button, Popup} from 'semantic-ui-react';
+import { injectIntl } from 'react-intl';
 
 class RowGroup extends React.Component {
 
@@ -63,13 +65,22 @@ class RowGroup extends React.Component {
 
     let title = group.get('label');
     let rows = group.get('items').toJS().map(this.props.createRow).filter(item => item);
+
     return (
-      <div className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
-        <span className='dialob-group-title'>{title}</span>
+      <Segment className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
+        <Header as='h3' className='dialob-group-title'>{title}</Header>
         {this.renderDescription()}
-        {rows}
-        <button className='dialob-rowgroup-add dialob-icon-add' onClick={this.props.addNewRow.bind(this)} />
-      </div>
+        <Grid container stackable divided='vertically'>
+          {rows}
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Popup
+                trigger={<Button positive circular icon='add' onClick={this.props.addNewRow.bind(this)} />}
+                content={this.props.intl.formatMessage({id: 'addRow'})} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     );
   }
 }
@@ -92,7 +103,7 @@ const RowGroupConnected = connect(
       addNewRow: () => dispatch(addRow(props.group[0]))
     }
   }
-  )(RowGroup);
+  )(injectIntl(RowGroup));
 
 export {
   RowGroupConnected as default,

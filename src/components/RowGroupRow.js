@@ -18,6 +18,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteRow} from '../actions/Actions';
 import PropTypes from 'prop-types';
+import {Grid, Button, Popup} from 'semantic-ui-react';
+import {injectIntl} from 'react-intl';
 
 class RowGroupRow extends React.Component {
 
@@ -40,12 +42,21 @@ class RowGroupRow extends React.Component {
     }
     let questions = group.get('items').toJS()
       .map(this.context.componentCreator)
-      .filter(question => question);
+      .filter(question => question)
+      .map((question, key) =>
+        <Grid.Column key={key}>
+          {question}
+        </Grid.Column>);
+    let columnCount = questions.length;
     return (
-      <div className='dialob-rowgroup-row'>
-       {questions}
-       <button className='dialob-rowgroup-remove dialob-icon-remove' onClick={this.props.removeRow.bind(this)} />
-      </div>
+      <Grid.Row columns={columnCount + 1}>
+        {questions}
+        <Grid.Column verticalAlign='bottom' textAlign='right'>
+          <Popup
+            trigger={<Button circular negative icon='remove' onClick={this.props.removeRow.bind(this)} />}
+            content={this.props.intl.formatMessage({id: 'removeRow'})} />
+        </Grid.Column>
+      </Grid.Row>
     );
   }
 }
@@ -57,7 +68,7 @@ const RowGroupRowConnected = connect(
       removeRow: () => dispatch(deleteRow(props.group[0]))
     }
   }
-)(RowGroupRow);
+)(injectIntl(RowGroupRow));
 
 export {
   RowGroupRowConnected as default,
