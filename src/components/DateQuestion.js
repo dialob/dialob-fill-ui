@@ -20,7 +20,7 @@ import {connectToAnswer} from '../utils/formUtils';
 import Item from './Item';
 import Label from './Label'
 import PropTypes from 'prop-types';
-import {Form} from 'semantic-ui-react';
+import {Form, Input} from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -56,6 +56,10 @@ class DateQuestion extends Item {
           formatDate={formatDate}
           parseDate={parseDate}
           format="L"
+          component={Input}
+          inputProps={{
+            icon: 'calendar'
+          }}
           placeholder={`${dateValue ? formatDate(dateValue, 'L', this.props.locale) : ''}`}
           dayPickerProps={{
             locale: this.props.locale,
