@@ -18,7 +18,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteRow} from '../actions/Actions';
 import PropTypes from 'prop-types';
-import {Grid, Button, Popup} from 'semantic-ui-react';
+import {Button, Popup, Table} from 'semantic-ui-react';
 import {injectIntl} from 'react-intl';
 
 class RowGroupRow extends React.Component {
@@ -44,19 +44,19 @@ class RowGroupRow extends React.Component {
       .map(this.context.componentCreator)
       .filter(question => question)
       .map((question, key) =>
-        <Grid.Column key={key}>
+        <Table.Cell key={key} verticalAlign='top'>
           {question}
-        </Grid.Column>);
+        </Table.Cell>);
     let columnCount = questions.length;
     return (
-      <Grid.Row columns={columnCount + 1}>
+      <Table.Row>
         {questions}
-        <Grid.Column verticalAlign='bottom' textAlign='right'>
+        <Table.Cell collapsing verticalAlign='center'>
           <Popup
-            trigger={<Button circular negative icon='remove' onClick={this.props.removeRow.bind(this)} />}
+            trigger={<Button negative size='mini' icon='remove' onClick={this.props.removeRow.bind(this)} />}
             content={this.props.intl.formatMessage({id: 'removeRow'})} />
-        </Grid.Column>
-      </Grid.Row>
+        </Table.Cell>
+      </Table.Row>
     );
   }
 }

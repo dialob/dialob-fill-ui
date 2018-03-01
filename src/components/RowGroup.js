@@ -22,7 +22,7 @@ import {findItemById} from '../utils/formUtils';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import {Segment, Grid, Header, Button, Popup} from 'semantic-ui-react';
+import {Segment, Header, Button, Popup, Table} from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 
 class RowGroup extends React.Component {
@@ -70,16 +70,23 @@ class RowGroup extends React.Component {
       <Segment className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
         <Header as='h3' className='dialob-group-title'>{title}</Header>
         {this.renderDescription()}
-        <Grid container stackable divided='vertically'>
-          {rows}
-          <Grid.Row>
-            <Grid.Column textAlign='center'>
-              <Popup
-                trigger={<Button positive circular icon='add' onClick={this.props.addNewRow.bind(this)} />}
-                content={this.props.intl.formatMessage({id: 'addRow'})} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+
+        <Table celled stackable basic='very'>
+          <Table.Body>
+            {rows}
+          </Table.Body>
+        </Table>
+        <Table celled stackable basic='very' attached='top'>
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell>
+                <Popup
+                  trigger={<Button positive icon='add' size='mini' onClick={this.props.addNewRow.bind(this)} />}
+                  content={this.props.intl.formatMessage({id: 'addRow'})} />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        </Table>
       </Segment>
     );
   }
