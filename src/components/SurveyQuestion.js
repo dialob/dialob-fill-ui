@@ -20,6 +20,8 @@ import Item from './Item';
 import Label from './Label';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import {Table, Radio, Button, Popup} from 'semantic-ui-react';
+import ReactMarkdown from 'react-markdown';
 
 // Form item for survey choices
 class SurveyQuestion extends Item {
@@ -35,12 +37,23 @@ class SurveyQuestion extends Item {
    this.props.answerQuestion(this.props.question[0], value);
   }
 
+  renderDescription() {
+    if (this.props.question[1].get('description')) {
+      return (<Popup
+        hoverable
+        trigger={<Button style={{marginLeft: '0.5em'}} size='mini' icon='info' />}>
+        <ReactMarkdown source={this.props.question[1].get('description')} escapeHtml={true} />
+      </Popup>);
+    }
+    return null;
+  }
+
   option(key) {
     let q = this.props.question[1];
     return (
-      <div className='dialob-survey-option' key={key}>
-        <input type='radio' name={q.get('id')} value={key} checked={q.get('value') === key} onChange={this.onChange.bind(this, key)} />
-      </div>
+      <Table.Cell className='dialob-survey-option' key={key} textAlign='center'>
+        <Radio type='radio' name={q.get('id')} value={key} checked={q.get('value') === key} onChange={this.onChange.bind(this, key)} />
+      </Table.Cell>
     );
   }
 
@@ -57,12 +70,10 @@ class SurveyQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-      <div className={classnames('dialob-survey-question', {'dialob-survey-errors': this.hasErrors()})}>
-        <div className='dialob-survey-question-label'>
-          <Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>
-        </div>
+      <Table.Row error={this.hasErrors()}>
+        <Table.Cell><Label htmlFor={q.get('id')} required={this.isRequired()}>{q.get('label')}</Label>{this.renderDescription()}</Table.Cell>
         {options}
-      </div>
+      </Table.Row>
     );
   }
 }

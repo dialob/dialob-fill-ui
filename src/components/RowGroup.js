@@ -22,7 +22,7 @@ import {findItemById} from '../utils/formUtils';
 import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import {Segment, Header, Button, Popup, Table} from 'semantic-ui-react';
+import {Segment, Header, Button, Popup, Table, Message} from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 
 class RowGroup extends React.Component {
@@ -42,10 +42,10 @@ class RowGroup extends React.Component {
   renderDescription() {
     if (this.props.group[1].get('description')) {
       return (
-        <div className='dialob-description'>
-           <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
-        </div>
-      )
+        <Message size='small' className='dialob-description'>
+          <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
+        </Message>
+      );
     } else {
       return null;
     }

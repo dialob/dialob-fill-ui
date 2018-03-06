@@ -18,8 +18,11 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import {Segment, Header, Table, Message} from 'semantic-ui-react';
+import {connect} from 'react-redux';
+import {findItemById} from '../utils/formUtils';
 
-export default class SurveyGroup extends React.Component {
+class SurveyGroup extends React.Component {
 
   static get propTypes() {
     return {
@@ -49,10 +52,10 @@ export default class SurveyGroup extends React.Component {
   renderDescription() {
     if (this.props.group[1].get('description')) {
       return (
-        <div className='dialob-description'>
+        <Message size='small' className='dialob-description'>
            <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
-        </div>
-      )
+        </Message>
+      );
     } else {
       return null;
     }
@@ -75,34 +78,68 @@ export default class SurveyGroup extends React.Component {
     }
     let vertical = this.hasStyleClass('vertical');
     let title = group.get('label');
-    let questions = group.get('items').toJS()
-      .map(this.context.componentCreator)
-      .filter(question => question);
+
     let valueSet = this.context.valueSetById(group.get('valueSetId'));
     let headers = [];
     if (valueSet) {
-      headers = valueSet.toJS().map(e => <div className='dialob-survey-header-label' key={e.key}>{e.value}</div>);
+      headers = valueSet.toJS().map(e => <Table.HeaderCell key={e.key} textAlign='center'>{e.value}</Table.HeaderCell>);
     }
+
+    let questions = group.get('items').toJS()
+      .map(itemId => this.props.createRow(itemId, this.context.componentCreator, headers.length + 1))
+      .filter(question => question);
+
     let surveyHeader = null;
     if (headers.length > 0) {
       surveyHeader = (
-        <div className='dialob-survey-header'>
-          <div className='dialob-survey-header-spacer'></div>
-          {headers}
-        </div>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell />
+            {headers}
+          </Table.Row>
+        </Table.Header>
       );
     }
 
     return (
-      <div className={classnames('dialob-group', 'dialob-survey', customStyles)}>
-        <span className='dialob-group-title'>{title}</span>
+      <Segment className={classnames('dialob-group', 'dialob-rowgroup', customStyles)}>
+        <Header as='h3' className='dialob-group-title'>{title}</Header>
         {this.renderDescription()}
-        <div className={classnames('dialob-survey-container', {'dialob-survey-horizontal': !vertical, 'dialob-survey-vertical': vertical})}>
+        <Table definition>
           {surveyHeader}
-          {questions}
-        </div>
-      </div>
+          <Table.Body>
+            {questions}
+          </Table.Body>
+        </Table>
+      </Segment>
     );
   }
 }
+
+const SurveyGroupConnected = connect(
+  state => {
+    return {
+      get createRow() { return (itemId, create, columnCount) => {
+           let item = findItemById(state.data, itemId);
+           if (item && !(item[1].get('className') && item[1].get('className').contains('survey'))) {
+             return (
+              <Table.Row key={itemId}>
+                <Table.Cell colSpan={columnCount}>
+                  {create(itemId)}
+                </Table.Cell>
+              </Table.Row>
+             );
+           }
+           return create(itemId);
+        }
+      }
+    }
+  },
+  {}
+  )(SurveyGroup);
+
+export {
+  SurveyGroupConnected as default,
+  SurveyGroup
+};
 

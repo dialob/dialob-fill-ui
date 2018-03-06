@@ -40,7 +40,7 @@ export default class Group extends React.Component {
         <Message size='small' className='dialob-description'>
            <ReactMarkdown source={this.props.group[1].get('description')} escapeHtml={true} />
         </Message>
-      )
+      );
     } else {
       return null;
     }
