@@ -52,11 +52,13 @@ class ChoiceQuestion extends Item {
   render() {
     let q = this.props.question[1];
     let options = this.choiceList();
+    let value = q.get('value');
+    value = value && this.props.multiple ? value.toJS() : value;
     return (
       <Form.Field required={this.isRequired()}>
         <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
         { this.renderDescription() }
-        <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} search={this.props.autocomplete}/>
+        <Select name={q.get('id')} value={value} onChange={this.onChange.bind(this)} options={options} search={this.props.autocomplete} multiple={this.props.multiple}/>
         <Errors errors={q.get('errors')} />
       </Form.Field>
     );

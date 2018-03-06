@@ -46,11 +46,11 @@ function componentCreator(question) {
     case 'text':
       if (question[1].get('valueSetId')) { // TODO: Remove this workaround...
         if (hasClass('autocomplete')) {
-          return <ChoiceQuestion key={id} question={question} autocomplete={true}/>;
+          return <ChoiceQuestion key={id} question={question} autocomplete={true} multiple={false}/>;
         } else if (hasClass('radio')) {
           return <RadioChoiceQuestion key={id} question={question} />;
         } else {
-          return <ChoiceQuestion key={id} question={question} autocomplete={false} />;
+          return <ChoiceQuestion key={id} question={question} autocomplete={false} multiple={false} />;
         }
       } else {
         if (hasClass('textbox')) {
@@ -97,7 +97,7 @@ function componentCreator(question) {
       return <RowGroup key={id} group={question}/>;
     case 'array':
       if (hasClass('autocomplete')) {
-    //    return <MultiChoiceAutocompleteQuestion key={id} question={question} />;
+        return <ChoiceQuestion key={id} question={question} autocomplete={true} multiple={true} />;
       } else {
         return <MultiChoiceQuestion key={id} question={question} />;
       }
