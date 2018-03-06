@@ -19,7 +19,6 @@ import TextQuestion from '../components/TextQuestion';
 import TextBoxQuestion from '../components/TextBoxQuestion';
 import BooleanQuestion from '../components/BooleanQuestion';
 import ChoiceQuestion from '../components/ChoiceQuestion';
-import ChoiceAutocomplete from '../components/ChoiceAutocompleteQuestion';
 import DateQuestion from '../components/DateQuestion';
 import TimeQuestion from '../components/TimeQuestion';
 import Group from '../components/Group';
@@ -28,7 +27,6 @@ import SurveyQuestion from '../components/SurveyQuestion';
 import RowGroup from '../components/RowGroup';
 import Note from '../components/Note';
 import MultiChoiceQuestion from '../components/MultiChoiceQuestion';
-import MultiChoiceAutocompleteQuestion from '../components/MultiAutocompleteQuestion';
 import RadioChoiceQuestion from '../components/RadioChoiceQuestion';
 import PieChartDisplay from '../components/PieChartDisplay';
 import ImageDisplay from '../components/ImageDisplay';
@@ -48,11 +46,11 @@ function componentCreator(question) {
     case 'text':
       if (question[1].get('valueSetId')) { // TODO: Remove this workaround...
         if (hasClass('autocomplete')) {
-          return <ChoiceAutocomplete key={id} question={question} />;
+          return <ChoiceQuestion key={id} question={question} autocomplete={true}/>;
         } else if (hasClass('radio')) {
-        return <RadioChoiceQuestion key={id} question={question} />;
+          return <RadioChoiceQuestion key={id} question={question} />;
         } else {
-          return <ChoiceQuestion key={id} question={question} />;
+          return <ChoiceQuestion key={id} question={question} autocomplete={false} />;
         }
       } else {
         if (hasClass('textbox')) {
@@ -99,7 +97,7 @@ function componentCreator(question) {
       return <RowGroup key={id} group={question}/>;
     case 'array':
       if (hasClass('autocomplete')) {
-        return <MultiChoiceAutocompleteQuestion key={id} question={question} />;
+    //    return <MultiChoiceAutocompleteQuestion key={id} question={question} />;
       } else {
         return <MultiChoiceQuestion key={id} question={question} />;
       }

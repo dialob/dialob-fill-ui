@@ -56,7 +56,7 @@ class ChoiceQuestion extends Item {
       <Form.Field required={this.isRequired()}>
         <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
         { this.renderDescription() }
-        <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options}/>
+        <Select name={q.get('id')} value={q.get('value')} onChange={this.onChange.bind(this)} options={options} search={this.props.autocomplete}/>
         <Errors errors={q.get('errors')} />
       </Form.Field>
     );
