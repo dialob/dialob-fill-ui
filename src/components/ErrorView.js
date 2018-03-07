@@ -16,14 +16,17 @@
 
 import React from 'react';
 import {Message} from 'semantic-ui-react';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
-export default class QuestionnaireNotFound extends React.Component {
+class ErrorView extends React.Component {
 
     render() {
         return (
           <Message negative>
-            Questionnaire not found.
+            <FormattedMessage id={this.props.messageId} />
           </Message>
         );
     }
 }
+
+export default injectIntl(ErrorView);

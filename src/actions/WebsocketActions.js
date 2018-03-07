@@ -54,3 +54,10 @@ export function onReconnected() {
     serverEvent: true
   };
 }
+
+export function connectionError(error) {
+  return {
+    type: WebsocketAction.CONNECTION_ERROR,
+    error
+  };
+}

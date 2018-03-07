@@ -19,7 +19,7 @@ import FormFillView from '../components/FormFillView';
 import {connect as connectAction} from '../actions/Actions';
 import {connect} from 'react-redux';
 import ConnectionStatus from '../components/ConnectionStatus';
-import QuestionnaireNotFound from '../components/QuestionnaireNotFound';
+import ErrorView from '../components/ErrorView';
 import {componentCreatorState} from '../utils/componentCreator';
 import {findItemById,findValuesetById} from '../utils/formUtils';
 import Completed from '../components/Completed';
@@ -67,8 +67,12 @@ class Dialob extends React.Component {
         activePageItem: findItemById(data, data.getIn(['questionnaire','activeItem']))
     };
     let locale = this.props.config.get('language') || 'en';
-    if (props.status === 'NOT_FOUND') {
-        content = <QuestionnaireNotFound/>;
+    if (this.props.connection.get('connectionError')) {
+        content = <ErrorView messageId='error.connection' />
+    } else if (this.props.connection.getIn(['serverError', 'message'])) {
+        content = <ErrorView messageId='error.server' />
+    } else if (props.status === 'NOT_FOUND') {
+        content = <ErrorView messageId='error.notfound' />;
     } else if (props.status === 'COMPLETED') {
         content = <Completed reviewUrl={config.get('reviewUrl')}/>;
     } else if (props.status === 'LOADED') {
@@ -86,7 +90,8 @@ const DialobConnected = connect(
   state => {
       return {
           data: state.data,
-          config: state.config
+          config: state.config,
+          connection: state.connection
       };
   },{
     connect: connectAction

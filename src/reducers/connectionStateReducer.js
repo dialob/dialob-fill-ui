@@ -40,13 +40,15 @@ export function connectionStateReducer(state = CLOSED_STATE,action) {
           .setIn(['close','code'], action.close.code)
           .setIn(['close','reason'], action.close.reason)
           .setIn(['close','wasClean'], action.close.wasClean);
+      case WebsocketAction.CONNECTION_ERROR:
+        return state.set('connectionError', action.error);
       case WebsocketAction.NOTIFY_SERVER_ERROR:
         return state.set('serverError', Immutable.fromJS({
           message: action.message,
           trace: action.trace
         }));
       case WebsocketAction.CLEAR_SERVER_ERROR_NOTIFICATION:
-        return state.delete('serverError');
+        return state.delete('serverError').delete('connectionError');
     }
   }
   return state;

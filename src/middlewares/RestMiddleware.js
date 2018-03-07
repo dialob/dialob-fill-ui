@@ -16,7 +16,7 @@
 
 import {batchActionsTo} from '../utils/batchActionsTo';
 import {setRequestToken} from '../actions/Actions';
-import {onOpen} from '../actions/WebsocketActions';
+import {onOpen, connectionError} from '../actions/WebsocketActions';
 import * as Actions from '../actions/ActionConstants';
 import 'whatwg-fetch';
 
@@ -66,7 +66,10 @@ function getFullState(csrf, url, dispatch) {
         dispatchServerActions(message, dispatch);
         dispatch(onOpen(true));
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error =>  {
+        console.error('Fetch failed', error);
+        dispatch(connectionError(error));
+      });
 }
 
 function postActions(csrf, url, actions, dispatch) {
@@ -88,7 +91,10 @@ function postActions(csrf, url, actions, dispatch) {
       .then(message => {
         dispatchServerActions(message, dispatch);
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error => {
+        dispatch(connectionError(error));
+        console.error('Fetch failed', error);
+      });
 }
 
 const prevRev = (state) => state.connection.get('token');
