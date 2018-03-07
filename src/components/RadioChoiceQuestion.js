@@ -20,6 +20,7 @@ import Errors from './Errors';
 import Item from './Item';
 import Label from './Label';
 import PropTypes from 'prop-types';
+import {Form, Checkbox} from 'semantic-ui-react';
 
 // Form item for dropdown selection controls
 class RadioChoiceQuestion extends Item {
@@ -30,15 +31,16 @@ class RadioChoiceQuestion extends Item {
     };
   }
 
-  onChange(event) {
-    this.props.answerQuestion(this.props.question[0], event.target.value);
+  onChange(event, data) {
+    this.props.answerQuestion(this.props.question[0], data.value);
   }
 
   option(name, value, label, checked) {
-    return (<label key={name + value} className='dialob-radio-choice-label'>
-        <input className='dialob-radio-choice-input' type='radio' name={name} value={value} checked={checked} onChange={this.onChange.bind(this)} />
-        <span className='dialob-radio-choice-text'>{label}</span>
-      </label>);
+    return (
+      <div key={name + value}>
+        <Checkbox key={name + value} radio label={label} name={name} value={value} checked={checked} onChange={this.onChange.bind(this)} />
+      </div>
+    );
   }
 
   choiceList() {
@@ -55,13 +57,12 @@ class RadioChoiceQuestion extends Item {
     let q = this.props.question[1];
     let options = this.choiceList();
     return (
-       <div className={this.getStyles()}>
-        <Label required={this.isRequired()}>{q.get('label')}</Label>
-        <div className='dialob-radio-choice-wrapper'>
+       <Form.Field required={this.isRequired()}>
+          <Label>{q.get('label')}</Label>
+          { this.renderDescription() }
           {options}
-        </div>
-        <Errors errors={q.get('errors')} />
-      </div>
+          <Errors errors={q.get('errors')} />
+       </Form.Field>
     );
   }
 }
