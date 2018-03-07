@@ -54,6 +54,7 @@ class ChoiceQuestion extends Item {
     let options = this.choiceList();
     let value = q.get('value');
     value = value && this.props.multiple ? value.toJS() : value;
+    value = !value && this.props.multiple ? [] : value;
     return (
       <Form.Field required={this.isRequired()}>
         <Label htmlFor={this.getControlId()}>{q.get('label')}</Label>
