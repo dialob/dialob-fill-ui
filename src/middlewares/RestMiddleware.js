@@ -15,7 +15,7 @@
  */
 
 import {batchActionsTo} from '../utils/batchActionsTo';
-import {setRequestToken} from '../actions/Actions';
+import {setRequestToken, authenticationError, technicalError} from '../actions/Actions';
 import {onOpen} from '../actions/WebsocketActions';
 import * as Actions from '../actions/ActionConstants';
 import 'whatwg-fetch';
@@ -30,6 +30,17 @@ const SOCKET_ACTIONS = [
   Actions.ADD_ROW,
   Actions.DELETE_ROW
 ];
+
+function checkHttpResponse(response, dispatch) {
+  if (response.ok) {
+    return response;
+  } 
+  else if (response.status === 403 || response.status === 401){
+    dispatch(authenticationError(response.statusText));
+  }
+  let error = new Error(response.statusText);
+  return Promise.reject(error);
+}
 
 function dispatchServerActions(message, dispatch) {
   if (message.nextRev) {
@@ -61,12 +72,16 @@ function getFullState(csrf, url, dispatch) {
       headers
     }
     fetch(url, options)
+      .then(response => checkHttpResponse(response, dispatch))
       .then(resoponse => resoponse.json())
       .then(message => {
         dispatchServerActions(message, dispatch);
         dispatch(onOpen(true));
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error => {
+        console.error('Fetch failed', error);
+        dispatch(technicalError(error.message));
+      });
 }
 
 function postActions(csrf, url, actions, dispatch) {
@@ -84,11 +99,15 @@ function postActions(csrf, url, actions, dispatch) {
       headers
     }
     fetch(url, options)
+      .then(response => checkHttpResponse(response, dispatch))
       .then(resoponse => resoponse.json())
       .then(message => {
         dispatchServerActions(message, dispatch);
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error => {
+        console.error('Fetch failed', error);
+        dispatch(technicalError(error.message));
+      });
 }
 
 const prevRev = (state) => state.connection.get('token');

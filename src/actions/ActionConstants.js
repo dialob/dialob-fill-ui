@@ -47,3 +47,6 @@ export const WAKE_UP = 'WAKE_UP';
 export const CONNECT = 'CONNECT';
 
 export const SET_LANGUAGE = 'SET_LANGUAGE';
+
+export const AUTHENTICATION_ERROR = "AUTHENTICATION_ERROR";
+export const TECHNICAL_ERROR = "TECHNICAL_ERROR";
