@@ -26,6 +26,18 @@ const submitCallbackMiddleware = store => next => action =>  {
       callback(context);
     }
   }
+  else if (action.type === Actions.AUTHENTICATION_ERROR) {
+    let callback = store.getState().config.get('authenticationErrorCallback');
+    if (callback) {
+      callback(action.message);
+    }
+  }
+  else if (action.type === Actions.TECHNICAL_ERROR) {
+    let callback = store.getState().config.get('technicalErrorCallback');
+    if (callback) {
+      callback(action.message);
+    }
+  }
   return next(action);
 }
 

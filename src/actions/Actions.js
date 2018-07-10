@@ -81,3 +81,16 @@ export function setLanguage(language) {
     language
   };
 }
+
+export function authenticationError(message) {
+  return {
+    type: ActionConstants.AUTHENTICATION_ERROR,
+    message
+  };
+}
+export function technicalError(message) {
+  return {
+    type: ActionConstants.TECHNICAL_ERROR,
+    message
+  };
+}

@@ -15,7 +15,7 @@
  */
 
 import {batchActionsTo} from '../utils/batchActionsTo';
-import {setRequestToken} from '../actions/Actions';
+import {setRequestToken, authenticationError, technicalError} from '../actions/Actions';
 import {onOpen} from '../actions/WebsocketActions';
 import * as Actions from '../actions/ActionConstants';
 import 'whatwg-fetch';
@@ -30,6 +30,22 @@ const SOCKET_ACTIONS = [
   Actions.ADD_ROW,
   Actions.DELETE_ROW
 ];
+
+function checkHttpResponse(response, dispatch) {
+  if (response.ok) {
+    return response;
+  } 
+  else if (response.status === 403 || response.status === 401){
+    dispatch(authenticationError(response.statusText));
+  }
+  // reject with error, this allows to handle error responses from server and also cases when no response
+  // is received on same catch block.
+  // note that this is causing 2 callback calls in case of authentication errors: once for authentication 
+  // and once for technical error on catching rejected promise. Better would be to create custom errors for
+  // different types and handle reject by checking error type but error subclasses do not work with babel...
+  let error = new Error(response.statusText);
+  return Promise.reject(error);
+}
 
 function dispatchServerActions(message, dispatch) {
   if (message.nextRev) {
@@ -61,12 +77,16 @@ function getFullState(csrf, url, dispatch) {
       headers
     }
     fetch(url, options)
-      .then(resoponse => resoponse.json())
+      .then(response => checkHttpResponse(response, dispatch))
+      .then(response => response.json())
       .then(message => {
         dispatchServerActions(message, dispatch);
         dispatch(onOpen(true));
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error => {
+        console.error('Fetch failed', error);
+        dispatch(technicalError(error.message));
+      });
 }
 
 function postActions(csrf, url, actions, dispatch) {
@@ -84,11 +104,15 @@ function postActions(csrf, url, actions, dispatch) {
       headers
     }
     fetch(url, options)
-      .then(resoponse => resoponse.json())
+      .then(response => checkHttpResponse(response, dispatch))
+      .then(response => response.json())
       .then(message => {
         dispatchServerActions(message, dispatch);
       })
-      .catch(error => console.error('Fetch failed', error));
+      .catch(error => {
+        console.error('Fetch failed', error);
+        dispatch(technicalError(error.message));
+      });
 }
 
 const prevRev = (state) => state.connection.get('token');
