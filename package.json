@@ -50,10 +50,10 @@
     "karma-chai-immutable": "^1.0.3",
     "karma-chai-plugins": "^0.9.0",
     "karma-intl-shim": "^1.0.3",
-    "nwb": "^0.23.0",
-    "nwb-sass": "^0.9.0",
+    "nwb": "^0.25.2",
+    "nwb-sass": "^0.10.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.13.1",
     "sinon": "^4.1.2"
   }
 }
